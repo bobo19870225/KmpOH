@@ -58,6 +58,11 @@ class NetworkLoginRepository(
         )
         Result.success(response.toUserEntity().toUiModel())
     } catch (e: Exception) {
+        // 联调期诊断：打印异常类因果链便于归因（tasks 6.1 排障用，稳定后可移除）
+        println(
+            "Login failure chain: " +
+                generateSequence<Throwable>(e) { it.cause }.joinToString(" <- ") { it::class.simpleName ?: "?" }
+        )
         Result.failure(Exception(e.toLoginFailureMessage(), e))
     }
 }
