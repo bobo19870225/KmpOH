@@ -98,9 +98,10 @@ private val LoginOrange = Color(0xFFFFBC61)
 
 // 登录页内容自然高度估算 = 固定部分 + sp 部分（后者随系统字体缩放线性增长），
 // 由 LoginContent / LoginHero / LoginServiceBanner / 登录卡片里的固定尺寸求和得出。
-// 若调整布局尺寸或字号，请同步更新这两个系数，否则「一屏缩放兜底」会失准。
-private const val LoginDesignHeightDp = 410f
-private const val LoginDesignHeightSp = 210f
+// 注意：无 lineHeight 的文本按 CJK 行高 ≈ 字号×1.45em 折算，系数取的是偏保守上界
+// （宁可轻微缩小也不溢出）。若调整布局尺寸或字号，请同步更新这两个系数。
+private const val LoginDesignHeightDp = 400f
+private const val LoginDesignHeightSp = 300f
 
 @Composable
 fun LoginPage(
@@ -178,7 +179,7 @@ private fun LoginContent(
                     Modifier
                         .fillMaxSize()
                         .padding(horizontal = 24.dp)
-                        .padding(top = 20.dp, bottom = 16.dp)
+                        .padding(top = 14.dp, bottom = 12.dp)
                 ) {
                     LoginHero()
                     // 弹性间距：富余高度在此吸收；紧张时收到 0，仍放不下由上方 scale 缩放兜底
@@ -190,11 +191,11 @@ private fun LoginContent(
                         RoundedCornerShape(26.dp),
                         colors = CardDefaults.cardColors(containerColor = AppColors.PaletteWhite)
                     ) {
-                        Column(Modifier.padding(horizontal = 22.dp, vertical = 18.dp)) {
+                        Column(Modifier.padding(horizontal = 22.dp, vertical = 14.dp)) {
                             Text(
                                 stringResource(Res.string.str_login_title),
                                 color = LoginInk,
-                                fontSize = 23.sp,
+                                fontSize = 21.sp,
                                 fontWeight = FontWeight.Bold
                             )
                             Spacer(Modifier.height(4.dp))
@@ -203,10 +204,10 @@ private fun LoginContent(
                                 color = LoginMuted,
                                 fontSize = 13.sp
                             )
-                            Spacer(Modifier.height(14.dp))
+                            Spacer(Modifier.height(10.dp))
 
                             LoginFieldLabel(Res.string.str_phone_label)
-                            Spacer(Modifier.height(6.dp))
+                            Spacer(Modifier.height(5.dp))
                             PrimaryInput(
                                 value = phone,
                                 onValueChange = onPhoneChanged,
@@ -217,16 +218,16 @@ private fun LoginContent(
                                     keyboardType = KeyboardType.Text,
                                     imeAction = ImeAction.Next
                                 ),
-                                height = 48.dp,
+                                height = 44.dp,
                                 fontSize = 15.sp,
                                 focusedBorderColor = LoginInk,
                                 unfocusedBorderColor = LoginInputBorder,
                                 containerColor = LoginInputBackground
                             )
-                            Spacer(Modifier.height(12.dp))
+                            Spacer(Modifier.height(10.dp))
 
                             LoginFieldLabel(Res.string.str_password_hint)
-                            Spacer(Modifier.height(6.dp))
+                            Spacer(Modifier.height(5.dp))
                             PrimaryInput(
                                 value = password,
                                 onValueChange = onPasswordChanged,
@@ -255,20 +256,20 @@ private fun LoginContent(
                                 ),
                                 visualTransformation = if (passwordVisible) VisualTransformation.None
                                 else PasswordVisualTransformation(),
-                                height = 48.dp,
+                                height = 44.dp,
                                 fontSize = 15.sp,
                                 focusedBorderColor = LoginInk,
                                 unfocusedBorderColor = LoginInputBorder,
                                 containerColor = LoginInputBackground
                             )
-                            Spacer(Modifier.height(14.dp))
+                            Spacer(Modifier.height(12.dp))
 
                             PrimaryButton(
                                 text = stringResource(Res.string.str_login_start_service),
                                 onClick = onLoginClick,
                                 enabled = loginEnabled,
                                 isLoading = isLoading,
-                                height = 48.dp,
+                                height = 44.dp,
                                 containerColor = LoginInk,
                                 disabledContainerColor = LoginButtonDisabled,
                                 trailingIcon = {
@@ -325,21 +326,21 @@ private fun LoginHero() {
                 letterSpacing = 3.sp
             )
         }
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(5.dp))
         Text(
             stringResource(Res.string.str_login_slogan),
             color = LoginInk,
-            fontSize = 30.sp,
-            lineHeight = 38.sp,
+            fontSize = 28.sp,
+            lineHeight = 34.sp,
             fontWeight = FontWeight.Bold
         )
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(5.dp))
         Text(
             stringResource(Res.string.str_login_slogan_desc),
             color = LoginMuted,
             fontSize = 14.sp
         )
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(10.dp))
         LoginServiceBanner()
     }
 }
@@ -349,12 +350,12 @@ private fun LoginServiceBanner() {
     Box(
         Modifier
             .fillMaxWidth()
-            // 高度自适应：文案列高度随系统字体缩放增长，固定 136dp 会在大字体下
+            // 高度自适应：文案列高度随系统字体缩放增长，固定高度会在大字体下
             // 从底部裁掉「SERVICE WITH CARE」（鸿蒙实机踩过）。min 保住设计感。
-            .heightIn(min = 136.dp)
+            .heightIn(min = 116.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(Color(0xFFE3F0ED))
-            .padding(16.dp)
+            .padding(14.dp)
     ) {
         Canvas(Modifier.matchParentSize()) {
             val circleCenter = Offset(size.width * .82f, size.height * .5f)
@@ -372,16 +373,16 @@ private fun LoginServiceBanner() {
             )
         }
         Column(Modifier.align(Alignment.CenterStart)) {
-            LoginResourceIcon(Res.drawable.ic_login_sparkle, tint = LoginInk, size = 18.dp)
-            Spacer(Modifier.height(8.dp))
+            LoginResourceIcon(Res.drawable.ic_login_sparkle, tint = LoginInk, size = 16.dp)
+            Spacer(Modifier.height(5.dp))
             Text(
                 stringResource(Res.string.str_login_service_title),
                 color = LoginInk,
-                fontSize = 18.sp,
-                lineHeight = 24.sp,
+                fontSize = 17.sp,
+                lineHeight = 22.sp,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(Modifier.height(6.dp))
+            Spacer(Modifier.height(5.dp))
             Text(
                 stringResource(Res.string.str_login_service_eyebrow),
                 color = LoginInk,
@@ -393,20 +394,20 @@ private fun LoginServiceBanner() {
             Modifier
                 .align(Alignment.CenterEnd)
                 .offset(x = (-4).dp)
-                .size(88.dp)
+                .size(76.dp)
                 .graphicsLayer { rotationZ = 8f }
                 .shadow(8.dp, RoundedCornerShape(24.dp), clip = false)
                 .clip(RoundedCornerShape(24.dp))
                 .background(LoginInk),
             contentAlignment = Alignment.Center
         ) {
-            LoginResourceIcon(Res.drawable.ic_login_shield, tint = AppColors.PaletteWhite, size = 39.dp)
+            LoginResourceIcon(Res.drawable.ic_login_shield, tint = AppColors.PaletteWhite, size = 34.dp)
         }
         Box(
             Modifier
                 .align(Alignment.BottomEnd)
                 .offset(x = 1.dp, y = 1.dp)
-                .size(42.dp)
+                .size(38.dp)
                 .shadow(4.dp, CircleShape, clip = false)
                 .clip(CircleShape)
                 .background(AppColors.PaletteWhite),
@@ -414,12 +415,12 @@ private fun LoginServiceBanner() {
         ) {
             Box(
                 Modifier
-                    .size(36.dp)
+                    .size(32.dp)
                     .clip(CircleShape)
                     .background(LoginOrange),
                 contentAlignment = Alignment.Center
             ) {
-                LoginResourceIcon(Res.drawable.ic_login_checkmark, tint = LoginInk, size = 18.dp)
+                LoginResourceIcon(Res.drawable.ic_login_checkmark, tint = LoginInk, size = 16.dp)
             }
         }
     }
