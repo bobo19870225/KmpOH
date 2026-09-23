@@ -89,9 +89,10 @@ kotlin {
         commonMain.dependencies {
             // 网络层（openspec/changes/migrate-network-and-login）：Ktor 3.3.3-1.0.0 fork 线
             // （CPF-KMP-CMP 三方库文档对 KMP 2.2.21 & CMP 1.9.2 的推荐版本）。
-            // 引擎按平台拆分：Android=OkHttp、iOS=Darwin、鸿蒙=ktor-client-cio（见 ohosMain），
-            // 不能依赖 ktor-client-core 的服务发现在鸿蒙自动装载引擎（实测抛
-            // "Failed to find HTTP client engine implementation"）。
+            // 引擎按平台拆分：Android=OkHttp、iOS=Darwin、鸿蒙=自定义 RcpHttpClientEngine
+            // （经 NAPI 桥接 ArkTS RCP——ktor-network-tls nonJvm 无 TLS 实现，CIO 不能用于
+            //  HTTPS；且不能依赖引擎服务发现，实测抛 "Failed to find HTTP client engine
+            //  implementation"）。鸿蒙侧无需任何 ktor 引擎工件。
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.logging)
@@ -122,9 +123,8 @@ kotlin {
         }
         ohosMain.dependencies {
             api(libs.compose.multiplatform.export)
-            // 鸿蒙端网络引擎：官方适配的 ktor-client-cio（含 ohosArm64 变体），
-            // 对应引擎工厂 io.ktor.client.engine.cio.CIO（三方库文档 / ktor-demo 用法）。
-            implementation(libs.ktor.client.cio)
+            // 鸿蒙端网络引擎是自定义 RcpHttpClientEngine（network/bridge/），经 NAPI 桥接
+            // ArkTS RCP（RemoteCommunicationKit），不依赖任何 ktor 引擎工件。
         }
         val ohosArm64Main by getting {
             dependsOn(ohosMain)

@@ -155,6 +155,18 @@ typedef struct {
 } libkn_kref_kotlin_Function1;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_bridge_ConnectTimeoutException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_bridge_SocketTimeoutException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_bridge_UnknownHostException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_bridge_ConnectException;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -265,6 +277,8 @@ typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_OhosPlatform;
 
+extern void OhosHttpBridgeRespond(void* requestId, void* responseJson);
+extern void OhosHttpTransportInit(void* postFn);
 extern void* MainArkUIViewController(void* env);
 extern void InitJsRenderNodeContext(void* env, void* nodeConstructor, void* statusModifyConstructor, libkn_KDouble ratio, libkn_KBoolean fixed);
 extern void androidx_compose_ui_arkui_ArkUIViewController_aboutToAppear(void* controllerRef);
@@ -541,6 +555,34 @@ typedef struct {
               void (*platformLogLine)(const char* tag, const char* message);
             } logger;
             struct {
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_bridge_ConnectTimeoutException (*ConnectTimeoutException)(const char* message);
+                } ConnectTimeoutException;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_bridge_SocketTimeoutException (*SocketTimeoutException)(const char* message);
+                } SocketTimeoutException;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_bridge_UnknownHostException (*UnknownHostException)(const char* message);
+                } UnknownHostException;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_bridge_ConnectException (*ConnectException)(const char* message);
+                } ConnectException;
+                libkn_KInt (*com_example_kmpoh_network_bridge_ConnectException$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_ConnectTimeoutException$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_SocketTimeoutException$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_UnknownHostException$stableprop_getter)();
+                void (*ohosHttpBridgeRespond)(void* requestId, void* responseJson);
+                void (*ohosHttpTransportInit)(void* postFn);
+                libkn_KInt (*com_example_kmpoh_network_bridge_ConnectException$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_ConnectTimeoutException$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_SocketTimeoutException$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_bridge_UnknownHostException$stableprop_getter_)();
+              } bridge;
               struct {
                 struct {
                   libkn_KType* (*_type)(void);

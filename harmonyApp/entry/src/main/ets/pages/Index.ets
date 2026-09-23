@@ -1,6 +1,7 @@
 import { ArkUIViewController, Compose } from '@cpf-kmp-cmp/compose';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import nativeApi from 'libentry.so';
+import { executeTransport } from '../network/HttpBridge';
 
 const DOMAIN = 0x0000;
 
@@ -18,6 +19,9 @@ struct Index {
       return;
     }
     try {
+      // 先注册 HTTP 传输执行器（KMP 网络层经 NAPI 桥走 ArkTS RCP，见 network/HttpBridge.ets）
+      nativeApi.RegisterHttpExecutor((requestId: string, reqJson: string) =>
+        executeTransport(requestId, reqJson));
       this.controller = nativeApi.MainArkUIViewController();
       const state = this.controller ? 'created' : 'not_created';
       hilog.info(DOMAIN, 'Compose', 'controller init state: %{public}s', state);

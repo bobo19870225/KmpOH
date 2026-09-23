@@ -21,9 +21,9 @@ compose = "1.9.4"
 compose-material3 = "1.4.0"
 composeMultiplatform = "1.9.2-0.3.0"
 
-# Network（Ktor fork 线 -1.0.0，按 CPF-KMP-CMP 三方库文档「KMP 2.2.21 & CMP 1.9.2 推荐」列，
-# 见 openspec/changes/archive/2026-09-23-migrate-network-and-login/design.md 决策 1 的修订：
-# 3.3.3-0.3.0 旧线引擎不全，官方适配以 ktor-client-cio 独立工件为准。
+# Network（Ktor fork 线 -1.0.0，按 CPF-KMP-CMP 三方库文档「KMP 2.2.21 & CMP 1.9.2 推荐」列。
+# 注意：ktor-network-tls 的 nonJvm 端是 error() 桩，任何 fork 线都不能在鸿蒙做 TLS——
+# 鸿蒙 HTTPS 走 ArkTS RCP 桥（见 ohosMain network/bridge/），Ktor 仅 Android/iOS 用引擎。
 # 其 POM 仍对齐 coroutines 1.10.2-0.3.0 / serialization 1.9.1-0.3.0，家族其余成员不动。）
 ktor = "3.3.3-1.0.0"
 kotlinxSerialization = "1.9.1-0.3.0"
@@ -60,7 +60,6 @@ compose-multiplatform-export = { module = "org.jetbrains.compose.export:export",
 
 # ----- Network（Ktor + kotlinx.serialization） -----
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }

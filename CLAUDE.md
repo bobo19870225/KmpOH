@@ -121,12 +121,22 @@ Kotlin 源码目录**直接用完整包名做文件夹名**——`src/commonMain
 |---|---|---|
 | Android | OkHttp | `androidMain.dependencies` |
 | iOS | Darwin | `iosMain.dependencies` |
-| 鸿蒙 | **ktor-client-cio** 的 `io.ktor.client.engine.cio.CIO` | `ohosMain.dependencies` |
+| 鸿蒙 | **自定义 `RcpHttpClientEngine`**（`network/bridge/`，经 NAPI 桥接 ArkTS RCP） | 无 ktor 引擎工件 |
 
-两个实测踩过的坑（**不要退回**）：
+三个实测踩过的坑（**不要退回**）：
 
-1. 鸿蒙端**不能**用无参 `HttpClient()`——引擎服务发现不可用，抛 `Failed to find HTTP client engine implementation`。必须显式传引擎工厂。
-2. 鸿蒙端引擎必须是独立工件 `io.ktor:ktor-client-cio`（官方三方库文档"已适配"，含 `ohosarm64` 变体）。**不要**用 `ktor-client-core` 内置的 `io.ktor.client.utils.CIO` 替代品（功能不完整，请求异常），也不要信"引擎内置、无需依赖"的旧注释。
+1. 鸿蒙端**不能**用无参 `HttpClient()`——引擎服务发现不可用，抛 `Failed to find HTTP client engine implementation`。必须显式传引擎。
+2. 鸿蒙端**任何 ktor 引擎都做不了 HTTPS**：`ktor-network-tls` 的 nonJvm 端是 `error()` 桩（`openTLSSession` 抛 `TLS sessions are not supported on Native platform.`，所有 fork 版本线皆然；官方 ktor-demo 的"HTTPS 测试"实际请求的是 http）。`ktor-client-cio`/`io.ktor.client.utils.CIO` 都绕不开。
+3. 鸿蒙应用清单必须声明 **`ohos.permission.INTERNET`**（+ `GET_NETWORK_INFO`，对齐 ktor-demo）——缺了 socket 被内核拒（EACCES/13），报 `PosixErrnoException: POSIX error 13: Permission denied`。
+
+**鸿蒙 HTTPS 的正解**是桥接系统 TLS 栈（对齐 `C:\Users\rain1\Desktop\sop\hm\Technician-Harmony` 的 RCP 方案）：
+
+- `network/bridge/OhosHttpTransport.kt` —— Kotlin ↔ ArkTS 传输握手（`@CName` 导出 `OhosHttpTransportInit`/`OhosHttpBridgeRespond`，挂起协程按 requestId 配对）；
+- `network/bridge/RcpHttpClientEngine.kt` —— 自定义 Ktor 引擎，请求/响应序列化为桥接 JSON（线协议见文件头注释，**改一侧必改另一侧**）；RCP 错误码 → 传输异常按类名归一（`ConnectTimeoutException` 等，勿改名，`mapTransportFailure` 按 simpleName 识别）；
+- `harmonyApp/entry/src/main/ets/network/HttpBridge.ets` —— ArkTS RCP 执行器（TlsV1.3 + 10s/30s 超时，对齐 Technician-Harmony `RcpSession.ets`）；**纯传输层**，信封/签名/鉴权/日志在 Kotlin 侧，不做二次拦截；
+- `harmonyApp/entry/src/main/cpp/napi_init.cpp` —— `RegisterHttpExecutor`（executor 包成 threadsafe function，Kotlin 任意线程 → JS 线程）+ `HttpBridgeRespond`（JS 线程直转 Kotlin）。对 Kotlin 导出用 extern 手工声明、签名与生成头文件逐字一致（`extern "C"` + `void*` 形参），不信 `libkn_api.h` 会同步。
+
+握手顺序：`Index.ets` **先** `RegisterHttpExecutor` **再** `MainArkUIViewController()`；改了 Kotlin 侧 `@CName` 导出后必须 `publish*BinariesToHarmonyApp` 刷新 `harmonyApp/entry/libs/` 的 `libkn.so`，否则鸿蒙链接报 undefined symbol。
 
 Ktor 全家取 `3.3.3-1.0.0` 适配线（三方库文档对 KMP 2.2.21 & CMP 1.9.2 的推荐版本）；其 POM 对齐 `kotlinx-coroutines 1.10.2-0.3.0` / `kotlinx-serialization 1.9.1-0.3.0`，这两项保持 `-0.3.0` 不动。
 
