@@ -1,0 +1,12 @@
+<!-- 替代 Material Icons 的 Icons.AutoMirrored.Filled.ArrowForward。
+     本工程无法使用 material-icons-core/extended（1.9.x 线未发布，且 material3 不再传递引入），
+     故按 Material 官方路径数据自备为矢量 Drawable。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,4l-1.41,1.41L16.17,11H4v2h12.17l-5.58,5.59L12,20l8,-8z" />
+</vector>

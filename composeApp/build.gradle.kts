@@ -156,7 +156,9 @@ arrayOf("debug", "release").forEach { type ->
     tasks.register<Copy>("publish${type.capitalizeUS()}BinariesToHarmonyApp") {
         group = "harmony" // 归类到harmony任务组
         dependsOn(
-            "link${type.capitalizeUS()}SharedOhosArm64"        )
+            "link${type.capitalizeUS()}SharedOhosArm64",
+            "assembleOhosArm64MainResources",
+        )
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
          into(harmonyAppDir) // 输出目标目录
         from("build/bin/ohosArm64/${type}Shared/libkn_api.h") { // 复制头文件
@@ -165,9 +167,17 @@ arrayOf("debug", "release").forEach { type ->
         from(project.file("build/bin/ohosArm64/${type}Shared/libkn.so")) { // 复制共享库文件
             into("entry/libs/arm64-v8a/")           // 指定目标目录
         }
-	    val composeResourcePackage = "${rootProject.name.lowercase()}.${project.name.lowercase()}.generated.resources"
-	    from("src/commonMain/composeResources") {
-	        into("entry/src/main/resources/rawfile/composeResources/$composeResourcePackage/")
+	    // 资源必须取自"已装配"产物（assembledResources/ohosArm64Main），而不是
+	    // src/commonMain/composeResources 源码目录。
+	    // 原因：drawable 的源码 XML 可以直接使用，但**字符串资源必须先由 Compose 插件
+	    // 编译成 .cvr**，运行时会去找 values/strings.commonMain.cvr。
+	    // 只拷源码会让鸿蒙端启动即崩：
+	    //   IllegalArgumentException: Failed to open raw file:
+	    //   composeResources/kmpoh.composeapp.generated.resources/values/strings.commonMain.cvr
+	    // 该目录树已自带 `kmpoh.composeapp.generated.resources` 这一层，故直接落到
+	    // rawfile/composeResources/ 下即可。
+	    from(layout.buildDirectory.dir("generated/compose/resourceGenerator/assembledResources/ohosArm64Main/composeResources")) {
+	        into("entry/src/main/resources/rawfile/composeResources/")
 	    }
 
     }

@@ -29,7 +29,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `build/bin/ohosArm64/debugShared/libkn.so` → `harmonyApp/entry/libs/arm64-v8a/`
 - `.../libkn_api.h` → `harmonyApp/entry/src/main/cpp/include/arm64-v8a/`
-- `src/commonMain/composeResources/` → `harmonyApp/entry/src/main/resources/rawfile/composeResources/kmpoh.composeapp.generated.resources/`
+- `build/generated/compose/resourceGenerator/assembledResources/ohosArm64Main/composeResources/` → `harmonyApp/entry/src/main/resources/rawfile/composeResources/`（**已装配**产物，含编译后的 `.cvr`；不要改成拷 `src/commonMain/composeResources` 源码，原因见「资源」一节）
 
 目标目录可用 `-PharmonyAppPath=<path>` 覆盖。
 
@@ -61,6 +61,18 @@ node "%DEVECO_PATH%\tools\hvigor\bin\hvigorw.js" --mode module -p module=entry@d
 
 测试：`commonTest` 存放跨平台的 `kotlin.test` 测试，目前只有 `ComposeAppCommonTest.kt`。ArkTS 侧在 `harmonyApp/entry/src/test/`（本地单元测试）和 `src/ohosTest/`（hypium 仪器化测试）另有独立测试树。
 
+> ⚠️ `commonTest` 目前**编译不过**：`composeApp/build.gradle.kts` 从未声明 `commonTest` 的依赖，`libs.versions.toml` 里虽有 `kotlin-test` 别名但从未被引用，因此 `ComposeAppCommonTest.kt` 的 `kotlin.test` 无法解析。这是既有缺陷，与业务改动无关。
+
+## 验证由用户负责，不要自己跑设备
+
+**运行期验证一律由用户本人执行**——这是用户的明确要求。代码写完、编译通过后就停下，把「待用户验证」清单交出去，不要自己动手去设备上确认。
+
+- **可以做**：编译与构建（`assembleDebug`、`linkDebugSharedOhosArm64`、`publish*BinariesToHarmonyApp`、`assembleHap` 等）、静态检查（`check_ets_files`、`check_cpp_files`）、依赖解析查询。这些是确认代码可编译的必要步骤，属于实现的一部分。
+- **不要做**：启动模拟器或真机（`emulator.exe -start`、`deveco-mcp` 的 `start_app`）、截图与模拟输入（`perform_ui_action`、`adb input tap/text`、`screencap`）、抓设备日志（`get_hilog_or_faultlog_recent`、`logcat`）、读取设备 UI 树（`get_app_ui_tree`），以及为跑通上述动作而临时改代码或写一次性脚本。
+- 上面「做鸿蒙相关的工作时用 `deveco-cli` / `deveco-mcp`」那条，**仅限于构建、静态检查与文档检索**这类不接触设备的用法；其中列出的 `start_app`、`get_hilog_or_faultlog_recent`、`get_app_ui_tree`、`perform_ui_action` 属于运行期验证，不要用。
+- 写 OpenSpec 变更的 `tasks.md` 时，运行期验证类任务（实机运行、视觉比对、多语言实机确认等）**不要自己勾选完成**，标注为「待用户验证」交出去。
+- 顺带：若环境本身就是障碍（如 Windows 无法编译 iOS、x86_64 鸿蒙模拟器跑不了只构建 arm64 的工程），如实说明并标注为阻塞即可，不要为了绕过环境限制去改构建配置。
+
 ## 架构
 
 ### 目标平台与 source set
@@ -91,7 +103,25 @@ Kotlin 源码目录**直接用完整包名做文件夹名**——`src/commonMain
 
 ### 资源
 
-CMP 资源放在 `composeApp/src/commonMain/composeResources/`。生成的资源访问包名由工程名推导：`${rootProject.name.lowercase()}.${project.name.lowercase()}.generated.resources` → **`kmpoh.composeapp.generated.resources`**。因此 Kotlin 代码中 `import kmpoh.composeapp.generated.resources.*`，并用 `painterResource(Res.drawable.…)` 引用。同一个路径也会被拷贝到 `harmonyApp/entry/src/main/resources/rawfile/composeResources/` 下。**重命名 rootProject 或模块会同时破坏三处**（Kotlin import、拷贝任务里的 `from {}`、以及 `rawfile` 目录）。
+CMP 资源放在 `composeApp/src/commonMain/composeResources/`。生成的资源访问包名由工程名推导：`${rootProject.name.lowercase()}.${project.name.lowercase()}.generated.resources` → **`kmpoh.composeapp.generated.resources`**。因此 Kotlin 代码中 `import kmpoh.composeapp.generated.resources.*`，并用 `painterResource(Res.drawable.…)` 引用。**重命名 rootProject 或模块会同时破坏三处**（Kotlin import、生成的 `rawfile` 目录名、以及 `assembledResources` 里的同名层级）。
+
+**鸿蒙端必须拷贝「已装配」产物，不能拷源码目录**（这条踩过坑）：
+
+```
+✅ composeApp/build/generated/compose/resourceGenerator/assembledResources/ohosArm64Main/composeResources/
+❌ composeApp/src/commonMain/composeResources/          ← 只拷源码会启动即崩
+```
+
+原因：**drawable 的源码 XML 可以直接用，但字符串资源必须先由 Compose 插件编译成 `.cvr`**。运行时读的是 `values/strings.commonMain.cvr`，源码目录里只有 `values/strings.xml`。只拷源码会让鸿蒙端启动即抛：
+
+```
+kotlin.IllegalArgumentException: Failed to open raw file:
+composeResources/kmpoh.composeapp.generated.resources/values/strings.commonMain.cvr
+```
+
+`assembledResources/ohosArm64Main/composeResources/` 由 `assembleOhosArm64MainResources` 产出，其**内部已自带 `kmpoh.composeapp.generated.resources` 这一层**，所以 `publish*BinariesToHarmonyApp` 直接落到 `rawfile/composeResources/` 即可，不要再手工拼包名。该拷贝任务已声明对 `assembleOhosArm64MainResources` 的依赖。
+
+注意拷贝用的是 `DuplicatesStrategy.INCLUDE` 且**从不清理目标目录**：删掉某个资源后，旧的副本会一直留在 `harmonyApp/entry/src/main/resources/rawfile/` 里，需要手工删除。
 
 ### 一处未被启用的配置
 

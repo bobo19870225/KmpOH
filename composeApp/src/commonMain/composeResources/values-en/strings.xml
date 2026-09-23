@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  英文文案。键名必须与 values/strings.xml 完全一致（任务 3.3 的验证项）。
+  换行同样使用 &#10;，与默认语言文件保持一致。
+-->
+<resources>
+    <!-- 品牌区 -->
+    <string name="str_login_eyebrow">CARE IN EVERY DETAIL</string>
+    <string name="str_login_slogan">Every service&#10;deserves care.</string>
+    <string name="str_login_slogan_desc">Bring expertise to every store.</string>
+
+    <!-- 服务横幅 -->
+    <string name="str_login_service_title">Focused on site&#10;Ready to go</string>
+    <string name="str_login_service_eyebrow">SERVICE WITH CARE</string>
+
+    <!-- 登录卡片 -->
+    <string name="str_login_title">Welcome back</string>
+    <string name="str_login_subtitle">Sign in to your workspace</string>
+    <string name="str_phone_label">Account</string>
+    <string name="str_phone_login_hint">Enter number</string>
+    <string name="str_password_hint">Password</string>
+    <string name="str_password_login_hint">Enter password</string>
+    <string name="str_password_show">Show password</string>
+    <string name="str_password_hide">Hide password</string>
+    <string name="str_login_start_service">Sign in to start service</string>
+
+    <!-- 底部安全提示 -->
+    <string name="str_login_security_note">Professional service · thoughtful care</string>
+</resources>

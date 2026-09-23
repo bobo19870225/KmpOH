@@ -1,0 +1,16 @@
+version:0
+string|str_login_eyebrow|Q0FSRSBJTiBFVkVSWSBERVRBSUw=
+string|str_login_security_note|UHJvZmVzc2lvbmFsIHNlcnZpY2UgwrcgdGhvdWdodGZ1bCBjYXJl
+string|str_login_service_eyebrow|U0VSVklDRSBXSVRIIENBUkU=
+string|str_login_service_title|Rm9jdXNlZCBvbiBzaXRlClJlYWR5IHRvIGdv
+string|str_login_slogan_desc|QnJpbmcgZXhwZXJ0aXNlIHRvIGV2ZXJ5IHN0b3JlLg==
+string|str_login_slogan|RXZlcnkgc2VydmljZQpkZXNlcnZlcyBjYXJlLg==
+string|str_login_start_service|U2lnbiBpbiB0byBzdGFydCBzZXJ2aWNl
+string|str_login_subtitle|U2lnbiBpbiB0byB5b3VyIHdvcmtzcGFjZQ==
+string|str_login_title|V2VsY29tZSBiYWNr
+string|str_password_hide|SGlkZSBwYXNzd29yZA==
+string|str_password_hint|UGFzc3dvcmQ=
+string|str_password_login_hint|RW50ZXIgcGFzc3dvcmQ=
+string|str_password_show|U2hvdyBwYXNzd29yZA==
+string|str_phone_label|QWNjb3VudA==
+string|str_phone_login_hint|RW50ZXIgbnVtYmVy

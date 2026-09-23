@@ -1,46 +1,23 @@
 package com.example.kmpoh
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-
-import kmpoh.composeapp.generated.resources.*
+import androidx.compose.runtime.Composable
+import com.example.kmpoh.page.login.LoginPage
 
 @Composable
 internal fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Fucking Click me!")
+        LoginPage(
+            onLoginSuccess = {
+                // 导航接缝：下一步引入路由后，在此跳转技师工作台。
+                // 当前无导航框架，登录成功后页面停留在原处（加载态已结束）。
+            },
+            onToastMessage = { message ->
+                // 宿主尚未接入 Toast 基建（原工程由 MainActivity 弹 Android Toast）。
+                // 当前仅输出到日志（Android logcat / 鸿蒙 hilog），
+                // 便于在真机上确认"失败提示只消费一次、重组不重复弹出"。
+                println("LoginPage toast: $message")
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
-        }
+        )
     }
 }

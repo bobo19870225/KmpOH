@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  默认（回退）语言：简体中文。
+
+  CMP 的 values/ 目录（无语言限定符）是默认回退目录，未匹配到任何语言时使用。
+  因此这里放中文以满足"默认中文"的要求 —— 注意这与安卓原工程相反
+  （原工程把英文放 values/、中文放 values-zh-rCN/），是刻意偏离，详见 design.md 决策 3。
+
+  换行统一用 XML 字符实体 &#10; 表示，避免依赖某个解析器对 \n 转义的具体实现。
+  字符串键名沿用原工程的 str_* 约定。
+-->
+<resources>
+    <!-- 品牌区 -->
+    <string name="str_login_eyebrow">CARE IN EVERY DETAIL</string>
+    <string name="str_login_slogan">每一次服务&#10;都值得用心。</string>
+    <string name="str_login_slogan_desc">让专业，抵达每一家门店。</string>
+
+    <!-- 服务横幅 -->
+    <string name="str_login_service_title">专注现场&#10;从容出发</string>
+    <string name="str_login_service_eyebrow">SERVICE WITH CARE</string>
+
+    <!-- 登录卡片 -->
+    <string name="str_login_title">欢迎回来</string>
+    <string name="str_login_subtitle">登录你的工作空间</string>
+    <string name="str_phone_label">账号</string>
+    <string name="str_phone_login_hint">请输入编号</string>
+    <string name="str_password_hint">密码</string>
+    <string name="str_password_login_hint">请输入密码</string>
+    <string name="str_password_show">显示密码</string>
+    <string name="str_password_hide">隐藏密码</string>
+    <string name="str_login_start_service">登录，开始服务</string>
+
+    <!-- 底部安全提示 -->
+    <string name="str_login_security_note">专业服务 · 用心守护</string>
+</resources>
