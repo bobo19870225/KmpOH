@@ -1,5 +1,6 @@
 package com.example.kmpoh.network
 
+import com.example.kmpoh.logger.LOG_MASK
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockRequestHandleScope
@@ -32,7 +33,9 @@ class MaskingTest {
         assertFalse(masked.contains("\"at\""))
         assertFalse(masked.contains("\"rt\""))
         assertTrue(masked.contains("\"password\":\"$LOG_MASK\""))
-        assertTrue(masked.contains("\"staff_code\":\"S001\""))
+        // staff_code 属敏感字段（并入原工程被注释的完整脱敏列表，design 决策 5「更严」）
+        assertFalse(masked.contains("S001"))
+        assertTrue(masked.contains("\"staff_code\":\"$LOG_MASK\""))
     }
 
     @Test

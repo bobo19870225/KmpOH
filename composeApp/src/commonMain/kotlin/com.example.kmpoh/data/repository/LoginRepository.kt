@@ -7,10 +7,14 @@ import com.example.kmpoh.data.model.mapper.effectiveRefreshToken
 import com.example.kmpoh.data.model.mapper.toUserEntity
 import com.example.kmpoh.data.model.mapper.toUiModel
 import com.example.kmpoh.data.model.ui.UserUiModel
+import com.example.kmpoh.logger.BUSINESS_LOG_TAG
+import com.example.kmpoh.logger.DEBUG_LOG_TAG
+import com.example.kmpoh.logger.Logger
 import com.example.kmpoh.network.ApiGateway
 import com.example.kmpoh.network.AuthSessionManager
 import com.example.kmpoh.network.BusinessApiException
 import com.example.kmpoh.network.NetworkException
+import com.example.kmpoh.network.GeneratedApiConfig
 import com.example.kmpoh.network.NetworkMessages
 import com.example.kmpoh.network.createApiClient
 import com.example.kmpoh.network.postJson
@@ -56,10 +60,13 @@ class NetworkLoginRepository(
             accessToken = response.effectiveAccessToken(),
             refreshToken = response.effectiveRefreshToken()
         )
-        Result.success(response.toUserEntity().toUiModel())
+        val model = response.toUserEntity().toUiModel()
+        Logger.debug(BUSINESS_LOG_TAG, "Login success userId=${response.userId}")
+        Result.success(model)
     } catch (e: Exception) {
-        // 联调期诊断：打印异常类因果链便于归因（tasks 6.1 排障用，稳定后可移除）
-        println(
+        // 排障关键日志：异常类因果链（tasks 6.1 归因用）
+        Logger.debugSingleLine(
+            DEBUG_LOG_TAG,
             "Login failure chain: " +
                 generateSequence<Throwable>(e) { it.cause }.joinToString(" <- ") { it::class.simpleName ?: "?" }
         )
@@ -82,6 +89,12 @@ internal fun Throwable.toLoginFailureMessage(): String = when (this) {
  * KV 存储 → 会话管理 → API 网关 → 登录仓库。后续引入正式 DI 容器时替换此处。
  */
 fun createLoginRepository(): LoginRepository {
+    // 启动期输出生效配置（不含密钥），便于联调时一眼确认环境/地址是否符合预期
+    Logger.debug(
+        DEBUG_LOG_TAG,
+        "ApiConfig env=${GeneratedApiConfig.ENVIRONMENT} baseUrl=${GeneratedApiConfig.BASE_URL} " +
+            "signature=${GeneratedApiConfig.SIGNATURE_MODE} log=${Logger.isTestEnvironment}"
+    )
     val store = createKeyValueStore()
     val session = AuthSessionManager(store)
     val gateway = ApiGateway(createApiClient(), session, deviceId = getOrCreateDeviceId(store))

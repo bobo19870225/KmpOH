@@ -1,6 +1,9 @@
 package com.example.kmpoh.network
 
 import com.example.kmpoh.data.model.mapper.resolveAccessToken
+import com.example.kmpoh.logger.DEBUG_LOG_TAG
+import com.example.kmpoh.logger.Logger
+import com.example.kmpoh.logger.NETWORK_LOG_TAG
 import com.example.kmpoh.network.signature.ApiSignatureMode
 import com.example.kmpoh.network.signature.ApiSignaturePolicy
 import com.example.kmpoh.network.signature.applyRequestSignature
@@ -66,7 +69,7 @@ class ApiGateway(
             signature.apiSecret.isBlank() &&
             GeneratedApiConfig.ENVIRONMENT == "uat"
         ) {
-            println("[ApiSignature] API_SIGNATURE_SECRET 未配置，请求签名已关闭")
+            Logger.debug(DEBUG_LOG_TAG, "[ApiSignature] API_SIGNATURE_SECRET 未配置，请求签名已关闭")
         }
     }
 
@@ -93,9 +96,11 @@ class ApiGateway(
         }
 
         // 登录失效：刷新令牌并重试原请求一次
+        Logger.debug(NETWORK_LOG_TAG, "401 on $path → try refresh token")
         val newToken = refreshMutex.withLock {
             val latest = session.accessToken()
             if (latest != null && latest != sentToken) {
+                Logger.debug(NETWORK_LOG_TAG, "refresh skipped: token already renewed by concurrent call")
                 latest // 并发场景下别的调用已完成刷新
             } else {
                 try {
@@ -112,10 +117,18 @@ class ApiGateway(
                     )
                     val token = resolveAccessToken(refreshResult.token, refreshResult.accessToken)
                     session.saveTokens(accessToken = token, refreshToken = token)
+                    Logger.debug(NETWORK_LOG_TAG, "refresh token ok, retry $path")
                     token
                 } catch (ce: CancellationException) {
                     throw ce
-                } catch (_: Exception) {
+                } catch (refreshError: Exception) {
+                    Logger.debugSingleLine(
+                        NETWORK_LOG_TAG,
+                        "refresh failed chain=" +
+                            generateSequence<Throwable>(refreshError) { it.cause }
+                                .joinToString(" <- ") { it::class.simpleName ?: "?" } +
+                            " → clear session & emit LoginExpired"
+                    )
                     session.clearTokens()
                     session.notifyLoginExpired()
                     throw firstFailure
@@ -127,6 +140,7 @@ class ApiGateway(
             return execute(path, deserializer, body, bodyText, authenticated, baseUrl)
         } catch (retryError: Exception) {
             if (isLoginExpired(retryError)) {
+                Logger.debug(NETWORK_LOG_TAG, "retry $path still unauthorized → clear session & emit LoginExpired")
                 session.clearTokens()
                 session.notifyLoginExpired()
             }

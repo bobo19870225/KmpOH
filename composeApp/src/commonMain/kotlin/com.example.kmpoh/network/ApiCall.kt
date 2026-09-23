@@ -10,6 +10,8 @@ import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.isSuccess
+import com.example.kmpoh.logger.Logger
+import com.example.kmpoh.logger.NETWORK_LOG_TAG
 import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
@@ -47,6 +49,7 @@ internal suspend fun <T> HttpClient.callEnvelopeWith(
     loadingTracker: NetworkRequestTracker? = NetworkRequestTracker.global
 ): T {
     var loadingStarted = false
+    Logger.debug(NETWORK_LOG_TAG, "→ POST $path")
     val response = try {
         post {
             url(baseUrl + path)
@@ -73,14 +76,21 @@ internal suspend fun <T> HttpClient.callEnvelopeWith(
     } catch (e: Exception) {
         // Ktor 引擎在不同平台的网络异常基类不一致，统一走类名归一
         if (loadingStarted) loadingTracker?.onRequestFinished()
+        Logger.debugSingleLine(
+            NETWORK_LOG_TAG,
+            "✗ POST $path send-failed chain=" +
+                generateSequence<Throwable>(e) { it.cause }.joinToString(" <- ") { it::class.simpleName ?: "?" }
+        )
         throw mapTransportFailure(e)
     }
     // 响应头到达即结束 Loading 生命周期（对齐原工程）
     if (loadingStarted) loadingTracker?.onRequestFinished()
 
     if (!response.status.isSuccess()) {
+        Logger.debug(NETWORK_LOG_TAG, "✗ POST $path http=${response.status.value} ${response.status.description}")
         throw NetworkException.Http(response.status.value, response.status.description)
     }
+    Logger.debug(NETWORK_LOG_TAG, "← POST $path status=${response.status.value}")
 
     val text = try {
         response.body<String>()
@@ -122,6 +132,7 @@ internal fun <T> decodeEnvelopeWith(text: String, deserializer: KSerializer<T>):
     }
 
     if (!envelope.isBusinessSuccess()) {
+        Logger.debug(NETWORK_LOG_TAG, "✗ business code=${envelope.code} msg=${envelope.message}")
         throw BusinessApiException(envelope.code, envelope.message)
     }
     return envelope.data ?: throw NetworkException.Parsing(IllegalStateException("响应缺少 data"))

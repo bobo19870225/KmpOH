@@ -134,8 +134,12 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false     
+            isMinifyEnabled = false
         }
+    }
+    testOptions {
+        // JVM 单测中 android.util.Log 等返回默认值（Logger 平台输出在单测里不抛异常）
+        unitTests.isReturnDefaultValues = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11   
@@ -206,9 +210,15 @@ arrayOf("debug", "release").forEach { type ->
 // 仅经环境变量 API_SIGNATURE_SECRET 或 local.properties（已被 .gitignore 忽略）注入。
 // 生成物位于 build/generated/apiConfig/（build/ 不入库）。
 // ---------------------------------------------------------------------------
+// 经 providers.fileContents 读取：配置缓存可感知 local.properties 变更（直接文件 IO 不被追踪，
+// 改完 local.properties 再构建可能吃到陈旧配置——联调期踩过）
+val apiLocalPropsText: String = providers
+    .fileContents(rootProject.layout.projectDirectory.file("local.properties"))
+    .asText.orNull ?: ""
 val apiLocalProps = Properties().apply {
-    val f = rootProject.file("local.properties")
-    if (f.exists()) f.inputStream().use { load(it) }
+    if (apiLocalPropsText.isNotBlank()) {
+        apiLocalPropsText.byteInputStream().use { load(it) }
+    }
 }
 
 fun apiConfigValue(name: String): String? =
