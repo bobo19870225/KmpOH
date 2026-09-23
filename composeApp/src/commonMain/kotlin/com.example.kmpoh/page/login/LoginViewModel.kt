@@ -1,5 +1,7 @@
 package com.example.kmpoh.page.login
 
+import com.example.kmpoh.data.model.ui.UserUiModel
+import com.example.kmpoh.data.repository.LoginRepository
 import com.example.kmpoh.utils.UiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,20 +19,17 @@ import kotlinx.coroutines.launch
  * 容器（零新依赖），由页面用 `remember` 持有，协程作用域由页面传入。
  * 完整实测记录见 openspec/changes/migrate-login-page-ui/design.md 决策 1。
  *
- * 状态结构与对外 API 与原安卓工程 `LoginViewModel` 保持一致，
- * 后续接入网络层时只需替换依赖，本类与 UI 不动。
- *
- * 【关于 uiState 的负载类型】
- * 原工程为 `UiState<UserUiModel>`；用户数据模型属于数据层，不在本次范围内，
- * 故暂用 `Unit` 占位。接入网络层时替换为真实的用户模型。
+ * 状态结构与对外 API 与原安卓工程 `LoginViewModel` 保持一致；
+ * `uiState` 负载为真实用户模型（openspec/changes/migrate-network-and-login 4.3
+ * 已替换早期的 Unit 占位，依赖换成真实 [LoginRepository]）。
  */
 class LoginViewModel(
-    private val repository: FakeLoginRepository,
+    private val repository: LoginRepository,
     private val scope: CoroutineScope
 ) {
 
-    private val _uiState = MutableStateFlow<UiState<Unit>>(UiState.Idle)
-    val uiState: StateFlow<UiState<Unit>> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<UiState<UserUiModel>>(UiState.Idle)
+    val uiState: StateFlow<UiState<UserUiModel>> = _uiState.asStateFlow()
 
     private val _phone = MutableStateFlow("")
     val phone: StateFlow<String> = _phone.asStateFlow()
@@ -69,8 +68,8 @@ class LoginViewModel(
             _uiState.value = UiState.Loading
 
             repository.login(phone, password).fold(
-                onSuccess = {
-                    _uiState.value = UiState.Success(Unit)
+                onSuccess = { user ->
+                    _uiState.value = UiState.Success(user)
                 },
                 onFailure = { error ->
                     _uiState.value = UiState.Error(

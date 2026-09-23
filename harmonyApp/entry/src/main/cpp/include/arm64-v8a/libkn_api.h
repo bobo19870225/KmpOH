@@ -68,13 +68,163 @@ typedef struct {
 } libkn_kref_com_example_kmpoh_Platform;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_kotlin_Function0;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_Any;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_Array;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_encoding_Decoder;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_encoding_Encoder;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_KSerializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_UserDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_UserDto_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_entity_UserEntity;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_repository_LoginRepository;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_ApiGateway;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_AuthSessionManager;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_storage_KeyValueStore;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_Throwable;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_json_Json;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_io_ktor_client_HttpClient;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_kotlin_Function1;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_com_example_kmpoh_page_login_FakeLoginRepository;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_io_ktor_http_Headers;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_Off;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_RequestOnly;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_Mutual;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_collections_Set;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_signature_SignatureVerificationException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_BusinessApiException;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_AuthSessionEvent;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_coroutines_flow_SharedFlow;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException_Http;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException_Timeout;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException_Unavailable;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException_Transport;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkException_Parsing;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkMessages;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkRequestTracker;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_coroutines_flow_StateFlow;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_NetworkRequestTracker_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_Function0;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_page_login_LoginViewModel;
@@ -83,7 +233,7 @@ typedef struct {
 } libkn_kref_kotlinx_coroutines_CoroutineScope;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_kotlinx_coroutines_flow_StateFlow;
+} libkn_kref_com_example_kmpoh_storage_StorageKeys;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_androidx_compose_ui_Modifier;
@@ -196,12 +346,526 @@ typedef struct {
             struct {
               struct {
                 struct {
-                  libkn_KType* (*_type)(void);
-                  libkn_kref_com_example_kmpoh_page_login_FakeLoginRepository (*FakeLoginRepository)();
-                } FakeLoginRepository;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto (*LoginRequestDto)(const char* staffCode, const char* password, const char* deviceId, const char* platform);
+                    const char* (*get_deviceId)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*get_password)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*get_platform)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*get_staffCode)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*component2)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*component3)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*component4)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz, const char* staffCode, const char* password, const char* deviceId, const char* platform);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto thiz);
+                  } LoginRequestDto;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto (*LoginResponseDto)(const char* token, libkn_KInt userId, const char* name, const char* code, const char* phone, const char* accessToken, const char* refreshToken, libkn_kref_com_example_kmpoh_data_model_dto_UserDto user);
+                    const char* (*get_accessToken)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*get_code)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*get_name)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*get_phone)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*get_refreshToken)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*get_token)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_UserDto (*get_user)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    libkn_KInt (*get_userId)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    libkn_KInt (*component2)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component3)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component4)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component5)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component6)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*component7)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_UserDto (*component8)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz, const char* token, libkn_KInt userId, const char* name, const char* code, const char* phone, const char* accessToken, const char* refreshToken, libkn_kref_com_example_kmpoh_data_model_dto_UserDto user);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto thiz);
+                  } LoginResponseDto;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_UserDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_UserDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_UserDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_UserDto (*UserDto)(libkn_KLong id, libkn_KInt userId, const char* name, const char* phone, const char* avatarUrl, const char* email, const char* role, libkn_KBoolean isActive);
+                    const char* (*get_avatarUrl)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*get_email)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KLong (*get_id)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KBoolean (*get_isActive)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*get_name)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*get_phone)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*get_role)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KInt (*get_userId)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KLong (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KInt (*component2)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*component3)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*component4)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*component5)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*component6)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*component7)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_KBoolean (*component8)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_UserDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz, libkn_KLong id, libkn_KInt userId, const char* name, const char* phone, const char* avatarUrl, const char* email, const char* role, libkn_KBoolean isActive);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
+                  } UserDto;
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto_$serializer$stableprop_getter)();
+                } dto;
+                struct {
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_entity_UserEntity (*UserEntity)(libkn_KLong id, libkn_KInt userId, const char* name);
+                    libkn_KLong (*get_id)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    const char* (*get_name)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    libkn_KInt (*get_userId)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    libkn_KLong (*component1)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    libkn_KInt (*component2)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    const char* (*component3)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    libkn_kref_com_example_kmpoh_data_model_entity_UserEntity (*copy)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz, libkn_KLong id, libkn_KInt userId, const char* name);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
+                  } UserEntity;
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_UserEntity$stableprop_getter)();
+                } entity;
+                struct {
+                  const char* (*resolveAccessToken)(const char* token, const char* accessToken);
+                  const char* (*resolveRefreshToken)(const char* refreshToken, const char* accessToken);
+                } mapper;
+                struct {
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel_Companion (*_instance)();
+                      libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel (*fromEntity)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel_Companion thiz, libkn_kref_com_example_kmpoh_data_model_entity_UserEntity entity);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel (*UserUiModel)(libkn_KLong id, const char* displayName, const char* maskedPhone, const char* avatarUrl, const char* role, const char* email);
+                    const char* (*get_avatarUrl)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*get_displayName)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*get_email)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    libkn_KLong (*get_id)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*get_maskedPhone)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*get_role)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    libkn_KLong (*component1)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*component2)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*component3)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*component4)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*component5)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*component6)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel (*copy)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz, libkn_KLong id, const char* displayName, const char* maskedPhone, const char* avatarUrl, const char* role, const char* email);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_ui_UserUiModel thiz);
+                  } UserUiModel;
+                  libkn_KInt (*com_example_kmpoh_data_model_ui_UserUiModel$stableprop_getter)();
+                } ui;
+              } model;
+              struct {
                 struct {
                   libkn_KType* (*_type)(void);
-                  libkn_kref_com_example_kmpoh_page_login_LoginViewModel (*LoginViewModel)(libkn_kref_com_example_kmpoh_page_login_FakeLoginRepository repository, libkn_kref_kotlinx_coroutines_CoroutineScope scope);
+                } LoginRepository;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository (*NetworkLoginRepository)(libkn_kref_com_example_kmpoh_network_ApiGateway gateway, libkn_kref_com_example_kmpoh_network_AuthSessionManager session, libkn_kref_com_example_kmpoh_storage_KeyValueStore store);
+                } NetworkLoginRepository;
+                libkn_KInt (*com_example_kmpoh_data_repository_NetworkLoginRepository$stableprop_getter)();
+                libkn_kref_com_example_kmpoh_data_repository_LoginRepository (*createLoginRepository)();
+              } repository;
+            } data;
+            struct {
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine (*_instance)();
+                  const char* (*canonicalParamsOf)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine thiz, const char* bodyText);
+                  libkn_KBoolean (*isTimestampValid)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine thiz, const char* timestamp, libkn_KLong nowEpochSeconds, libkn_KLong maxClockSkewSeconds);
+                  const char* (*sign)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine thiz, const char* apiSecret, const char* timestamp, const char* nonce, const char* paramsString);
+                  libkn_KBoolean (*signaturesMatch)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine thiz, const char* expected, const char* actual);
+                } ApiSignatureEngine;
+                struct {
+                  struct {
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode (*get)(); /* enum entry for Off. */
+                  } Off;
+                  struct {
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode (*get)(); /* enum entry for RequestOnly. */
+                  } RequestOnly;
+                  struct {
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode (*get)(); /* enum entry for Mutual. */
+                  } Mutual;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_Companion (*_instance)();
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode (*fromConfigValue)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode_Companion thiz, const char* value);
+                  } Companion;
+                  libkn_KType* (*_type)(void);
+                } ApiSignatureMode;
+                struct {
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy_Companion (*_instance)();
+                    libkn_kref_kotlin_collections_Set (*get_unsignedPaths)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy_Companion thiz);
+                    libkn_kref_kotlin_collections_Set (*get_unverifiedResponsePaths)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy_Companion thiz);
+                    libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy (*fromConfig)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy_Companion thiz);
+                  } Companion;
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy (*ApiSignaturePolicy)(libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode mode, const char* apiSecret, libkn_KLong maxClockSkewSeconds);
+                  const char* (*get_apiSecret)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz);
+                  libkn_KBoolean (*get_isEnabled)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz);
+                  libkn_KLong (*get_maxClockSkewSeconds)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz);
+                  libkn_kref_com_example_kmpoh_network_signature_ApiSignatureMode (*get_mode)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz);
+                  libkn_KBoolean (*get_verifiesResponses)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz);
+                  libkn_KBoolean (*isUnsignedPath)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz, const char* path);
+                  libkn_KBoolean (*isUnverifiedResponsePath)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy thiz, const char* path);
+                } ApiSignaturePolicy;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_signature_SignatureVerificationException (*SignatureVerificationException)(const char* message);
+                } SignatureVerificationException;
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignatureEngine$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignaturePolicy$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_signature_SignatureVerificationException$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignatureEngine$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignaturePolicy$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_signature_SignatureVerificationException$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignatureEngine$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignaturePolicy$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_network_signature_SignatureVerificationException$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignatureEngine$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignaturePolicy$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_network_signature_SignatureVerificationException$stableprop_getter___)();
+                const char* (*generateNonce)(libkn_KInt length);
+                void (*verifyResponseSignature)(libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy policy, libkn_kref_io_ktor_http_Headers headers, const char* rawBody, libkn_KLong nowEpochSeconds);
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignatureEngine$stableprop_getter____)();
+                libkn_KInt (*com_example_kmpoh_network_signature_ApiSignaturePolicy$stableprop_getter____)();
+                libkn_KInt (*com_example_kmpoh_network_signature_SignatureVerificationException$stableprop_getter____)();
+                libkn_KLong (*currentEpochSeconds)();
+              } signature;
+              struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_ApiGateway (*ApiGateway)(libkn_kref_io_ktor_client_HttpClient http, libkn_kref_com_example_kmpoh_network_AuthSessionManager session, const char* deviceId, const char* appVersion, const char* language, libkn_kref_com_example_kmpoh_network_signature_ApiSignaturePolicy signature);
+                libkn_kref_com_example_kmpoh_network_AuthSessionManager (*get_session)(libkn_kref_com_example_kmpoh_network_ApiGateway thiz);
+              } ApiGateway;
+              struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_BusinessApiException (*BusinessApiException)(libkn_KInt businessCode, const char* businessMessage);
+                libkn_KInt (*get_businessCode)(libkn_kref_com_example_kmpoh_network_BusinessApiException thiz);
+                const char* (*get_businessMessage)(libkn_kref_com_example_kmpoh_network_BusinessApiException thiz);
+              } BusinessApiException;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired (*LoginExpired)(const char* message);
+                  const char* (*get_message)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz);
+                  const char* (*component1)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz);
+                  libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired (*copy)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz, const char* message);
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_network_AuthSessionEvent_LoginExpired thiz);
+                } LoginExpired;
+                libkn_KType* (*_type)(void);
+              } AuthSessionEvent;
+              struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_AuthSessionManager (*AuthSessionManager)(libkn_kref_com_example_kmpoh_storage_KeyValueStore store);
+                libkn_kref_kotlinx_coroutines_flow_SharedFlow (*get_events)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
+                const char* (*accessToken)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
+                void (*clearTokens)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
+                void (*notifyLoginExpired)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz, const char* message);
+                const char* (*refreshToken)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
+                void (*saveTokens)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz, const char* accessToken, const char* refreshToken);
+              } AuthSessionManager;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkException_Http (*Http)(libkn_KInt statusCode, const char* statusMessage);
+                  libkn_KInt (*get_statusCode)(libkn_kref_com_example_kmpoh_network_NetworkException_Http thiz);
+                  const char* (*get_statusMessage)(libkn_kref_com_example_kmpoh_network_NetworkException_Http thiz);
+                } Http;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkException_Timeout (*Timeout)(libkn_kref_kotlin_Throwable cause);
+                } Timeout;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkException_Unavailable (*Unavailable)(libkn_kref_kotlin_Throwable cause);
+                } Unavailable;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkException_Transport (*Transport)(libkn_kref_kotlin_Throwable cause);
+                } Transport;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkException_Parsing (*Parsing)(libkn_kref_kotlin_Throwable cause);
+                } Parsing;
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_NetworkException (*NetworkException)(const char* message, libkn_kref_kotlin_Throwable cause);
+              } NetworkException;
+              struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_NetworkMessages (*_instance)();
+                const char* (*get_LOGIN_EXPIRED)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+                const char* (*get_LOGIN_FALLBACK)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+                const char* (*get_PARSING)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+                const char* (*get_TIMEOUT)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+                const char* (*get_TRANSPORT)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+                const char* (*get_UNAVAILABLE)(libkn_kref_com_example_kmpoh_network_NetworkMessages thiz);
+              } NetworkMessages;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_network_NetworkRequestTracker_Companion (*_instance)();
+                  libkn_kref_com_example_kmpoh_network_NetworkRequestTracker (*get_global)(libkn_kref_com_example_kmpoh_network_NetworkRequestTracker_Companion thiz);
+                } Companion;
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_NetworkRequestTracker (*NetworkRequestTracker)();
+                libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_activeRequests)(libkn_kref_com_example_kmpoh_network_NetworkRequestTracker thiz);
+                void (*onRequestFinished)(libkn_kref_com_example_kmpoh_network_NetworkRequestTracker thiz);
+                void (*onRequestStarted)(libkn_kref_com_example_kmpoh_network_NetworkRequestTracker thiz);
+              } NetworkRequestTracker;
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_)();
+              libkn_kref_com_example_kmpoh_network_NetworkException (*mapTransportFailure)(libkn_kref_kotlin_Throwable failure);
+              const char* (*get_APP_VERSION)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter__)();
+              libkn_KBoolean (*isLoginExpired)(libkn_kref_kotlin_Throwable failure);
+              libkn_kref_kotlinx_serialization_json_Json (*get_ApiJson)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_____)();
+              libkn_KLong (*get_NETWORK_TIMEOUT_MILLIS)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter______)();
+              libkn_kref_io_ktor_client_HttpClient (*createApiClient)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter________)();
+              libkn_KInt (*get_LOG_BODY_MAX_CHARS)();
+              const char* (*get_LOG_MASK)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_________)();
+              const char* (*maskSensitiveText)(const char* text);
+              const char* (*truncateForLog)(const char* text, libkn_KInt maxChars);
+              const char* (*get_HEADER_SHOW_GLOBAL_LOADING)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter___________)();
+              libkn_kref_io_ktor_client_HttpClient (*createPlatformHttpClient)(libkn_kref_kotlin_Function1 block);
+            } network;
+            struct {
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_login_LoginViewModel (*LoginViewModel)(libkn_kref_com_example_kmpoh_data_repository_LoginRepository repository, libkn_kref_kotlinx_coroutines_CoroutineScope scope);
                   libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_loginEnabled)(libkn_kref_com_example_kmpoh_page_login_LoginViewModel thiz);
                   libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_password)(libkn_kref_com_example_kmpoh_page_login_LoginViewModel thiz);
                   libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_phone)(libkn_kref_com_example_kmpoh_page_login_LoginViewModel thiz);
@@ -212,15 +876,33 @@ typedef struct {
                   void (*onPhoneChanged)(libkn_kref_com_example_kmpoh_page_login_LoginViewModel thiz, const char* value);
                   void (*onToastShown)(libkn_kref_com_example_kmpoh_page_login_LoginViewModel thiz);
                 } LoginViewModel;
-                libkn_KInt (*com_example_kmpoh_page_login_FakeLoginRepository$stableprop_getter)();
-                libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter)();
                 void (*LoginPage)(libkn_kref_kotlin_Function0 onLoginSuccess, libkn_kref_kotlin_Function1 onToastMessage);
-                libkn_KInt (*com_example_kmpoh_page_login_FakeLoginRepository$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter)();
                 libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter_)();
-                libkn_KInt (*com_example_kmpoh_page_login_FakeLoginRepository$stableprop_getter__)();
-                libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter__)();
               } login;
             } page;
+            struct {
+              struct {
+                libkn_KType* (*_type)(void);
+                const char* (*getString)(libkn_kref_com_example_kmpoh_storage_KeyValueStore thiz, const char* key);
+                void (*putString)(libkn_kref_com_example_kmpoh_storage_KeyValueStore thiz, const char* key, const char* value);
+                void (*remove)(libkn_kref_com_example_kmpoh_storage_KeyValueStore thiz, const char* key);
+              } KeyValueStore;
+              struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_storage_StorageKeys (*_instance)();
+                const char* (*get_AUTH_ACCESS_TOKEN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
+                const char* (*get_AUTH_REFRESH_TOKEN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
+                const char* (*get_DEVICE_ID)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
+              } StorageKeys;
+              libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter)();
+              const char* (*getOrCreateDeviceId)(libkn_kref_com_example_kmpoh_storage_KeyValueStore store);
+              libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter_)();
+              const char* (*get_PLATFORM_NAME)();
+              libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter___)();
+              libkn_kref_com_example_kmpoh_storage_KeyValueStore (*createKeyValueStore)();
+            } storage;
             struct {
               struct {
                 void (*LoadingView)(libkn_kref_androidx_compose_ui_Modifier modifier);

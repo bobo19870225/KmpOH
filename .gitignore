@@ -16,3 +16,4 @@ local.properties
 
 # Project exclude paths
 /composeApp/build/
+/.kotlin/

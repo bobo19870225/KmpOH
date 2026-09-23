@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kmpoh.data.repository.createLoginRepository
 import com.example.kmpoh.ui.components.LoadingView
 import com.example.kmpoh.ui.components.PrimaryButton
 import com.example.kmpoh.ui.components.PrimaryInput
@@ -110,7 +111,7 @@ fun LoginPage(
 ) {
     val scope = rememberCoroutineScope()
     // 自写容器由页面持有，作用域跟随组合（见 LoginViewModel 的类注释）
-    val viewModel = remember { LoginViewModel(FakeLoginRepository(), scope) }
+    val viewModel = remember { LoginViewModel(createLoginRepository(), scope) }
 
     val uiState by viewModel.uiState.collectAsState()
     val phone by viewModel.phone.collectAsState()
