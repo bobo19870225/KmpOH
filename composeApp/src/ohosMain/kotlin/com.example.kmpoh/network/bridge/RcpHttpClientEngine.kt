@@ -3,7 +3,9 @@
 package com.example.kmpoh.network.bridge
 
 import io.ktor.client.engine.HttpClientEngineBase
+import io.ktor.client.engine.HttpClientEngineCapability
 import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.plugins.HttpTimeoutCapability
 import io.ktor.client.request.HttpRequestData
 import io.ktor.client.request.HttpResponseData
 import io.ktor.http.Headers
@@ -40,14 +42,24 @@ import kotlin.coroutines.CoroutineContext
  *
  * 线协议（两侧同构，改一侧必改另一侧，ArkTS 端在
  * harmonyApp/entry/src/main/ets/network/HttpBridge.ets）：
- * - 请求：`{ url, method, headers, bodyText?|bodyBase64? }`
+ * - 请求：`{ url, method, headers, bodyBase64? }`（body 一律 UTF-8 字节原文，
+ *   与签名字节严格一致；不传裸 string——RCP 对 string content 的序列化语义不受控）
  * - 成功响应（任意 HTTP 状态码原样透传，由 ktor 层判非 2xx）：`{ status, headers, bodyBase64 }`
  * - 传输失败：`{ error, rcpCode }`（rcpCode 为 RCP BusinessError 码，
  *   映射语义对齐 Technician-Harmony 的 HttpError.fromRcpError）
+ *
+ * 传输层头（Content-Length/Host/Connection 等）禁止转发给 RCP——RCP 自行计算，
+ * 冲突会造成 body 截断/悬挂（表现为服务端读到空参数 + 请求异常慢，nova 13 实测）。
  */
 internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
 
     override val config: HttpClientEngineConfig = HttpClientEngineConfig()
+
+    // HttpTimeout 插件 setCapability 时会 require 引擎声明该能力（否则抛
+    // "Engine doesn't support HttpTimeoutCapability"）。声明后整体 requestTimeout 仍由
+    // 插件级 withTimeout 兜底；connect/socket 超时由 ArkTS RCP 会话配置承担
+    //（10s/30s，见 HttpBridge.ets），插件传入的逐请求超时暂不透传给桥。
+    override val supportedCapabilities: Set<HttpClientEngineCapability<*>> = setOf(HttpTimeoutCapability)
 
     override suspend fun execute(data: HttpRequestData): HttpResponseData {
         val requestJson = encodeRequest(data)
@@ -55,12 +67,21 @@ internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
         return decodeResponse(responseJson, data.executionContext)
     }
 
+    /** 传输层头黑名单：由 RCP/系统网络栈自行管理，转发会与实际 body 冲突。 */
+    private val hopByHopHeaders = setOf(
+        "content-length", "host", "connection", "keep-alive",
+        "transfer-encoding", "accept-encoding", "content-encoding",
+        "upgrade", "te", "trailer", "proxy-authorization", "proxy-connection"
+    )
+
     private suspend fun encodeRequest(data: HttpRequestData): String {
         val content = data.body
         val headers = mutableMapOf<String, String>()
         fun merge(h: Headers) {
             h.forEach { name, values ->
-                headers[name] = if (values.size == 1) values[0] else values.joinToString(", ")
+                if (name.lowercase() !in hopByHopHeaders) {
+                    headers[name] = if (values.size == 1) values[0] else values.joinToString(", ")
+                }
             }
         }
         merge(data.headers)
@@ -69,20 +90,21 @@ internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
             else -> {}
         }
 
-        var bodyText: String? = null
-        var bodyBase64: String? = null
-        when (content) {
-            is OutgoingContent.NoContent -> {}
-            is TextContent -> bodyText = content.text
-            is ByteArrayContent -> bodyBase64 = content.bytes().encodeBase64()
-            is OutgoingContent.ReadChannelContent ->
-                bodyBase64 = content.readFrom().readRemaining().readByteArray().encodeBase64()
+        // body 一律转 UTF-8 字节原文（base64 过桥）：
+        // 1) 与 applyRequestSignature 覆盖的 bodyText 字节严格一致（签名模式开启后不破坏验签）；
+        // 2) 不依赖 RCP 对 string content 的序列化语义（裸 string 曾被按纯文本/表单发出，
+        //    服务端读不到参数报"请输入账号"，nova 13 实测）。
+        val bodyBytes: ByteArray? = when (content) {
+            is OutgoingContent.NoContent -> null
+            is TextContent -> content.text.encodeToByteArray()
+            is ByteArrayContent -> content.bytes()
+            is OutgoingContent.ReadChannelContent -> content.readFrom().readRemaining().readByteArray()
             is OutgoingContent.WriteChannelContent ->
                 throw UnsupportedOperationException(
                     "WriteChannelContent 不受桥接层支持（请用 Text/ByteArray 内容）：" +
                         content::class.simpleName
                 )
-            else -> {}
+            else -> null
         }
 
         return buildJsonObject {
@@ -91,8 +113,7 @@ internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
             putJsonObject("headers") {
                 headers.forEach { (name, value) -> put(name, value) }
             }
-            bodyText?.let { put("bodyText", it) }
-            bodyBase64?.let { put("bodyBase64", it) }
+            bodyBytes?.let { put("bodyBase64", it.encodeBase64()) }
         }.toString()
     }
 

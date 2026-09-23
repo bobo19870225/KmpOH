@@ -12,7 +12,8 @@ import nativeApi from 'libentry.so';
  * （ApiCall/ApiGateway/signature），此处不重复做错误拦截，任意 HTTP 状态码原样回传。
  *
  * 线协议（与 Kotlin 侧 bridge/RcpHttpClientEngine.kt 同构）：
- * - 请求：{ url, method, headers, bodyText?|bodyBase64? }
+ * - 请求：{ url, method, headers, bodyBase64? }（body 为 UTF-8 字节原文；
+ *   不传裸 string——RCP 对 string content 的序列化语义不受控；传输层头已由 Kotlin 侧过滤）
  * - 成功响应：{ status, headers, bodyBase64, error:'', rcpCode:0 }
  * - 传输失败：{ error, rcpCode, status:0, headers:{}, bodyBase64:'' }
  *
@@ -31,7 +32,6 @@ class TransportRequest {
   url: string = '';
   method: string = 'GET';
   headers: Record<string, string> = {};
-  bodyText?: string;
   bodyBase64?: string;
 }
 
@@ -115,11 +115,10 @@ function flattenHeaders(headers?: rcp.ResponseHeaders): Record<string, string> {
 
 function buildContent(req: TransportRequest): rcp.RequestContent | undefined {
   if (req.bodyBase64 !== undefined && req.bodyBase64.length > 0) {
+    // UTF-8 字节原文（ArrayBuffer 原样发送）：与 Kotlin 侧签名字节一致，
+    // 且不经过 RCP 对 string content 的任何二次序列化。
     const helper = new util.Base64Helper();
     return helper.decodeSync(req.bodyBase64);
-  }
-  if (req.bodyText !== undefined) {
-    return req.bodyText;
   }
   return undefined;
 }
