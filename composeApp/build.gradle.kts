@@ -39,12 +39,17 @@ kotlin {
             baseName = "kn"
             export(libs.compose.multiplatform.export)
             linkerOpts("-lz")
-            // 存储（platform.ArkData.Preferences）：cinterop 的 OH_Preferences* 是弱导入，
-            // 弱引用不触发 as-needed 保留 → libohpreferences.so 缺失 DT_NEEDED → 运行时不加载
-            // → 弱符号解析为空 → undefined-api-protection 在库初始化抛
-            // FileFailedToInitializeException（nova 13 实测启动即崩）。强制保留该依赖。
+            // 存储（platform.ArkData.Preferences）与协程调度（platform.FunctionFlowRuntimeKit，
+            // kotlinx-coroutines 的 FfrtDefaultDispatcher）：cinterop 的 OH_Preferences* / ffrt_* 均为
+            // 弱导入（WEAK UND），弱引用不触发 as-needed 保留 → libohpreferences.so / libffrt.z.so
+            // 缺失 DT_NEEDED → 运行时不加载 → 弱符号解析为空 → undefined-api-protection 抛：
+            //   - Preferences：FileFailedToInitializeException（nova 13 实测启动即崩）
+            //   - FFRT：IllegalStateException: Missing API symbol:
+            //     ffrt_alloc_auto_managed_function_storage_base（点击登录派发协程即崩，nova 13 实测）
+            // 强制保留这两个依赖。注意 sysroot 中 FFRT 只有 libffrt.z.so（OHOS .z 系统库命名），
+            // 须写 -lffrt.z 而非 -lffrt。
             // 注意本工具链直接调用 ld.lld，须写裸标志（-Wl, 前缀会报 unknown argument）。
-            linkerOpts("--no-as-needed", "-lohpreferences", "--as-needed")
+            linkerOpts("--no-as-needed", "-lohpreferences", "-lffrt.z", "--as-needed")
                 // 渲染模式
  	             // 背景：当 libkn.so 为旧编译产物时，其 DT_NEEDED 可能缺少以下库（正确构建时
  	             // NativeTasksConfiguration.kt 已通过 -l 选项将它们写入 DT_NEEDED）。

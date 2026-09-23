@@ -12,6 +12,16 @@
     "pages": "$profile:main_pages",
     "requestPermissions": [
       {
+        // 网络请求（Ktor CIO socket）。缺此声明时 socket 操作被内核拒（EACCES/13），
+        // 网络层报 PosixErrnoException: POSIX error 13: Permission denied（nova 13 实测）。
+        // 对齐 ktor-demo 的权限声明。
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        // 获取网络信息（网络状态查询，normal 级权限）
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
         "name": "ohos.permission.VIBRATE",
         "reason": "$string:vibrate_permission_reason",
         "usedScene": {
