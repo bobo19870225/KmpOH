@@ -137,6 +137,9 @@ typedef struct {
 } libkn_kref_com_example_kmpoh_storage_KeyValueStore;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_logger_Logger;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_kotlin_Throwable;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -520,6 +523,25 @@ typedef struct {
             } data;
             struct {
               struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_logger_Logger (*_instance)();
+                libkn_KBoolean (*get_isTestEnvironment)(libkn_kref_com_example_kmpoh_logger_Logger thiz);
+                void (*debug)(libkn_kref_com_example_kmpoh_logger_Logger thiz, const char* tag, const char* message);
+                void (*debug_)(libkn_kref_com_example_kmpoh_logger_Logger thiz, const char* message);
+                void (*debugJson)(libkn_kref_com_example_kmpoh_logger_Logger thiz, const char* tag, const char* header, const char* json);
+                void (*debugSingleLine)(libkn_kref_com_example_kmpoh_logger_Logger thiz, const char* tag, const char* message);
+                const char* (*sanitize)(libkn_kref_com_example_kmpoh_logger_Logger thiz, const char* message);
+              } Logger;
+              const char* (*get_BUSINESS_LOG_TAG)();
+              const char* (*get_DEBUG_LOG_TAG)();
+              const char* (*get_LOG_MASK)();
+              const char* (*get_NETWORK_LOG_TAG)();
+              libkn_KInt (*com_example_kmpoh_logger_Logger$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_logger_Logger$stableprop_getter_)();
+              void (*platformLogLine)(const char* tag, const char* message);
+            } logger;
+            struct {
+              struct {
                 struct {
                   libkn_KType* (*_type)(void);
                   libkn_kref_com_example_kmpoh_network_signature_ApiSignatureEngine (*_instance)();
@@ -810,7 +832,6 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter________)();
               libkn_KInt (*get_LOG_BODY_MAX_CHARS)();
-              const char* (*get_LOG_MASK)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_________)();

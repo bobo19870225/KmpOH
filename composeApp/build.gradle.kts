@@ -39,6 +39,12 @@ kotlin {
             baseName = "kn"
             export(libs.compose.multiplatform.export)
             linkerOpts("-lz")
+            // 存储（platform.ArkData.Preferences）：cinterop 的 OH_Preferences* 是弱导入，
+            // 弱引用不触发 as-needed 保留 → libohpreferences.so 缺失 DT_NEEDED → 运行时不加载
+            // → 弱符号解析为空 → undefined-api-protection 在库初始化抛
+            // FileFailedToInitializeException（nova 13 实测启动即崩）。强制保留该依赖。
+            // 注意本工具链直接调用 ld.lld，须写裸标志（-Wl, 前缀会报 unknown argument）。
+            linkerOpts("--no-as-needed", "-lohpreferences", "--as-needed")
                 // 渲染模式
  	             // 背景：当 libkn.so 为旧编译产物时，其 DT_NEEDED 可能缺少以下库（正确构建时
  	             // NativeTasksConfiguration.kt 已通过 -l 选项将它们写入 DT_NEEDED）。
@@ -76,8 +82,11 @@ kotlin {
             implementation(libs.ktor.client.mock)
         }
         commonMain.dependencies {
-            // 网络层（openspec/changes/migrate-network-and-login）：Ktor 3.3.3-0.3.0 fork 线。
-            // 鸿蒙端引擎内置在 ktor-client-core 的 ohosArm64 变体（CIO 实现），无需额外引擎依赖。
+            // 网络层（openspec/changes/migrate-network-and-login）：Ktor 3.3.3-1.0.0 fork 线
+            // （CPF-KMP-CMP 三方库文档对 KMP 2.2.21 & CMP 1.9.2 的推荐版本）。
+            // 引擎按平台拆分：Android=OkHttp、iOS=Darwin、鸿蒙=ktor-client-cio（见 ohosMain），
+            // 不能依赖 ktor-client-core 的服务发现在鸿蒙自动装载引擎（实测抛
+            // "Failed to find HTTP client engine implementation"）。
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.logging)
@@ -108,6 +117,9 @@ kotlin {
         }
         ohosMain.dependencies {
             api(libs.compose.multiplatform.export)
+            // 鸿蒙端网络引擎：官方适配的 ktor-client-cio（含 ohosArm64 变体），
+            // 对应引擎工厂 io.ktor.client.engine.cio.CIO（三方库文档 / ktor-demo 用法）。
+            implementation(libs.ktor.client.cio)
         }
         val ohosArm64Main by getting {
             dependsOn(ohosMain)

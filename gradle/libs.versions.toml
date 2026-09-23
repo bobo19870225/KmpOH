@@ -21,9 +21,11 @@ compose = "1.9.4"
 compose-material3 = "1.4.0"
 composeMultiplatform = "1.9.2-0.3.0"
 
-# Network（Ktor fork 线 -0.3.0，与 kotlin/coroutines/atomicfu 家族一致，见
-# openspec/changes/migrate-network-and-login/design.md 决策 1）
-ktor = "3.3.3-0.3.0"
+# Network（Ktor fork 线 -1.0.0，按 CPF-KMP-CMP 三方库文档「KMP 2.2.21 & CMP 1.9.2 推荐」列，
+# 见 openspec/changes/archive/2026-09-23-migrate-network-and-login/design.md 决策 1 的修订：
+# 3.3.3-0.3.0 旧线引擎不全，官方适配以 ktor-client-cio 独立工件为准。
+# 其 POM 仍对齐 coroutines 1.10.2-0.3.0 / serialization 1.9.1-0.3.0，家族其余成员不动。）
+ktor = "3.3.3-1.0.0"
 kotlinxSerialization = "1.9.1-0.3.0"
 
 # Kotlin & testing
@@ -56,8 +58,9 @@ androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle
 # ----- Compose multiplatform -----
 compose-multiplatform-export = { module = "org.jetbrains.compose.export:export", version.ref = "composeMultiplatform" }
 
-# ----- Network（Ktor + kotlinx.serialization，全系列取 -0.3.0 fork 线） -----
+# ----- Network（Ktor + kotlinx.serialization） -----
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
