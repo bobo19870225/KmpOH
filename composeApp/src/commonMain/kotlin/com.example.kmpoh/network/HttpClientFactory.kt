@@ -19,8 +19,8 @@ fun createApiClient(): HttpClient = createPlatformHttpClient {
         connectTimeoutMillis = NETWORK_TIMEOUT_MILLIS
         socketTimeoutMillis = NETWORK_TIMEOUT_MILLIS
     }
-    // 脱敏网络日志：仅测试环境输出（tasks 3.5 / spec「请求日志与脱敏」）
-    installNetworkLogging()
+    // 网络日志统一收敛在信封出口 requestEnvelopeText（url+参数+响应 两行制，
+    // 脱敏+8KB 裁剪、测试环境门控；原 Ktor Logging 插件碎片输出已移除）
 }
 
 const val NETWORK_TIMEOUT_MILLIS = 30_000L

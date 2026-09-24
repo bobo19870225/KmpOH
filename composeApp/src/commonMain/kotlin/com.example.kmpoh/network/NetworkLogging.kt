@@ -1,11 +1,8 @@
 package com.example.kmpoh.network
 
 import com.example.kmpoh.logger.Logger
-import com.example.kmpoh.logger.NETWORK_LOG_TAG
-import io.ktor.client.HttpClientConfig
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.logging.Logger as KtorLogger
+import io.ktor.client.request.forms.FormDataContent
+import io.ktor.client.request.forms.MultiPartFormDataContent
 
 /** 日志体裁剪上限（对齐原工程 8KB 文本 body 打印上限）。 */
 const val LOG_BODY_MAX_CHARS = 8 * 1024
@@ -21,22 +18,27 @@ fun truncateForLog(text: String, maxChars: Int = LOG_BODY_MAX_CHARS): String =
     if (text.length <= maxChars) text
     else text.substring(0, maxChars) + "...<truncated ${text.length - maxChars} chars>"
 
-/** Ktor 日志出口：脱敏 + 裁剪 + 分片防截断（迁移后的 Logger 承担分片）。 */
-private object SanitizedLogger : KtorLogger {
-    override fun log(message: String) {
-        Logger.debugSingleLine(NETWORK_LOG_TAG, truncateForLog(message))
-    }
+/**
+ * 统一请求日志行：`→ POST {url} | params=… | headers=…`（脱敏 + 8KB 裁剪；
+ * 输出随 Logger 的测试环境门控，prod 静默——spec「请求日志与脱敏」）。
+ */
+fun formatRequestLine(url: String, params: String?, headers: String? = null): String {
+    val maskedParams = params?.let { maskSensitiveText(truncateForLog(it)) } ?: "-"
+    val maskedHeaders = headers?.let { maskSensitiveText(it) } ?: "-"
+    return "→ POST $url | params=$maskedParams | headers=$maskedHeaders"
 }
 
-/**
- * 安装网络日志（对齐原工程 NetworkLoggingInterceptor：仅测试环境 uat 输出，
- * 单行化合并日志、敏感字段脱敏、文本体裁剪 8KB）。头级脱敏由插件 sanitizeHeader 完成。
- */
-fun HttpClientConfig<*>.installNetworkLogging(enabled: Boolean = Logger.isTestEnvironment) {
-    if (!enabled) return
-    install(Logging) {
-        logger = SanitizedLogger
-        level = LogLevel.ALL
-        sanitizeHeader { header -> header.lowercase() in listOf("authorization", "apitoken", "sign", "nonce", "cookie", "set-cookie") }
+/** 统一响应日志行：`← {path} | status=… | body=…`（脱敏 + 8KB 裁剪）。 */
+fun formatResponseLine(path: String, status: String, body: String): String =
+    "← $path | status=$status | body=${maskSensitiveText(truncateForLog(body))}"
+
+/** 请求参数可读化：签名/日志用 bodyText（JSON 或字段 JSON）优先；否则按请求体形态描述。 */
+fun describeRequestParams(bodyText: String?, body: Any?): String? =
+    bodyText ?: when (body) {
+        null -> null
+        is FormDataContent -> body.formData.entries().joinToString("&") { (key, values) ->
+            "$key=${values.firstOrNull()}"
+        }
+        is MultiPartFormDataContent -> "<multipart>"
+        else -> body.toString()
     }
-}

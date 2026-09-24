@@ -97,6 +97,7 @@ class ApiGateway(
         http.callEnvelopeMessage(
             path = path,
             body = body,
+            bodyText = bodyText,
             baseUrl = baseUrl,
             requestExtras = {
                 applyCommonHeaders(authenticated = authenticated, forcedToken = null)
@@ -198,6 +199,7 @@ class ApiGateway(
         path = path,
         deserializer = deserializer,
         body = body,
+        bodyText = bodyText,
         baseUrl = baseUrl,
         requestExtras = {
             applyCommonHeaders(authenticated = authenticated, forcedToken = null)

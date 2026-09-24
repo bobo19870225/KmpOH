@@ -37,19 +37,26 @@ internal suspend inline fun <reified T> HttpClient.callEnvelope(
     body: Any? = null,
     baseUrl: String = GeneratedApiConfig.BASE_URL,
     noinline requestExtras: HttpRequestBuilder.() -> Unit = {}
-): T = callEnvelopeWith(path, serializer<T>(), body, baseUrl, requestExtras)
+): T = callEnvelopeWith(
+    path = path,
+    deserializer = serializer<T>(),
+    body = body,
+    baseUrl = baseUrl,
+    requestExtras = requestExtras
+)
 
 /** [callEnvelope] 的序列化器显式形态，供非 inline 调用方（认证重试编排）使用。 */
 internal suspend fun <T> HttpClient.callEnvelopeWith(
     path: String,
     deserializer: KSerializer<T>,
     body: Any? = null,
+    bodyText: String? = null,
     baseUrl: String = GeneratedApiConfig.BASE_URL,
     requestExtras: HttpRequestBuilder.() -> Unit = {},
     onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)? = null,
     loadingTracker: NetworkRequestTracker? = NetworkRequestTracker.global
 ): T = decodeEnvelopeWith(
-    requestEnvelopeText(path, body, baseUrl, requestExtras, onRawResponse, loadingTracker),
+    requestEnvelopeText(path, body, bodyText, baseUrl, requestExtras, onRawResponse, loadingTracker),
     deserializer
 )
 
@@ -60,25 +67,26 @@ internal suspend fun <T> HttpClient.callEnvelopeWith(
 internal suspend fun HttpClient.callEnvelopeMessage(
     path: String,
     body: Any? = null,
+    bodyText: String? = null,
     baseUrl: String = GeneratedApiConfig.BASE_URL,
     requestExtras: HttpRequestBuilder.() -> Unit = {},
     onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)? = null,
     loadingTracker: NetworkRequestTracker? = NetworkRequestTracker.global
 ): String = decodeEnvelopeMessage(
-    requestEnvelopeText(path, body, baseUrl, requestExtras, onRawResponse, loadingTracker)
+    requestEnvelopeText(path, body, bodyText, baseUrl, requestExtras, onRawResponse, loadingTracker)
 )
 
 /** 发送 POST 并返回原始响应文本（请求/Loading/异常归一，供信封各出口共用）。 */
 private suspend fun HttpClient.requestEnvelopeText(
     path: String,
     body: Any?,
+    bodyText: String?,
     baseUrl: String,
     requestExtras: HttpRequestBuilder.() -> Unit,
     onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)?,
     loadingTracker: NetworkRequestTracker?
 ): String {
     var loadingStarted = false
-    Logger.debug(NETWORK_LOG_TAG, "→ POST $path")
     val response = try {
         post {
             url(baseUrl + path)
@@ -103,6 +111,11 @@ private suspend fun HttpClient.requestEnvelopeText(
                 loadingTracker?.onRequestStarted()
                 loadingStarted = true
             }
+            // 统一请求日志（url + 参数 + 头，脱敏+8KB 裁剪；spec「请求日志与脱敏」）
+            Logger.debugSingleLine(
+                NETWORK_LOG_TAG,
+                formatRequestLine(baseUrl + path, describeRequestParams(bodyText, body), headers.build().toString())
+            )
         }
     } catch (e: CancellationException) {
         if (loadingStarted) loadingTracker?.onRequestFinished()
@@ -115,16 +128,14 @@ private suspend fun HttpClient.requestEnvelopeText(
             "✗ POST $path send-failed chain=" +
                 generateSequence<Throwable>(e) { it.cause }.joinToString(" <- ") { it::class.simpleName ?: "?" }
         )
+        Logger.debugSingleLine(
+            NETWORK_LOG_TAG,
+            formatResponseLine(path, "ERR", e.message ?: e::class.simpleName ?: "transport error")
+        )
         throw mapTransportFailure(e)
     }
     // 响应头到达即结束 Loading 生命周期（对齐原工程）
     if (loadingStarted) loadingTracker?.onRequestFinished()
-
-    if (!response.status.isSuccess()) {
-        Logger.debug(NETWORK_LOG_TAG, "✗ POST $path http=${response.status.value} ${response.status.description}")
-        throw NetworkException.Http(response.status.value, response.status.description)
-    }
-    Logger.debug(NETWORK_LOG_TAG, "← POST $path status=${response.status.value}")
 
     val text = try {
         response.body<String>()
@@ -132,6 +143,13 @@ private suspend fun HttpClient.requestEnvelopeText(
         throw e
     } catch (e: Exception) {
         throw NetworkException.Parsing(e)
+    }
+
+    // 统一响应日志（路径 + 状态 + 返回数据，脱敏+8KB 裁剪；spec「请求日志与脱敏」）
+    Logger.debugSingleLine(NETWORK_LOG_TAG, formatResponseLine(path, response.status.value.toString(), text))
+
+    if (!response.status.isSuccess()) {
+        throw NetworkException.Http(response.status.value, response.status.description)
     }
 
     onRawResponse?.invoke(response.headers, text)

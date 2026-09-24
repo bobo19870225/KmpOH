@@ -1868,6 +1868,9 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_________)();
+              const char* (*describeRequestParams)(const char* bodyText, libkn_kref_kotlin_Any body);
+              const char* (*formatRequestLine)(const char* url, const char* params, const char* headers);
+              const char* (*formatResponseLine)(const char* path, const char* status, const char* body);
               const char* (*maskSensitiveText)(const char* text);
               const char* (*truncateForLog)(const char* text, libkn_KInt maxChars);
               const char* (*get_HEADER_SHOW_GLOBAL_LOADING)();

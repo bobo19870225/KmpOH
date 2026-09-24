@@ -61,6 +61,39 @@ class MaskingTest {
     }
 }
 
+class UnifiedNetworkLogTest {
+
+    @Test
+    fun requestLineUnifiesUrlParamsHeadersAndMasks() {
+        val line = formatRequestLine(
+            url = "https://api/mobile/Staff.Login/login",
+            params = """{"staff_code":"S001","password":"p@ss"}""",
+            headers = "Authorization: Bearer secret-value"
+        )
+        assertTrue(line.startsWith("→ POST https://api/mobile/Staff.Login/login | params="))
+        assertTrue(line.contains("headers="))
+        assertFalse(line.contains("p@ss"))
+        assertFalse(line.contains("S001"))
+        assertFalse(line.contains("secret-value"))
+    }
+
+    @Test
+    fun requestLineHandlesMissingParams() {
+        val line = formatRequestLine(url = "https://api/x", params = null, headers = null)
+        assertTrue(line.startsWith("→ POST https://api/x | params=- | headers=-"))
+    }
+
+    @Test
+    fun responseLineUnifiesStatusBodyMasksAndTruncates() {
+        val line = formatResponseLine("dayOrder", "200", """{"token":"tok-1","data":[]}""")
+        assertTrue(line.startsWith("← dayOrder | status=200 | body="))
+        assertFalse(line.contains("tok-1"))
+
+        val longLine = formatResponseLine("p", "200", "y".repeat(LOG_BODY_MAX_CHARS + 50))
+        assertTrue(longLine.contains("truncated"))
+    }
+}
+
 class NetworkRequestTrackerTest {
 
     @Test
