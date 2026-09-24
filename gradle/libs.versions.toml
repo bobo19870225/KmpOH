@@ -21,6 +21,9 @@ compose = "1.9.4"
 compose-material3 = "1.4.0"
 composeMultiplatform = "1.9.2-0.3.0"
 
+# kotlinx-datetime（三方库文档表 5 已适配鸿蒙，推荐线 0.7.1-1.0.0；2026-09-24 复核实证存在）
+kotlinxDatetime = "0.7.1-1.0.0"
+
 # Navigation（CMP navigation fork 线。2.10.0-0.1.0-xx 线经实测不可用：传递绑定
 # androidx.navigation 2.10.0-alpha05 上游，AAR metadata 要求 compileSdk 37（本工程 android-36）。
 # 改用 2.9.4 fork 快照线（含 ohosArm64 变体，上游 2.9.x 编译要求 ≤36）。取号结论见
@@ -79,6 +82,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 
 # ----- Kotlin multiplatform / concurrency -----
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicFu" }
 
 # ----- Compose Android (androidx.compose, Android target only) -----

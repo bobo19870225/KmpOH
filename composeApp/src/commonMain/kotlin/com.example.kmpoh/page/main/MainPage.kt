@@ -53,7 +53,9 @@ private data class BottomTab(
 @Composable
 fun MainPage(
     onLoggedOut: () -> Unit,
-    onNavigateToChangePassword: () -> Unit
+    onNavigateToChangePassword: () -> Unit,
+    onOpenWorkOrderPreview: (com.example.kmpoh.page.workorder.WorkOrder) -> Unit = {},
+    onToastMessage: (String) -> Unit = {}
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
@@ -95,7 +97,11 @@ fun MainPage(
         }
     ) { padding ->
         when (selectedTab) {
-            0 -> WorkOrderPage(modifier = Modifier.padding(padding))
+            0 -> WorkOrderPage(
+                modifier = Modifier.padding(padding),
+                onOpenPreview = onOpenWorkOrderPreview,
+                onToastMessage = onToastMessage
+            )
 //            1 -> MessagePage(modifier = Modifier.padding(padding))
             else -> ProfilePage(
                 onLoggedOut = onLoggedOut,

@@ -101,6 +101,8 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.json)
+            // 日期模型（三方库文档已适配，推荐线 0.7.1-1.0.0；openspec migrate-work-order-page 决策 1）
+            implementation(libs.kotlinx.datetime)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

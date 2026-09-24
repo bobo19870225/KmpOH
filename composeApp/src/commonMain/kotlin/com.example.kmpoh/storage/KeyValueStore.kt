@@ -20,6 +20,7 @@ object StorageKeys {
     const val AUTH_REFRESH_TOKEN = "auth.refresh_token"
     const val DEVICE_ID = "device.id"
     const val USER_NAME = "user.name"
+    const val WORK_ORDER_GUIDE_SHOWN = "work_order.guide_shown"
 }
 
 /** 创建平台默认 KV 存储实例。 */

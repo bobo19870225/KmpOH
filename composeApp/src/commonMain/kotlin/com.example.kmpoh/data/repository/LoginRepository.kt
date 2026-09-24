@@ -104,6 +104,7 @@ object AppGraph {
         NetworkLoginRepository(gateway, session, store)
     }
     val profileRepository by lazy { ProfileRepository(gateway, session, store) }
+    val workOrderListRepository by lazy { WorkOrderListRepository(gateway) }
 }
 
 /** 组装登录数据栈（手写依赖装配，design 决策 9）：
@@ -112,3 +113,6 @@ fun createLoginRepository(): LoginRepository = AppGraph.loginRepository
 
 /** 组装账号资料与安全数据栈（design 决策 1 方案 B 聚合），收敛到 [AppGraph] 单例。 */
 fun createProfileRepository(): ProfileRepository = AppGraph.profileRepository
+
+/** 组装工单列表数据栈，收敛到 [AppGraph] 单例。 */
+fun createWorkOrderListRepository(): WorkOrderListRepository = AppGraph.workOrderListRepository
