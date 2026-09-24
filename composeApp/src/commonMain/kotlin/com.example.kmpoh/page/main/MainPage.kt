@@ -66,6 +66,9 @@ fun MainPage(
     )
 
     Scaffold(
+        // 容器色取页面背景灰：默认 surface（白）会铺满状态栏区域露白边，
+        // 页面灰背景只包住 inset 后的内容（spec 铺满到顶部系统栏的观感）
+        containerColor = AppColors.PaletteFFF3F4F6,
         bottomBar = {
             NavigationBar(containerColor = AppColors.PaletteWhite) {
                 tabs.forEachIndexed { index, tab ->

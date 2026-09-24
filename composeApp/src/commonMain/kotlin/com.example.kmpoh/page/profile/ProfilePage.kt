@@ -29,7 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kmpoh.data.repository.AppGraph
@@ -52,6 +55,22 @@ private val VerifiedBg = AppColors.PaletteFFFFF8E1
 private val VerifiedText = AppColors.PaletteFFD97706
 private val ChevronGray = AppColors.PaletteFFD1D5DB
 private const val CHANGE_PASSWORD_ITEM_ID = "change_password"
+
+/**
+ * 盒内字形（头像字符 / emoji 图标 / 徽章内容）的光学居中样式：CJK/emoji 的字块在默认
+ * 行盒里按字体度量分布（偏上），Box/Row 的居中居的是行盒而非字块（鸿蒙文本栈暴露，
+ * 与登录输入框截断同族）。做法：给定显式行盒 [lineHeight]，字块居中于行盒（Alignment.Center）
+ * 且保留居中余量（Trim.None——单行下 Trim.Both 会把余量裁掉、等于没居中）；
+ * Mode.Minimum 防行高小于字体自然行高时裁字。同组元素共用同一行盒即对齐同一中线。
+ */
+private fun glyphCenteredStyle(lineHeight: TextUnit) = TextStyle(
+    lineHeight = lineHeight,
+    lineHeightStyle = LineHeightStyle(
+        alignment = LineHeightStyle.Alignment.Center,
+        trim = LineHeightStyle.Trim.None,
+        mode = LineHeightStyle.Mode.Minimum
+    )
+)
 
 /**
  * 「我的」页（spec ui/profile）：资料卡 + 系统设置菜单 + 退出登录。
@@ -140,7 +159,8 @@ private fun ProfileCard(state: ProfileUiState) {
                 state.avatarName,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Medium,
-                color = CardWhite
+                color = CardWhite,
+                style = glyphCenteredStyle(lineHeight = 40.sp)
             )
         }
 
@@ -171,12 +191,14 @@ private fun ProfileCard(state: ProfileUiState) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text("🛡", fontSize = 10.sp)
+            // 图标与文案共用 16sp 行盒 → Row 垂直居中时对齐同一中线
+            Text("🛡", fontSize = 10.sp, style = glyphCenteredStyle(lineHeight = 16.sp))
             Text(
                 stringResource(Res.string.profile_verified),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
-                color = VerifiedText
+                color = VerifiedText,
+                style = glyphCenteredStyle(lineHeight = 16.sp)
             )
         }
     }
@@ -234,7 +256,7 @@ private fun MenuItemRow(item: ProfileMenuItem, onClick: () -> Unit) {
                 .background(Color(item.bgColor)),
             contentAlignment = Alignment.Center
         ) {
-            Text(item.icon, fontSize = 16.sp)
+            Text(item.icon, fontSize = 16.sp, style = glyphCenteredStyle(lineHeight = 24.sp))
         }
 
         Spacer(Modifier.width(12.dp))
