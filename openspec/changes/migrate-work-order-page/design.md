@@ -63,3 +63,5 @@
 ### 决策 8：网关扩展 form / multipart 传输形态（实施中浮现，2026-09-24 补记）
 
 工单列表三端点与 JSON 信封不同形：`dayOrder`/`unfinishJobs` 为 **FormUrlEncoded**（字段 `job_date`/`day_order_type`/`page`/`limit`），`dayCount` 为 **Multipart**（part `month`，text/plain）。网关（`ApiCall`/`ApiGateway`）按既有 `bodyText` 约定**增量扩展** form-urlencoded 与 multipart-text 两种发送形态：实际请求体按端点形态发送，`bodyText` 传**字段映射的 JSON 文本**供签名规范化复用（`canonicalParamsOf` 解析 JSON 后排序/剔除，与原工程「参数规范化」一致）；信封解析、401 刷新编排、签名头照旧复用。
+
+鸿蒙端落地补记（2026-09-24，实机踩坑后修订）：RCP 对**裸 string/ArrayBuffer 按 text/plain/octet-stream 发出**，服务端读不到表单参数（实测 `dayOrder` 报「请选择日期」）；且 ktor 存在两个同名 `ByteArrayContent`（顶层具体类 vs `OutgoingContent.ByteArrayContent` 抽象基类），按前者匹配会让 `FormDataContent` 静默落入 else **丢弃整个请求体**。故桥接线协议扩展 `bodyForm`/`bodyMultipart` 字段表，ArkTS 侧用 RCP 原生 **`rcp.Form`/`rcp.MultipartForm`** 承载（application/x-www-form-urlencoded / multipart/form-data，与端点形态一致）；`dayCount` 用公共 `MultipartTextContent`（公开字段表 + 委托 ktor multipart 序列化，供桥接层读字段）。请求体形态编码收敛在 commonMain `BridgeWireBody.kt`（有单测钉回归）。

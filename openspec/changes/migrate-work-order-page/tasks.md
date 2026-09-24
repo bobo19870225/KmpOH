@@ -61,6 +61,12 @@
 
   > **待用户验证**。
 
+## 7. 实施中缺陷修复（2026-09-24 实机验证反馈）
+
+- [x] 7.1 桥接层 form/multipart 体承载修复：实机 6.3 反馈选日工单拿不到（服务端报「请选择日期」）。根因二合一：① ktor 两个同名 `ByteArrayContent` 误匹配，`FormDataContent`（dayOrder/unfinishJobs）落入 else 被**静默丢弃整个请求体**；② `MultiPartFormDataContent`（dayCount）是 `WriteChannelContent`，桥接层直接拒绝发送。修复：公共 `BridgeWireBody` 编码 + `MultipartTextContent` + 线协议 `bodyForm`/`bodyMultipart` + ArkTS `rcp.Form`/`rcp.MultipartForm`（决策 8 补记）。验证方式：新增 `BridgeWireBodyTest`/`MultipartTextContentTest` 全绿、`testDebugUnitTest` 全量回归通过、`assembleDebug`+`linkDebugSharedOhosArm64`+`publishDebugBinariesToHarmonyApp`+`assembleHap` 全部 BUILD SUCCESSFUL。
+
+  > **待用户验证**：实机选日工单列表刷新、日历数量标记（本次修复需 Gradle 发布与 ArkTS 同批安装）。
+
 ## 用户验证清单（汇总，均待用户验证）
 
 1. 工单 tab 显示真实列表：卡片含时间/门店/风险标签/进度/状态。

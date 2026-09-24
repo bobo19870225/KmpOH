@@ -12,10 +12,15 @@ import { SuppressWarnings, SuppressWarningsType } from '@kit.BasicServicesKit';
  * + 超时配置）；差异：本文件是**纯传输层**，信封解析/签名/鉴权/日志均在 Kotlin 网络层
  * （ApiCall/ApiGateway/signature），此处不重复做错误拦截，任意 HTTP 状态码原样回传。
  *
- * 线协议（与 Kotlin 侧 bridge/RcpHttpClientEngine.kt 同构）：
- * - 请求：{ url, method, headers, bodyJson?|bodyBase64? }
+ * 线协议（与 Kotlin 侧 bridge/RcpHttpClientEngine.kt + commonMain/BridgeWireBody.kt 同构，
+ * **改一侧必改另一侧**）：
+ * - 请求：{ url, method, headers, bodyJson?|bodyForm?|bodyMultipart?|bodyBase64? }
  *   （bodyJson 是 JSON 文本，此处 JSON.parse 成对象交 RCP——与 Technician-Harmony 传
- *   Record 同路径，RCP 按对象自动以 application/json 发出；bodyBase64 为二进制原始字节）
+ *   Record 同路径，RCP 按对象自动以 application/json 发出；bodyForm 为简单表单字段表，
+ *   用 rcp.Form 发 application/x-www-form-urlencoded；bodyMultipart 为多部件字段表，
+ *   用 rcp.MultipartForm 发 multipart/form-data；bodyBase64 为二进制原始字节。
+ *   裸 string/ArrayBuffer 会被 RCP 按 text/plain/octet-stream 发出、服务端读不到参数，
+ *   表单/multipart 必须走 Form/MultipartForm，禁止降级为 bodyBase64）
  * - 成功响应：{ status, headers, bodyBase64, error:'', rcpCode:0 }
  * - 传输失败：{ error, rcpCode, status:0, headers:{}, bodyBase64:'' }
  *
@@ -35,6 +40,8 @@ class TransportRequest {
   method: string = 'GET';
   headers: Record<string, string> = {};
   bodyJson?: string;
+  bodyForm?: Record<string, string>;
+  bodyMultipart?: Record<string, string>;
   bodyBase64?: string;
 }
 
@@ -121,6 +128,24 @@ function buildContent(req: TransportRequest): rcp.RequestContent | undefined {
     // JSON 对象交 RCP（自动 application/json）——与 Technician-Harmony 传 Record 同路径。
     // 裸 string/ArrayBuffer 会被 RCP 按 text/plain/octet-stream 发出，服务端读不到参数。
     return JSON.parse(req.bodyJson) as Object;
+  }
+  if (req.bodyForm !== undefined) {
+    // RCP 原生简单表单：application/x-www-form-urlencoded（与原工程 @FormUrlEncoded 同形）
+    const fields: rcp.FormFields = {};
+    const formKeys = Object.keys(req.bodyForm);
+    for (let i = 0; i < formKeys.length; i++) {
+      fields[formKeys[i]] = req.bodyForm[formKeys[i]];
+    }
+    return new rcp.Form(fields);
+  }
+  if (req.bodyMultipart !== undefined) {
+    // RCP 原生多部件表单：multipart/form-data（与原工程 @Multipart 同形；文件字段随上传能力扩展）
+    const fields: rcp.MultipartFormFields = {};
+    const partKeys = Object.keys(req.bodyMultipart);
+    for (let i = 0; i < partKeys.length; i++) {
+      fields[partKeys[i]] = req.bodyMultipart[partKeys[i]];
+    }
+    return new rcp.MultipartForm(fields);
   }
   if (req.bodyBase64 !== undefined && req.bodyBase64.length > 0) {
     const helper = new util.Base64Helper();

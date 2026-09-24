@@ -359,6 +359,12 @@ typedef struct {
 } libkn_kref_kotlinx_coroutines_flow_SharedFlow;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_network_MultipartTextContent;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_io_ktor_http_ContentType;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_network_NetworkException_Http;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -1664,6 +1670,13 @@ typedef struct {
                 const char* (*userName)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
               } AuthSessionManager;
               struct {
+                libkn_KType* (*_type)(void);
+                libkn_kref_com_example_kmpoh_network_MultipartTextContent (*MultipartTextContent)(libkn_kref_kotlin_collections_Map fields);
+                libkn_kref_kotlin_Long (*get_contentLength)(libkn_kref_com_example_kmpoh_network_MultipartTextContent thiz);
+                libkn_kref_io_ktor_http_ContentType (*get_contentType)(libkn_kref_com_example_kmpoh_network_MultipartTextContent thiz);
+                libkn_kref_kotlin_collections_Map (*get_fields)(libkn_kref_com_example_kmpoh_network_MultipartTextContent thiz);
+              } MultipartTextContent;
+              struct {
                 struct {
                   libkn_KType* (*_type)(void);
                   libkn_kref_com_example_kmpoh_network_NetworkException_Http (*Http)(libkn_KInt statusCode, const char* statusMessage);
@@ -1717,6 +1730,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter)();
@@ -1732,6 +1746,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_)();
@@ -1749,6 +1764,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter__)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter__)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter__)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter__)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter__)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter__)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter__)();
@@ -1766,6 +1782,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter___)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter___)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter___)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter___)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter___)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter___)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter___)();
@@ -1781,6 +1798,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter____)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter____)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter____)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter____)();
@@ -1796,6 +1814,7 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_____)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_____)();
@@ -1805,13 +1824,13 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_____)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_____)();
-              libkn_KLong (*get_NETWORK_TIMEOUT_MILLIS)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter______)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter______)();
@@ -1821,13 +1840,14 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter______)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter______)();
-              libkn_kref_io_ktor_client_HttpClient (*createApiClient)();
+              libkn_KLong (*get_NETWORK_TIMEOUT_MILLIS)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_______)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_______)();
@@ -1837,12 +1857,14 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_______)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_______)();
+              libkn_kref_io_ktor_client_HttpClient (*createApiClient)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter________)();
@@ -1852,13 +1874,13 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter________)();
-              libkn_KInt (*get_LOG_BODY_MAX_CHARS)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_________)();
@@ -1868,18 +1890,13 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_________)();
-              const char* (*describeRequestParams)(const char* bodyText, libkn_kref_kotlin_Any body);
-              const char* (*formatRequestLine)(const char* url, const char* params, const char* headers);
-              const char* (*formatResponseLine)(const char* path, const char* status, const char* body);
-              const char* (*maskSensitiveText)(const char* text);
-              const char* (*truncateForLog)(const char* text, libkn_KInt maxChars);
-              const char* (*get_HEADER_SHOW_GLOBAL_LOADING)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter__________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter__________)();
@@ -1889,12 +1906,14 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter__________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter__________)();
+              libkn_KInt (*get_LOG_BODY_MAX_CHARS)();
               libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter___________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter___________)();
@@ -1904,6 +1923,44 @@ typedef struct {
               libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter___________)();
               libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter___________)();
+              const char* (*describeRequestParams)(const char* bodyText, libkn_kref_kotlin_Any body);
+              const char* (*formatRequestLine)(const char* url, const char* params, const char* headers);
+              const char* (*formatResponseLine)(const char* path, const char* status, const char* body);
+              const char* (*maskSensitiveText)(const char* text);
+              const char* (*truncateForLog)(const char* text, libkn_KInt maxChars);
+              const char* (*get_HEADER_SHOW_GLOBAL_LOADING)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter____________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiGateway$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_ApiResponse_$serializer$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionEvent_LoginExpired$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_AuthSessionManager$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_BusinessApiException$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_MultipartTextContent$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Http$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Parsing$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Timeout$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Transport$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkException_Unavailable$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkMessages$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_NetworkRequestTracker$stableprop_getter_____________)();
+              libkn_KInt (*com_example_kmpoh_network_RefreshTokenData_$serializer$stableprop_getter_____________)();
               libkn_kref_io_ktor_client_HttpClient (*createPlatformHttpClient)(libkn_kref_kotlin_Function1 block);
             } network;
             struct {

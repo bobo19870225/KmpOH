@@ -40,5 +40,6 @@ fun describeRequestParams(bodyText: String?, body: Any?): String? =
             "$key=${values.firstOrNull()}"
         }
         is MultiPartFormDataContent -> "<multipart>"
+        is MultipartTextContent -> "<multipart>"
         else -> body.toString()
     }

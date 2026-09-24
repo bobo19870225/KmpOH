@@ -13,12 +13,12 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpProtocolVersion
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.content.ByteArrayContent
 import io.ktor.http.content.OutgoingContent
-import io.ktor.http.content.TextContent
 import io.ktor.util.date.GMTDate
 import io.ktor.util.decodeBase64Bytes
 import io.ktor.util.encodeBase64
+import com.example.kmpoh.network.BridgeWireBody
+import com.example.kmpoh.network.toBridgeWireBody
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readRemaining
 import kotlinx.serialization.json.Json
@@ -43,10 +43,14 @@ import kotlin.coroutines.CoroutineContext
  *
  * 线协议（两侧同构，改一侧必改另一侧，ArkTS 端在
  * harmonyApp/entry/src/main/ets/network/HttpBridge.ets）：
- * - 请求：`{ url, method, headers, bodyJson?|bodyBase64? }`
+ * - 请求：`{ url, method, headers, bodyJson?|bodyForm?|bodyMultipart?|bodyBase64? }`
  *   （JSON body 传**文本**、ArkTS 侧 JSON.parse 成对象后交 RCP——与 Technician-Harmony
- *   传 Record 的路径同款，RCP 按对象自动以 application/json 发出；裸 string/ArrayBuffer
- *   会被 RCP 按 text/plain/octet-stream 发出，服务端读不到参数报"请输入账号"，nova 13 实测）
+ *   传 Record 的路径同款，RCP 按对象自动以 application/json 发出；表单/multipart 传**字段表**、
+ *   ArkTS 侧分别用 rcp.Form / rcp.MultipartForm（application/x-www-form-urlencoded 与
+ *   multipart/form-data，与原工程 @FormUrlEncoded/@Multipart 同形）；二进制才走 bodyBase64。
+ *   裸 string/ArrayBuffer 会被 RCP 按 text/plain/octet-stream 发出，服务端读不到参数
+ *   （实测登录报"请输入账号"、dayOrder 报"请选择日期"），表单/multipart **禁止**降级为 bodyBase64。
+ *   请求体形态编码统一在 commonMain 的 BridgeWireBody.kt（有单测），此处只做序列化）
  * - 成功响应（任意 HTTP 状态码原样透传，由 ktor 层判非 2xx）：`{ status, headers, bodyBase64 }`
  * - 传输失败：`{ error, rcpCode }`（rcpCode 为 RCP BusinessError 码，
  *   映射语义对齐 Technician-Harmony 的 HttpError.fromRcpError）
@@ -92,29 +96,15 @@ internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
             }
         }
         merge(data.headers)
-        when (content) {
-            is OutgoingContent -> merge(content.headers)
-            else -> {}
-        }
+        merge(content.headers)
 
-        // JSON（TextContent）以 bodyJson 文本过桥，ArkTS 侧 JSON.parse 成对象交 RCP
-        //（自动 application/json，与 Technician-Harmony 传 Record 同路径）；
-        // 二进制才走 bodyBase64 原始字节。裸 string/ArrayBuffer 会让 RCP 按
-        // text/plain/octet-stream 发出，服务端读不到参数（文件头注释有实测记录）。
-        var bodyJson: String? = null
-        var bodyBase64: String? = null
-        when (content) {
-            is OutgoingContent.NoContent -> {}
-            is TextContent -> bodyJson = content.text
-            is ByteArrayContent -> bodyBase64 = content.bytes().encodeBase64()
-            is OutgoingContent.ReadChannelContent ->
-                bodyBase64 = content.readFrom().readRemaining().readByteArray().encodeBase64()
-            is OutgoingContent.WriteChannelContent ->
-                throw UnsupportedOperationException(
-                    "WriteChannelContent 不受桥接层支持（请用 Text/ByteArray 内容）：" +
-                        content::class.simpleName
-                )
-            else -> {}
+        // 请求体 → 线协议形态（bodyJson/bodyForm/bodyMultipart/bodyBase64 的编码规则与
+        // 「表单为何不能走裸 ArrayBuffer」见 BridgeWireBody.kt，有单测钉回归）。
+        // 流式内容在此读成字节；其余形态由公共编码统一处理。
+        val wireBody = if (content is OutgoingContent.ReadChannelContent) {
+            BridgeWireBody(bodyBase64 = content.readFrom().readRemaining().readByteArray().encodeBase64())
+        } else {
+            content.toBridgeWireBody()
         }
 
         return buildJsonObject {
@@ -123,8 +113,14 @@ internal class RcpHttpClientEngine : HttpClientEngineBase("RcpBridge") {
             putJsonObject("headers") {
                 headers.forEach { (name, value) -> put(name, value) }
             }
-            bodyJson?.let { put("bodyJson", it) }
-            bodyBase64?.let { put("bodyBase64", it) }
+            wireBody.bodyJson?.let { put("bodyJson", it) }
+            wireBody.bodyBase64?.let { put("bodyBase64", it) }
+            wireBody.bodyForm?.let { fields ->
+                putJsonObject("bodyForm") { fields.forEach { (name, value) -> put(name, value) } }
+            }
+            wireBody.bodyMultipart?.let { fields ->
+                putJsonObject("bodyMultipart") { fields.forEach { (name, value) -> put(name, value) } }
+            }
         }.toString()
     }
 

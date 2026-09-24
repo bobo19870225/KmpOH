@@ -90,10 +90,8 @@ private suspend fun HttpClient.requestEnvelopeText(
     val response = try {
         post {
             url(baseUrl + path)
-            // form/multipart 请求体自带 content-type（决策 8），其余按 JSON 信封发送
-            if (body !is io.ktor.client.request.forms.FormDataContent &&
-                body !is io.ktor.client.request.forms.MultiPartFormDataContent
-            ) {
+            // OutgoingContent 请求体自带 content-type（决策 8 的 form/multipart 等），其余按 JSON 信封发送
+            if (body !is io.ktor.http.content.OutgoingContent) {
                 contentType(ContentType.Application.Json)
             }
             accept(ContentType.Application.Json)

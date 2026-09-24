@@ -12,12 +12,9 @@ import com.example.kmpoh.data.model.mapper.toEntity
 import com.example.kmpoh.logger.BUSINESS_LOG_TAG
 import com.example.kmpoh.logger.Logger
 import com.example.kmpoh.network.ApiGateway
+import com.example.kmpoh.network.MultipartTextContent
 import com.example.kmpoh.network.postJson
 import io.ktor.client.request.forms.FormDataContent
-import io.ktor.client.request.forms.MultiPartFormDataContent
-import io.ktor.client.request.forms.formData
-import io.ktor.http.Headers
-import io.ktor.http.HttpHeaders
 import io.ktor.http.Parameters
 
 private const val PATH_DAY_ORDER = "/mobile/Order.Order/dayOrder"
@@ -89,9 +86,7 @@ class WorkOrderListRepository(
         val dto = gateway.post(
             path = PATH_DAY_COUNT,
             deserializer = kotlinx.serialization.builtins.ListSerializer(WorkOrderDayCountDto.serializer()),
-            body = MultiPartFormDataContent(formData {
-                append("month", month, Headers.build { append(HttpHeaders.ContentType, "text/plain") })
-            }),
+            body = MultipartTextContent(fields),
             bodyText = fields.toSignJson()
         )
         Result.success(
