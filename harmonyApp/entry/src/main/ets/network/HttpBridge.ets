@@ -2,6 +2,7 @@ import { rcp } from '@kit.RemoteCommunicationKit';
 import { util } from '@kit.ArkTS';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import nativeApi from 'libentry.so';
+import { SuppressWarnings, SuppressWarningsType } from '@kit.BasicServicesKit';
 
 /**
  * KMP HTTP 传输桥（ArkTS 侧）——经 RCP（RemoteCommunicationKit）执行实际网络请求，
@@ -132,6 +133,7 @@ function buildContent(req: TransportRequest): rcp.RequestContent | undefined {
  * 执行传输请求（注册给 RegisterHttpExecutor 的入口）。
  * 不做同步重活：立即返回，结果经 HttpBridgeRespond 异步回传。
  */
+@SuppressWarnings({ rules: [SuppressWarningsType.PERMISSION] })
 export function executeTransport(requestId: string, reqJson: string): void {
   let req: TransportRequest;
   try {

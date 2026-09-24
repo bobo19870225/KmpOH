@@ -9,7 +9,6 @@ const DOMAIN = 0x0000;
 @Component
 struct Index {
   private controller: ArkUIViewController | undefined = undefined;
-
   @State errorMessage: string = 'Native module not ready';
 
   aboutToAppear() {
@@ -20,8 +19,7 @@ struct Index {
     }
     try {
       // 先注册 HTTP 传输执行器（KMP 网络层经 NAPI 桥走 ArkTS RCP，见 network/HttpBridge.ets）
-      nativeApi.RegisterHttpExecutor((requestId: string, reqJson: string) =>
-        executeTransport(requestId, reqJson));
+      nativeApi.RegisterHttpExecutor((requestId: string, reqJson: string) => executeTransport(requestId, reqJson));
       this.controller = nativeApi.MainArkUIViewController();
       const state = this.controller ? 'created' : 'not_created';
       hilog.info(DOMAIN, 'Compose', 'controller init state: %{public}s', state);
@@ -49,7 +47,6 @@ struct Index {
     .width('100%')
     .height('100%')
   }
-
 
   onPageHide() {
     if (this.controller) {
