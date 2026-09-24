@@ -66,12 +66,26 @@
 
   > **待用户验证**。
 
+## 6. tab 页面单元抽离与消息暂隐藏（2026-09-24 增补）
+
+- [x] 6.1 新增 `page/workorder/WorkOrderPage.kt` + `WorkOrderViewModel.kt`、`page/message/MessagePage.kt` + `MessageViewModel.kt`、`page/profile/ProfilePage.kt` + `ProfileViewModel.kt`：页面单元复用 `MainTabPlaceholder`（「我的」含退出登录 action），ViewModel 为空壳状态容器（对齐 LoginViewModel 样板：纯 Kotlin、不引 androidx.lifecycle，页面默认参数 `remember` 持有）；验证方式：编译通过，VM 空壳文件不含 `androidx.lifecycle` import。
+
+- [x] 6.2 `MainPage.kt` 瘦身为纯壳：tabs 列表 + `when` 分发到页面单元；消息项与消息分支注释停用（对齐原工程停用 DataCenter 写法），可见 tab 为工单/我的；验证方式：编译通过，代码审阅注释保留可恢复。
+
+- [x] 6.3 全量单测回归 + 双端编译 + `publishDebugBinariesToHarmonyApp` + `devecocli build`；验证方式：各命令 BUILD SUCCESSFUL。
+
+  > **结果**（2026-09-24）：`testDebugUnitTest` + `assembleDebug` + `linkDebugSharedOhosArm64` ✅（2m39s）；`publishDebugBinariesToHarmonyApp` ✅；`devecocli build` ✅（HAP 已签名）。
+
+- [ ] 6.4 实机验证：底部仅工单/我的两 tab、切换正常、「我的」含退出登录、消息不出现在导航。
+
+  > **待用户验证**。
+
 ## 用户验证清单（汇总，均待用户验证）
 
 1. 登录成功进入主框架，默认工单 tab。
 2. 主框架按系统返回键不回登录页（按系统语义退出或保持）。
-3. 底部三 tab 可切换，选中色 `#1D6F86` + 指示条可见，切换不影响返回键行为。
-4. 三个 tab 显示迁移占位说明；中/英系统语言下文案正确（英文环境英文、其他语言回退中文）。
+3. 底部工单/我的两 tab 可切换，选中色 `#1D6F86` + 指示条可见，切换不影响返回键行为（消息项不在导航中显示）。
+4. 各 tab 显示迁移占位说明；中/英系统语言下文案正确（英文环境英文、其他语言回退中文）。
 5. 「我的」退出登录：回登录页、返回键不回主框架、后续请求不带会话令牌。
 6. （可选）触发 401 登录失效：自动回登录页无残留栈。
 7. 三端 tab 图标渲染正常（Android / 鸿蒙实机；iOS 需 macOS 环境补验）。

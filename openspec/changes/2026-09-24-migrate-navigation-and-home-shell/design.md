@@ -55,3 +55,9 @@
 ### 决策 6：占位页零状态机
 
 三个 tab 占位内容是静态文案（「xx 模块迁移中」），不建 ViewModel、不引入 `UiState`（六态是为有数据流的页面准备的）。占位专用一个无状态 `MainTabPlaceholder` 组件，业务迁移时整块替换。
+
+> **2026-09-24 增补**：应后续要求「MVVM 结构先行」，决策 6 的「不建 ViewModel」调整为「建空壳 ViewModel」——见决策 7；「零状态机」语义不变（空壳零状态、不引入 `UiState`）。
+
+### 决策 7：tab 内容抽离为独立页面单元（MVVM 结构先行），消息项注释停用
+
+三个 tab 的内容抽离为 `page/workorder|message|profile/` 页面单元（Page + ViewModel 成对，命名对齐登录页样板）。ViewModel 本期建空壳（自写纯 Kotlin 状态容器形态、不引 androidx.lifecycle，页面默认参数 `remember` 持有），业务状态随各自迁移填充。消息项与其分发分支以注释方式停用（对齐原工程停用 DataCenter 的写法），可见 tab 为工单/我的两项，恢复=取消注释。

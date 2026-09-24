@@ -269,6 +269,15 @@ typedef struct {
 } libkn_kref_androidx_compose_ui_Modifier;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_message_MessageViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_workorder_WorkOrderViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_androidx_navigation_NavHostController;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -1009,6 +1018,33 @@ typedef struct {
                 void (*MainPage)(libkn_kref_kotlin_Function0 onLogout);
                 void (*MainTabPlaceholder)(const char* moduleName, libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_kotlin_Function0 action);
               } main;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_message_MessageViewModel (*MessageViewModel)();
+                } MessageViewModel;
+                void (*MessagePage)(libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_com_example_kmpoh_page_message_MessageViewModel viewModel);
+                libkn_KInt (*com_example_kmpoh_page_message_MessageViewModel$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_message_MessageViewModel$stableprop_getter_)();
+              } message;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel (*ProfileViewModel)();
+                } ProfileViewModel;
+                void (*ProfilePage)(libkn_kref_kotlin_Function0 onLogout, libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel viewModel);
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter_)();
+              } profile;
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_workorder_WorkOrderViewModel (*WorkOrderViewModel)();
+                } WorkOrderViewModel;
+                void (*WorkOrderPage)(libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_com_example_kmpoh_page_workorder_WorkOrderViewModel viewModel);
+                libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderViewModel$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderViewModel$stableprop_getter_)();
+              } workorder;
             } page;
             struct {
               struct {

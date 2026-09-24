@@ -11,7 +11,7 @@
 - **引入 CMP navigation-compose（fork 线）**：`commonMain` 新增 `org.jetbrains.androidx.navigation:navigation-compose` 依赖（nexus 已实测存在 `ohosArm64` 变体），以类型安全路由组织屏幕跳转。
 - **新增路由骨架 `router/`**：`AppDestination.kt`（`@Serializable` 路由目标，本期 `Login` / `Main` 两条）与 `AppNavGraph.kt`（`NavHost` 装配），对齐原工程 `NavGraph.kt` 的 `AppDestination.*` + `toRoute<T>()` 模式。
 - **登录成功跳转首页**：`App()` 中 `LoginPage(onLoginSuccess)` 空接缝接上 `navigate(Main)`，并从返回栈移除登录页（返回键不回登录页）。
-- **新增主框架壳 `MainPage`**：`Scaffold` + 底部 `NavigationBar`（工单 / 消息 / 我的 三项），tab 切换为壳内状态（对齐原工程 `selectedTab`，不走路由）；三个 tab 内容区为占位说明页（「xx 模块迁移中」），不建 ViewModel、不取业务数据。
+- **新增主框架壳 `MainPage`**：`Scaffold` + 底部 `NavigationBar`（工单 / 我的 两项；消息项注释停用、暂不显示），tab 切换为壳内状态（对齐原工程 `selectedTab`，不走路由）；三个 tab 各成独立页面单元（`page/workorder|message|profile`，Page + ViewModel 空壳的 MVVM 结构），内容区为占位说明页（「xx 模块迁移中」），不取业务数据。
 - **登出回流**：「我的」占位页提供临时「退出登录」入口——清除本地会话令牌并回登录页（主框架出栈）。
 - **401 登录失效接线**（收口网络层遗留的「路由跳转尚未接线」）：`App()` 层订阅 `AuthSessionManager` 的登录失效事件流，收到即回登录页并清空返回栈。
 - **资源与 token**：新增 `ic_tab_*` 三个自备矢量图标（本仓无 material-icons，见归档 design 实测结论）、`str_main_tab_*` / `str_main_placeholder_*` 中英两套文案，`AppColors` 补三个导航色值。
@@ -23,7 +23,7 @@
 ### New Capabilities
 
 - `ui/navigation`: 应用级导航能力——类型安全路由骨架、登录成功跳转与返回栈语义、登出回流、登录失效自动回登录页。
-- `ui/home-shell`: 主框架壳能力——底部三 tab（工单 / 消息 / 我的）的结构、切换与占位内容，以及占位期退出登录入口。
+- `ui/home-shell`: 主框架壳能力——底部导航（工单 / 我的；消息暂不显示）的结构、切换与占位内容，以及占位期退出登录入口。
 
 ### Modified Capabilities
 
