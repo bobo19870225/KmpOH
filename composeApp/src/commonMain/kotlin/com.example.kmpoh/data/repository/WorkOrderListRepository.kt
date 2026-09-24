@@ -53,7 +53,7 @@ class WorkOrderListRepository(
             "page" to page.toString(),
             "limit" to limit.toString()
         )
-        val dto = gateway.post<DayOrderDataDto>(
+        val dto = gateway.post(
             path = PATH_DAY_ORDER,
             deserializer = DayOrderDataDto.serializer(),
             body = FormDataContent(Parameters.build {
@@ -70,7 +70,7 @@ class WorkOrderListRepository(
 
     suspend fun loadUnfinishedJobDates(jobDate: String): Result<List<String>> = try {
         val fields = mapOf("job_date" to jobDate)
-        val dto = gateway.post<List<UnfinishedJobDateDto>>(
+        val dto = gateway.post(
             path = PATH_UNFINISH_JOBS,
             deserializer = kotlinx.serialization.builtins.ListSerializer(UnfinishedJobDateDto.serializer()),
             body = FormDataContent(Parameters.build {
@@ -86,7 +86,7 @@ class WorkOrderListRepository(
 
     suspend fun loadDayCounts(month: String): Result<List<WorkOrderDayCountEntity>> = try {
         val fields = mapOf("month" to month)
-        val dto = gateway.post<List<WorkOrderDayCountDto>>(
+        val dto = gateway.post(
             path = PATH_DAY_COUNT,
             deserializer = kotlinx.serialization.builtins.ListSerializer(WorkOrderDayCountDto.serializer()),
             body = MultiPartFormDataContent(formData {
