@@ -13,7 +13,7 @@ const val LOG_MASK = "***"
  * Logger 工具类 —— 迁移自原工程 logger/Logger.kt。
  *
  * 与原工程差异（KMP 化）：
- * - Timber 换为平台输出 [platformLogLine]（Android=logcat、iOS=stdout、鸿蒙=stdout）；
+ * - Timber 换为平台输出 [platformLogLine]（Android=logcat、iOS=stdout、鸿蒙=hilog）；
  * - 原「ReleaseTree 只记 WARN+」的构建期策略，收敛为「仅测试环境（uat）输出、其余静默」
  *   （对齐 spec「请求日志与脱敏」的非测试环境 MUST NOT 输出）；
  * - 敏感脱敏保留并并入网络层更严的字段集合（原工程列表曾被注释停用，属已知疏漏）。
