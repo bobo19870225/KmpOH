@@ -2,49 +2,53 @@
 
 ## 1. 数据层（ProfileRepository 与密码规则）
 
-- [ ] 1.1 新增 `data/model/dto/PasswordRulesDto.kt`、`data/model/entity/PasswordRulesEntity.kt` 与 mapper：原样迁原工程字段与防御式别名（长度字段 `minLength/minLen/passwordMin` 等）、空白规则剔除；验证方式：编译通过，mapper 不含 Android 专有 import。
+- [x] 1.1 新增 `data/model/dto/PasswordRulesDto.kt`、`data/model/entity/PasswordRulesEntity.kt` 与 mapper：原样迁原工程字段与防御式别名（长度字段 `minLength/minLen/passwordMin` 等）、空白规则剔除；验证方式：编译通过，mapper 不含 Android 专有 import。
 
-- [ ] 1.2 （TDD）新增 `PasswordRulesEntity` 纯逻辑测试：长度区间从规则正则 `{m,n}` 提取、缺失时默认 6..50、`maxInputLength` 派生、别名字段映射；验证方式：先写失败用例再实现，`testDebugUnitTest` 全绿。
+- [x] 1.2 （TDD）新增 `PasswordRulesEntity` 纯逻辑测试：长度区间从规则正则 `{m,n}` 提取、缺失时默认 6..50、`maxInputLength` 派生、别名字段映射；验证方式：先写失败用例再实现，`testDebugUnitTest` 全绿。
 
-- [ ] 1.3 新增 `data/repository/ProfileRepository.kt`（方案 B 聚合）：`logout()`（服务端尽力而为、本地会话必清含用户名）、`changePassword(newPassword)`（明文 body）、`getPasswordRules()`（含兜底）、`loadPasswordStatus()`（`passStatus`，缺失默认 1）；验证方式：编译通过，走 `ApiGateway`（信封/签名/401 复用），`LoginRepository` 无改动。
+- [x] 1.3 新增 `data/repository/ProfileRepository.kt`（方案 B 聚合）：`logout()`（服务端尽力而为、本地会话必清含用户名）、`changePassword(newPassword)`（明文 body）、`getPasswordRules()`（含兜底）、`loadPasswordStatus()`（`passStatus`，缺失默认 1）；验证方式：编译通过，走 `ApiGateway`（信封/签名/401 复用），`LoginRepository` 无改动。
 
-- [ ] 1.4 `StorageKeys` 增用户姓名键，登录成功持久化姓名（对齐 `data/login` 扩充要求）；验证方式：登录成功后可读出姓名，登出/改密成功后读取为空（补 commonTest 用例）。
+- [x] 1.4 `StorageKeys` 增用户姓名键，登录成功持久化姓名（对齐 `data/login` 扩充要求）；验证方式：登录成功后可读出姓名，登出/改密成功后读取为空（补 commonTest 用例）。
 
 ## 2. 「我的」页
 
-- [ ] 2.1 `page/profile/ProfileViewModel.kt` 由空壳填充：`ProfileUiState` / `ProfileMenuItem` / `ProfileEffect.LoggedOut` 原样迁（自写容器 + `SharedFlow` 一次性事件）；displayName 读持久化姓名；`onLogoutClick()` 防重复 + 调 `ProfileRepository.logout()` 后发 `LoggedOut`；验证方式：编译通过，不含 `androidx.lifecycle` import。
+- [x] 2.1 `page/profile/ProfileViewModel.kt` 由空壳填充：`ProfileUiState` / `ProfileMenuItem` / `ProfileEffect.LoggedOut` 原样迁（自写容器 + `SharedFlow` 一次性事件）；displayName 读持久化姓名；`onLogoutClick()` 防重复 + 调 `ProfileRepository.logout()` 后发 `LoggedOut`；验证方式：编译通过，不含 `androidx.lifecycle` import。
 
-- [ ] 2.2 `page/profile/ProfilePage.kt` 由占位替换为完整页：资料卡、系统设置菜单（含动态「修改密码」项）、退出登录按钮（`isLoggingOut` 禁用）；统计区/工作功能区/NFC 入口不迁（决策 7）；验证方式：编译通过，结构顺序与 spec「个人资料卡」「系统设置菜单」一致。
+- [x] 2.2 `page/profile/ProfilePage.kt` 由占位替换为完整页：资料卡、系统设置菜单（含动态「修改密码」项）、退出登录按钮（`isLoggingOut` 禁用）；统计区/工作功能区/NFC 入口不迁（决策 7）；验证方式：编译通过，结构顺序与 spec「个人资料卡」「系统设置菜单」一致。
 
-- [ ] 2.3 退出登录接线：`LoggedOut` 事件 → 导航清栈回登录（复用 `navigateToLoginClearingStack`）；验证方式：代码审阅事件消费在 UI 装配层。
+- [x] 2.3 退出登录接线：`LoggedOut` 事件 → 导航清栈回登录（复用 `navigateToLoginClearingStack`）；验证方式：代码审阅事件消费在 UI 装配层。
 
-- [ ] 2.4 `profile_*` 文案键族迁入 `values/strings.xml`（中文默认回退）与 `values-en/strings.xml`，键名沿用原工程；验证方式：两套键名差集为空（脚本比对）。
+- [x] 2.4 `profile_*` 文案键族迁入 `values/strings.xml`（中文默认回退）与 `values-en/strings.xml`，键名沿用原工程；验证方式：两套键名差集为空（脚本比对）。
 
 ## 3. 修改密码页（新路由）
 
-- [ ] 3.1 `AppDestination` 增 `ChangePassword` 路由目标并在 `AppNavGraph` 挂接（Main 栈上叠、返回 popBackStack、成功清栈回登录）；验证方式：编译通过，跳转语义与 spec「修改密码页导航」一致（代码审阅）。
+- [x] 3.1 `AppDestination` 增 `ChangePassword` 路由目标并在 `AppNavGraph` 挂接（Main 栈上叠、返回 popBackStack、成功清栈回登录）；验证方式：编译通过，跳转语义与 spec「修改密码页导航」一致（代码审阅）。
 
-- [ ] 3.2 （TDD）`ChangePasswordUiState` 纯逻辑测试：`canSubmit` / `passwordRuleError`（正则逐条 + 长度）/ `isConfirmMismatch` / `shouldShowConfirmMismatch`；验证方式：先写失败用例再实现，全绿。
+- [x] 3.2 （TDD）`ChangePasswordUiState` 纯逻辑测试：`canSubmit` / `passwordRuleError`（正则逐条 + 长度）/ `isConfirmMismatch` / `shouldShowConfirmMismatch`；验证方式：先写失败用例再实现，全绿。
 
-- [ ] 3.3 `page/profile/ChangePasswordViewModel.kt` 填充：规则加载、输入截断（`maxInputLength`）、校验、`changePassword` 提交（成功清会话 + `passwordChanged` 一次性）、类型化文案枚举入 state（决策 2，VM 不引 Context）；验证方式：编译通过，VM 文件无 `androidx.*.R` / Context 引用。
+- [x] 3.3 `page/profile/ChangePasswordViewModel.kt` 填充：规则加载、输入截断（`maxInputLength`）、校验、`changePassword` 提交（成功清会话 + `passwordChanged` 一次性）、类型化文案枚举入 state（决策 2，VM 不引 Context）；验证方式：编译通过，VM 文件无 `androidx.*.R` / Context 引用。
 
-- [ ] 3.4 `page/profile/ChangePasswordPage.kt`：TopAppBar（返回）、双密码框（显隐切换、规则说明、错误行）、提交按钮（加载态）、toast/文案映射 `stringResource`；新增自备矢量 `ic_back_arrow.xml`、`ic_password_lock.xml`；验证方式：编译通过且 `Res.drawable.*` 可引用。
+- [x] 3.4 `page/profile/ChangePasswordPage.kt`：TopAppBar（返回）、双密码框（显隐切换、规则说明、错误行）、提交按钮（加载态）、toast/文案映射 `stringResource`；新增自备矢量 `ic_back_arrow.xml`、`ic_password_lock.xml`；验证方式：编译通过且 `Res.drawable.*` 可引用。
 
   > **待用户验证**（图标渲染部分）。
 
-- [ ] 3.5 `change_password_*` 文案键族迁入中英两套；验证方式：键名差集为空。
+- [x] 3.5 `change_password_*` 文案键族迁入中英两套；验证方式：键名差集为空。
 
 ## 4. 强制改密提示
 
-- [ ] 4.1 `page/main/MainViewModel.kt` 由空壳填充：`requiresPasswordChange` + `refreshPasswordStatus()`（调 `loadPasswordStatus`，进入 Main 路由时触发，决策 4）；验证方式：编译通过，不含 `androidx.lifecycle` import。
+- [x] 4.1 `page/main/MainViewModel.kt` 由空壳填充：`requiresPasswordChange` + `refreshPasswordStatus()`（调 `loadPasswordStatus`，进入 Main 路由时触发，决策 4）；验证方式：编译通过，不含 `androidx.lifecycle` import。
 
-- [ ] 4.2 强制改密弹窗挂 `MainPage`：不可 dismiss +「去修改」导航 `ChangePassword`；验证方式：编译通过，`onDismissRequest` 不可关闭（代码审阅）。
+- [x] 4.2 强制改密弹窗挂 `MainPage`：不可 dismiss +「去修改」导航 `ChangePassword`；验证方式：编译通过，`onDismissRequest` 不可关闭（代码审阅）。
 
 ## 5. 验证与交付
 
-- [ ] 5.1 全量单测回归：`./gradlew :composeApp:testDebugUnitTest` 全绿（含 1.2/3.2/1.4 新增用例）。
+- [x] 5.1 全量单测回归：`./gradlew :composeApp:testDebugUnitTest` 全绿（含 1.2/3.2/1.4 新增用例）。
 
-- [ ] 5.2 `assembleDebug` + `linkDebugSharedOhosArm64` + `publishDebugBinariesToHarmonyApp` + `devecocli build` 全部成功；验证方式：各命令 BUILD SUCCESSFUL。
+  > **结果**（2026-09-24）：tests=73, failures=0, errors=0（含 `PasswordRulesMapperTest` 6 条、`ChangePasswordUiStateTest` 5 条、`AuthSessionManagerTest` 新增 1 条）。
+
+- [x] 5.2 `assembleDebug` + `linkDebugSharedOhosArm64` + `publishDebugBinariesToHarmonyApp` + `devecocli build` 全部成功；验证方式：各命令 BUILD SUCCESSFUL。
+
+  > **结果**（2026-09-24）：`testDebugUnitTest`+双端编译 ✅（3m12s）；`publishDebugBinariesToHarmonyApp` ✅；`devecocli build` ✅（HAP 已签名：`harmonyApp/entry/build/default/outputs/default/entry-default-signed.hap`）。
 
 - [ ] 5.3 实机验证「我的」页与登出；验证方式：资料卡展示、菜单可点、登出回登录且返回栈干净、再发请求不带令牌。
 

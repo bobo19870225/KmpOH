@@ -9,11 +9,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface AppDestination {
 
-    /** 登录页（应用起始路由；Splash 未迁，见变更非目标）。 */
+    /** 登录页（无会话时的起始路由；Splash 未迁，见变更非目标）。 */
     @Serializable
     data object Login : AppDestination
 
     /** 主框架页（底部三 tab 壳，spec ui/home-shell）。 */
     @Serializable
     data object Main : AppDestination
+
+    /** 修改密码页（从「我的」页进入，Main 栈上叠；spec ui/profile「修改密码页导航」）。 */
+    @Serializable
+    data object ChangePassword : AppDestination
 }

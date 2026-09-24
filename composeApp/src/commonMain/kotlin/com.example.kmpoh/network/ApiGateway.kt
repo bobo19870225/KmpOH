@@ -81,11 +81,44 @@ class ApiGateway(
         authenticated: Boolean = true,
         skipAuthRefresh: Boolean = false,
         baseUrl: String = GeneratedApiConfig.BASE_URL
+    ): T = requestWithAuthRetry(path, body, bodyText, authenticated, skipAuthRefresh, baseUrl) {
+        execute(path, deserializer, body, bodyText, authenticated, baseUrl)
+    }
+
+    /** 业务结果只取信封 msg 的调用（logout / passwordEdit）：复用同一 401 刷新编排。 */
+    suspend fun postMessage(
+        path: String,
+        body: Any? = null,
+        bodyText: String? = null,
+        authenticated: Boolean = true,
+        skipAuthRefresh: Boolean = false,
+        baseUrl: String = GeneratedApiConfig.BASE_URL
+    ): String = requestWithAuthRetry(path, body, bodyText, authenticated, skipAuthRefresh, baseUrl) {
+        http.callEnvelopeMessage(
+            path = path,
+            body = body,
+            baseUrl = baseUrl,
+            requestExtras = {
+                applyCommonHeaders(authenticated = authenticated, forcedToken = null)
+                applyRequestSignature(path, bodyText, signature)
+            },
+            onRawResponse = { headers, raw -> verifyIfEnabled(path, headers, raw) }
+        )
+    }
+
+    private suspend fun <T> requestWithAuthRetry(
+        path: String,
+        body: Any?,
+        bodyText: String?,
+        authenticated: Boolean,
+        skipAuthRefresh: Boolean,
+        baseUrl: String,
+        call: suspend () -> T
     ): T {
         val sentToken = if (authenticated) session.accessToken() else null
         val firstFailure: Exception
         try {
-            return execute(path, deserializer, body, bodyText, authenticated, baseUrl)
+            return call()
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -137,7 +170,7 @@ class ApiGateway(
         }
 
         try {
-            return execute(path, deserializer, body, bodyText, authenticated, baseUrl)
+            return call()
         } catch (retryError: Exception) {
             if (isLoginExpired(retryError)) {
                 Logger.debug(NETWORK_LOG_TAG, "retry $path still unauthorized → clear session & emit LoginExpired")

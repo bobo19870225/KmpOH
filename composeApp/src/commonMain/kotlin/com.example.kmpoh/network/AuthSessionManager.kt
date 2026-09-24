@@ -32,10 +32,20 @@ class AuthSessionManager(private val store: KeyValueStore) {
         store.putString(StorageKeys.AUTH_REFRESH_TOKEN, refreshToken)
     }
 
+    /** 清会话：令牌 + 用户展示名一并清除（data/profile「用户展示名数据源」）。 */
     fun clearTokens() {
         store.remove(StorageKeys.AUTH_ACCESS_TOKEN)
         store.remove(StorageKeys.AUTH_REFRESH_TOKEN)
+        store.remove(StorageKeys.USER_NAME)
     }
+
+    /** 用户展示名：登录成功写入，「我的」页展示名的单一数据来源。 */
+    fun saveUserName(name: String) {
+        store.putString(StorageKeys.USER_NAME, name)
+    }
+
+    fun userName(): String? =
+        store.getString(StorageKeys.USER_NAME)?.takeIf { it.isNotBlank() }
 
     fun notifyLoginExpired(message: String = NetworkMessages.LOGIN_EXPIRED) {
         _events.tryEmit(AuthSessionEvent.LoginExpired(message))

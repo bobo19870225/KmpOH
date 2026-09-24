@@ -68,13 +68,13 @@ typedef struct {
 } libkn_kref_com_example_kmpoh_Platform;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto;
+} libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_kotlin_Any;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer;
+} libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor;
@@ -89,10 +89,19 @@ typedef struct {
 } libkn_kref_kotlinx_serialization_encoding_Encoder;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_Companion;
+} libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_Companion;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_kotlinx_serialization_KSerializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_Companion;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_data_model_dto_LoginResponseDto;
@@ -113,6 +122,39 @@ typedef struct {
 } libkn_kref_com_example_kmpoh_data_model_dto_UserDto_Companion;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlin_collections_List;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_kotlinx_serialization_json_JsonElement;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_data_model_entity_UserEntity;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -123,6 +165,9 @@ typedef struct {
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_data_repository_LoginRepository;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_repository_ProfileRepository;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository;
@@ -269,7 +314,61 @@ typedef struct {
 } libkn_kref_androidx_compose_ui_Modifier;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_main_MainUiState;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_main_MainViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_page_message_MessageViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Required;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Failed;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_org_jetbrains_compose_resources_StringResource;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ProfileUiState;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ProfileEffect;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_page_profile_ProfileEffect_LoggedOut;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel;
@@ -288,6 +387,9 @@ typedef struct {
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_router_AppDestination_Main;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_router_AppDestination_Companion;
@@ -408,6 +510,29 @@ typedef struct {
                   struct {
                     struct {
                       libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto (*InitInfoDto)(libkn_kref_kotlin_Int passStatus);
+                    libkn_kref_kotlin_Int (*get_passStatus)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz);
+                    libkn_kref_kotlin_Int (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz, libkn_kref_kotlin_Int passStatus);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_InitInfoDto thiz);
+                  } InitInfoDto;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
                       libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer (*_instance)();
                       libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz);
                       libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer thiz);
@@ -508,14 +633,160 @@ typedef struct {
                     libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
                     const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_UserDto thiz);
                   } UserDto;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto (*PasswordRulesDto)(libkn_kref_kotlin_collections_List rules, libkn_kref_kotlinx_serialization_json_JsonElement minLength, libkn_kref_kotlinx_serialization_json_JsonElement minLen, libkn_kref_kotlinx_serialization_json_JsonElement passwordMin, libkn_kref_kotlinx_serialization_json_JsonElement maxLength, libkn_kref_kotlinx_serialization_json_JsonElement maxLen, libkn_kref_kotlinx_serialization_json_JsonElement passwordMax, libkn_kref_kotlinx_serialization_json_JsonElement strength, libkn_kref_kotlinx_serialization_json_JsonElement passwordStrength, libkn_kref_kotlinx_serialization_json_JsonElement level, const char* regex, const char* rule, const char* desc, const char* lengthMessage, const char* weakMessage);
+                    const char* (*get_desc)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*get_lengthMessage)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_level)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_maxLen)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_maxLength)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_minLen)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_minLength)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_passwordMax)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_passwordMin)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_passwordStrength)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*get_regex)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*get_rule)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlin_collections_List (*get_rules)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*get_strength)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*get_weakMessage)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlin_collections_List (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component10)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*component11)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*component12)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*component13)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*component14)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    const char* (*component15)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component2)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component3)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component4)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component5)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component6)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component7)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component8)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlinx_serialization_json_JsonElement (*component9)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz, libkn_kref_kotlin_collections_List rules, libkn_kref_kotlinx_serialization_json_JsonElement minLength, libkn_kref_kotlinx_serialization_json_JsonElement minLen, libkn_kref_kotlinx_serialization_json_JsonElement passwordMin, libkn_kref_kotlinx_serialization_json_JsonElement maxLength, libkn_kref_kotlinx_serialization_json_JsonElement maxLen, libkn_kref_kotlinx_serialization_json_JsonElement passwordMax, libkn_kref_kotlinx_serialization_json_JsonElement strength, libkn_kref_kotlinx_serialization_json_JsonElement passwordStrength, libkn_kref_kotlinx_serialization_json_JsonElement level, const char* regex, const char* rule, const char* desc, const char* lengthMessage, const char* weakMessage);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                    libkn_kref_kotlin_Int (*intValue)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz, libkn_kref_kotlin_Array values);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRulesDto thiz);
+                  } PasswordRulesDto;
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer (*_instance)();
+                      libkn_kref_kotlinx_serialization_descriptors_SerialDescriptor (*get_descriptor)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer thiz);
+                      libkn_kref_kotlin_Array (*childSerializers)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer thiz);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto (*deserialize)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Decoder decoder);
+                      void (*serialize)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer thiz, libkn_kref_kotlinx_serialization_encoding_Encoder encoder, libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto value);
+                    } $serializer;
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_Companion (*_instance)();
+                      libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto (*PasswordRuleDto)(const char* regex, const char* message);
+                    const char* (*get_message)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                    const char* (*get_regex)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                    const char* (*component2)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                    libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto (*copy)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz, const char* regex, const char* message);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_dto_PasswordRuleDto thiz);
+                  } PasswordRuleDto;
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto_$serializer$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto_$serializer$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto_$serializer$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_InitInfoDto_$serializer$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginRequestDto_$serializer$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_LoginResponseDto_$serializer$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRuleDto_$serializer$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_PasswordRulesDto_$serializer$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto$stableprop_getter__)();
+                  libkn_KInt (*com_example_kmpoh_data_model_dto_UserDto_$serializer$stableprop_getter__)();
                 } dto;
                 struct {
+                  struct {
+                    struct {
+                      libkn_KType* (*_type)(void);
+                      libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity_Companion (*_instance)();
+                      libkn_KInt (*get_DEFAULT_MAX_LENGTH)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity_Companion thiz);
+                      libkn_KInt (*get_DEFAULT_MIN_LENGTH)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity_Companion thiz);
+                    } Companion;
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity (*PasswordRulesEntity)(libkn_KInt minLength, libkn_KInt maxLength, libkn_KInt strengthLevel, const char* regex, const char* description, libkn_kref_kotlin_collections_List rules);
+                    const char* (*get_description)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*get_maxInputLength)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*get_maxLength)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*get_minLength)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    const char* (*get_regex)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_kref_kotlin_collections_List (*get_rules)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*get_strengthLevel)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*component1)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*component2)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_KInt (*component3)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    const char* (*component4)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    const char* (*component5)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_kref_kotlin_collections_List (*component6)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity (*copy)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz, libkn_KInt minLength, libkn_KInt maxLength, libkn_KInt strengthLevel, const char* regex, const char* description, libkn_kref_kotlin_collections_List rules);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity thiz);
+                  } PasswordRulesEntity;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity (*PasswordRuleEntity)(const char* regex, const char* message);
+                    const char* (*get_message)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                    const char* (*get_regex)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                    const char* (*component2)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                    libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity (*copy)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz, const char* regex, const char* message);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_entity_PasswordRuleEntity thiz);
+                  } PasswordRuleEntity;
                   struct {
                     libkn_KType* (*_type)(void);
                     libkn_kref_com_example_kmpoh_data_model_entity_UserEntity (*UserEntity)(libkn_KLong id, libkn_KInt userId, const char* name);
@@ -530,7 +801,12 @@ typedef struct {
                     libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
                     const char* (*toString)(libkn_kref_com_example_kmpoh_data_model_entity_UserEntity thiz);
                   } UserEntity;
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_PasswordRuleEntity$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_PasswordRulesEntity$stableprop_getter)();
                   libkn_KInt (*com_example_kmpoh_data_model_entity_UserEntity$stableprop_getter)();
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_PasswordRuleEntity$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_PasswordRulesEntity$stableprop_getter_)();
+                  libkn_KInt (*com_example_kmpoh_data_model_entity_UserEntity$stableprop_getter_)();
                 } entity;
                 struct {
                   const char* (*resolveAccessToken)(const char* token, const char* accessToken);
@@ -576,13 +852,24 @@ typedef struct {
                 struct {
                   libkn_KType* (*_type)(void);
                   libkn_kref_com_example_kmpoh_data_repository_AppGraph (*_instance)();
+                  libkn_kref_com_example_kmpoh_network_ApiGateway (*get_gateway)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
                   libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository (*get_loginRepository)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
+                  libkn_kref_com_example_kmpoh_data_repository_ProfileRepository (*get_profileRepository)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
                   libkn_kref_com_example_kmpoh_network_AuthSessionManager (*get_session)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
                   libkn_kref_com_example_kmpoh_storage_KeyValueStore (*get_store)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
                 } AppGraph;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_data_repository_ProfileRepository (*ProfileRepository)(libkn_kref_com_example_kmpoh_network_ApiGateway gateway, libkn_kref_com_example_kmpoh_network_AuthSessionManager session, libkn_kref_com_example_kmpoh_storage_KeyValueStore store);
+                } ProfileRepository;
                 libkn_KInt (*com_example_kmpoh_data_repository_AppGraph$stableprop_getter)();
                 libkn_KInt (*com_example_kmpoh_data_repository_NetworkLoginRepository$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_data_repository_ProfileRepository$stableprop_getter)();
                 libkn_kref_com_example_kmpoh_data_repository_LoginRepository (*createLoginRepository)();
+                libkn_kref_com_example_kmpoh_data_repository_ProfileRepository (*createProfileRepository)();
+                libkn_KInt (*com_example_kmpoh_data_repository_AppGraph$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_data_repository_NetworkLoginRepository$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_data_repository_ProfileRepository$stableprop_getter_)();
               } repository;
             } data;
             struct {
@@ -754,6 +1041,8 @@ typedef struct {
                 void (*notifyLoginExpired)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz, const char* message);
                 const char* (*refreshToken)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
                 void (*saveTokens)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz, const char* accessToken, const char* refreshToken);
+                void (*saveUserName)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz, const char* name);
+                const char* (*userName)(libkn_kref_com_example_kmpoh_network_AuthSessionManager thiz);
               } AuthSessionManager;
               struct {
                 struct {
@@ -1015,8 +1304,32 @@ typedef struct {
                 libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter_)();
               } login;
               struct {
-                void (*MainPage)(libkn_kref_kotlin_Function0 onLogout);
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_main_MainUiState (*MainUiState)(libkn_KBoolean requiresPasswordChange, libkn_KBoolean isCheckingPasswordStatus);
+                  libkn_KBoolean (*get_isCheckingPasswordStatus)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                  libkn_KBoolean (*get_requiresPasswordChange)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                  libkn_KBoolean (*component1)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                  libkn_KBoolean (*component2)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                  libkn_kref_com_example_kmpoh_page_main_MainUiState (*copy)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz, libkn_KBoolean requiresPasswordChange, libkn_KBoolean isCheckingPasswordStatus);
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_page_main_MainUiState thiz);
+                } MainUiState;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_main_MainViewModel (*MainViewModel)(libkn_kref_com_example_kmpoh_data_repository_ProfileRepository profileRepository, libkn_kref_kotlinx_coroutines_CoroutineScope scope);
+                  libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_state)(libkn_kref_com_example_kmpoh_page_main_MainViewModel thiz);
+                  void (*refreshPasswordStatus)(libkn_kref_com_example_kmpoh_page_main_MainViewModel thiz);
+                } MainViewModel;
+                void (*MainPage)(libkn_kref_kotlin_Function0 onLoggedOut, libkn_kref_kotlin_Function0 onNavigateToChangePassword);
+                libkn_KInt (*com_example_kmpoh_page_main_MainUiState$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_main_MainViewModel$stableprop_getter)();
                 void (*MainTabPlaceholder)(const char* moduleName, libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_kotlin_Function0 action);
+                libkn_KInt (*com_example_kmpoh_page_main_MainUiState$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_main_MainViewModel$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_main_MainUiState$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_main_MainViewModel$stableprop_getter__)();
               } main;
               struct {
                 struct {
@@ -1029,12 +1342,235 @@ typedef struct {
               } message;
               struct {
                 struct {
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Required (*_instance)();
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Required thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Required thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Required thiz);
+                  } Required;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch (*_instance)();
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch thiz);
+                  } ConfirmMismatch;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength (*MinLength)(libkn_KInt min);
+                    libkn_KInt (*get_min)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz);
+                    libkn_KInt (*component1)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength (*copy)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz, libkn_KInt min);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MinLength thiz);
+                  } MinLength;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength (*MaxLength)(libkn_KInt max);
+                    libkn_KInt (*get_max)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz);
+                    libkn_KInt (*component1)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength (*copy)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz, libkn_KInt max);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength thiz);
+                  } MaxLength;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed (*_instance)();
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed thiz);
+                  } RulesLoadFailed;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Failed (*_instance)();
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Failed thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Failed thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Failed thiz);
+                  } Failed;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success (*Success)(const char* message);
+                    const char* (*get_message)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success (*copy)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz, const char* message);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Success thiz);
+                  } Success;
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error (*Error)(const char* message);
+                    const char* (*get_message)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz);
+                    const char* (*component1)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz);
+                    libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error (*copy)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz, const char* message);
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast_Error thiz);
+                  } Error;
                   libkn_KType* (*_type)(void);
-                  libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel (*ProfileViewModel)();
+                } ChangePasswordToast;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState (*ChangePasswordUiState)(const char* newPassword, const char* confirmPassword, libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity passwordRules, libkn_KBoolean isSubmitting, libkn_KBoolean passwordChanged, const char* requestErrorMessage, libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast toast);
+                  libkn_KBoolean (*get_canSubmit)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*get_confirmPassword)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*get_isConfirmMismatch)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*get_isPasswordLengthInvalid)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*get_isSubmitting)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*get_newPassword)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*get_passwordChanged)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*get_passwordRuleDescription)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*get_passwordRuleError)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity (*get_passwordRules)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*get_requestErrorMessage)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*get_shouldShowConfirmMismatch)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast (*get_toast)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*component1)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*component2)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity (*component3)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*component4)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_KBoolean (*component5)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*component6)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast (*component7)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState (*copy)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz, const char* newPassword, const char* confirmPassword, libkn_kref_com_example_kmpoh_data_model_entity_PasswordRulesEntity passwordRules, libkn_KBoolean isSubmitting, libkn_KBoolean passwordChanged, const char* requestErrorMessage, libkn_kref_com_example_kmpoh_page_profile_ChangePasswordToast toast);
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordUiState thiz);
+                } ChangePasswordUiState;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel (*ChangePasswordViewModel)(libkn_kref_com_example_kmpoh_data_repository_ProfileRepository profileRepository, libkn_kref_kotlinx_coroutines_CoroutineScope scope);
+                  libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_state)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz);
+                  void (*onConfirmPasswordChange)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz, const char* value);
+                  void (*onNewPasswordChange)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz, const char* value);
+                  void (*onPasswordChangedHandled)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz);
+                  void (*onToastShown)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz);
+                  void (*submit)(libkn_kref_com_example_kmpoh_page_profile_ChangePasswordViewModel thiz);
+                } ChangePasswordViewModel;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem (*ProfileMenuItem)(const char* id, libkn_kref_org_jetbrains_compose_resources_StringResource titleRes, libkn_kref_org_jetbrains_compose_resources_StringResource subtitleRes, libkn_KLong bgColor, libkn_KLong iconTint, const char* icon, libkn_KBoolean showBadge, const char* subtitleArg);
+                  libkn_KLong (*get_bgColor)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*get_icon)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_KLong (*get_iconTint)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*get_id)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_KBoolean (*get_showBadge)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*get_subtitleArg)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*get_subtitleRes)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*get_titleRes)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*component1)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*component2)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*component3)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_KLong (*component4)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_KLong (*component5)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*component6)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_KBoolean (*component7)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*component8)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem (*copy)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz, const char* id, libkn_kref_org_jetbrains_compose_resources_StringResource titleRes, libkn_kref_org_jetbrains_compose_resources_StringResource subtitleRes, libkn_KLong bgColor, libkn_KLong iconTint, const char* icon, libkn_KBoolean showBadge, const char* subtitleArg);
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ProfileMenuItem thiz);
+                } ProfileMenuItem;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileUiState (*ProfileUiState)(libkn_KBoolean isLoggingOut, const char* avatarName, const char* displayName, libkn_kref_org_jetbrains_compose_resources_StringResource titleRes, const char* employeeId, libkn_KBoolean isVerified, libkn_kref_kotlin_collections_List systemSettings);
+                  const char* (*get_avatarName)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*get_displayName)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*get_employeeId)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_KBoolean (*get_isLoggingOut)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_KBoolean (*get_isVerified)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_kref_kotlin_collections_List (*get_systemSettings)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*get_titleRes)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_KBoolean (*component1)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*component2)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*component3)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_kref_org_jetbrains_compose_resources_StringResource (*component4)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*component5)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_KBoolean (*component6)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_kref_kotlin_collections_List (*component7)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileUiState (*copy)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz, libkn_KBoolean isLoggingOut, const char* avatarName, const char* displayName, libkn_kref_org_jetbrains_compose_resources_StringResource titleRes, const char* employeeId, libkn_KBoolean isVerified, libkn_kref_kotlin_collections_List systemSettings);
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ProfileUiState thiz);
+                } ProfileUiState;
+                struct {
+                  struct {
+                    libkn_KType* (*_type)(void);
+                    libkn_kref_com_example_kmpoh_page_profile_ProfileEffect_LoggedOut (*_instance)();
+                    libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_page_profile_ProfileEffect_LoggedOut thiz, libkn_kref_kotlin_Any other);
+                    libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_page_profile_ProfileEffect_LoggedOut thiz);
+                    const char* (*toString)(libkn_kref_com_example_kmpoh_page_profile_ProfileEffect_LoggedOut thiz);
+                  } LoggedOut;
+                  libkn_KType* (*_type)(void);
+                } ProfileEffect;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel (*ProfileViewModel)(libkn_kref_com_example_kmpoh_data_repository_ProfileRepository profileRepository, libkn_kref_com_example_kmpoh_network_AuthSessionManager session, libkn_kref_kotlinx_coroutines_CoroutineScope scope);
+                  libkn_kref_kotlinx_coroutines_flow_SharedFlow (*get_effect)(libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel thiz);
+                  libkn_kref_kotlinx_coroutines_flow_StateFlow (*get_state)(libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel thiz);
+                  void (*onLogoutClick)(libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel thiz);
                 } ProfileViewModel;
-                void (*ProfilePage)(libkn_kref_kotlin_Function0 onLogout, libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_com_example_kmpoh_page_profile_ProfileViewModel viewModel);
+                void (*ChangePasswordPage)(libkn_kref_kotlin_Function0 onBack, libkn_kref_kotlin_Function1 onToastMessage, libkn_kref_kotlin_Function0 onPasswordChangedSuccess);
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Error$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Failed$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MinLength$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Required$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Success$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordUiState$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordViewModel$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileEffect_LoggedOut$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileMenuItem$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileUiState$stableprop_getter)();
                 libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Error$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Failed$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MinLength$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Required$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Success$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordUiState$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordViewModel$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileEffect_LoggedOut$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileMenuItem$stableprop_getter_)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileUiState$stableprop_getter_)();
                 libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter_)();
+                void (*ProfilePage)(libkn_kref_kotlin_Function0 onLoggedOut, libkn_kref_kotlin_Function0 onNavigateToChangePassword, libkn_kref_androidx_compose_ui_Modifier modifier);
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Error$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Failed$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MinLength$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Required$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Success$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordUiState$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordViewModel$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileEffect_LoggedOut$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileMenuItem$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileUiState$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter__)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_ConfirmMismatch$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Error$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Failed$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MaxLength$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_MinLength$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Required$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_RulesLoadFailed$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordToast_Success$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordUiState$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ChangePasswordViewModel$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileEffect_LoggedOut$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileMenuItem$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileUiState$stableprop_getter___)();
+                libkn_KInt (*com_example_kmpoh_page_profile_ProfileViewModel$stableprop_getter___)();
               } profile;
               struct {
                 struct {
@@ -1068,15 +1604,26 @@ typedef struct {
                 } Main;
                 struct {
                   libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword (*_instance)();
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword thiz);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword thiz, libkn_kref_kotlin_Array typeParamsSerializers);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer_)(libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_router_AppDestination_ChangePassword thiz);
+                } ChangePassword;
+                struct {
+                  libkn_KType* (*_type)(void);
                   libkn_kref_com_example_kmpoh_router_AppDestination_Companion (*_instance)();
                   libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_router_AppDestination_Companion thiz, libkn_kref_kotlin_Array typeParamsSerializers);
                   libkn_kref_kotlinx_serialization_KSerializer (*serializer_)(libkn_kref_com_example_kmpoh_router_AppDestination_Companion thiz);
                 } Companion;
                 libkn_KType* (*_type)(void);
               } AppDestination;
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_ChangePassword$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter)();
-              void (*AppNavGraph)(libkn_kref_androidx_navigation_NavHostController navController, libkn_kref_com_example_kmpoh_network_AuthSessionManager authSession, libkn_kref_com_example_kmpoh_router_AppDestination startDestination);
+              void (*AppNavGraph)(libkn_kref_androidx_navigation_NavHostController navController, libkn_kref_com_example_kmpoh_router_AppDestination startDestination);
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_ChangePassword$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter_)();
             } router;
@@ -1093,6 +1640,7 @@ typedef struct {
                 const char* (*get_AUTH_ACCESS_TOKEN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
                 const char* (*get_AUTH_REFRESH_TOKEN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
                 const char* (*get_DEVICE_ID)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
+                const char* (*get_USER_NAME)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
               } StorageKeys;
               libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter)();
               const char* (*getOrCreateDeviceId)(libkn_kref_com_example_kmpoh_storage_KeyValueStore store);

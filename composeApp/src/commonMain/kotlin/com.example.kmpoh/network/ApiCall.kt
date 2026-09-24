@@ -15,6 +15,7 @@ import com.example.kmpoh.logger.NETWORK_LOG_TAG
 import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -47,7 +48,35 @@ internal suspend fun <T> HttpClient.callEnvelopeWith(
     requestExtras: HttpRequestBuilder.() -> Unit = {},
     onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)? = null,
     loadingTracker: NetworkRequestTracker? = NetworkRequestTracker.global
-): T {
+): T = decodeEnvelopeWith(
+    requestEnvelopeText(path, body, baseUrl, requestExtras, onRawResponse, loadingTracker),
+    deserializer
+)
+
+/**
+ * 业务结果只取信封 msg 的调用出口（logout / passwordEdit：成功文案在 msg，data 不稳定/可空，
+ * 见 openspec data/profile）。业务码校验与异常归一同 [callEnvelopeWith]。
+ */
+internal suspend fun HttpClient.callEnvelopeMessage(
+    path: String,
+    body: Any? = null,
+    baseUrl: String = GeneratedApiConfig.BASE_URL,
+    requestExtras: HttpRequestBuilder.() -> Unit = {},
+    onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)? = null,
+    loadingTracker: NetworkRequestTracker? = NetworkRequestTracker.global
+): String = decodeEnvelopeMessage(
+    requestEnvelopeText(path, body, baseUrl, requestExtras, onRawResponse, loadingTracker)
+)
+
+/** 发送 POST 并返回原始响应文本（请求/Loading/异常归一，供信封各出口共用）。 */
+private suspend fun HttpClient.requestEnvelopeText(
+    path: String,
+    body: Any?,
+    baseUrl: String,
+    requestExtras: HttpRequestBuilder.() -> Unit,
+    onRawResponse: ((headers: io.ktor.http.Headers, rawBody: String) -> Unit)?,
+    loadingTracker: NetworkRequestTracker?
+): String {
     var loadingStarted = false
     Logger.debug(NETWORK_LOG_TAG, "→ POST $path")
     val response = try {
@@ -102,7 +131,7 @@ internal suspend fun <T> HttpClient.callEnvelopeWith(
 
     onRawResponse?.invoke(response.headers, text)
 
-    return decodeEnvelopeWith(text, deserializer)
+    return text
 }
 
 internal inline fun <reified T> decodeEnvelope(text: String): T =
@@ -110,6 +139,15 @@ internal inline fun <reified T> decodeEnvelope(text: String): T =
 
 /** 解析信封：失败响应先把 `data` 归一为空（其结构不稳定），再解码并做业务码校验。 */
 internal fun <T> decodeEnvelopeWith(text: String, deserializer: KSerializer<T>): T {
+    val envelope = parseBusinessEnvelope(text, deserializer)
+    return envelope.data ?: throw NetworkException.Parsing(IllegalStateException("响应缺少 data"))
+}
+
+/** 解析信封并只取 msg（data 可空/不稳定，见 data/profile「修改密码」）。 */
+internal fun decodeEnvelopeMessage(text: String): String =
+    parseBusinessEnvelope(text, JsonElement.serializer()).message
+
+private fun <T> parseBusinessEnvelope(text: String, deserializer: KSerializer<T>): ApiResponse<T> {
     val root = try {
         ApiJson.parseToJsonElement(text).jsonObject
     } catch (e: Exception) {
@@ -135,7 +173,7 @@ internal fun <T> decodeEnvelopeWith(text: String, deserializer: KSerializer<T>):
         Logger.debug(NETWORK_LOG_TAG, "✗ business code=${envelope.code} msg=${envelope.message}")
         throw BusinessApiException(envelope.code, envelope.message)
     }
-    return envelope.data ?: throw NetworkException.Parsing(IllegalStateException("响应缺少 data"))
+    return envelope
 }
 
 /**
@@ -149,15 +187,11 @@ fun mapTransportFailure(failure: Throwable): NetworkException {
     var current: Throwable? = failure
     while (current != null) {
         val simpleName = current::class.simpleName
-        when {
-            simpleName == "HttpRequestTimeoutException" ||
-                simpleName == "ConnectTimeoutException" ||
-                simpleName == "SocketTimeoutException" ->
+        when (simpleName) {
+            "HttpRequestTimeoutException", "ConnectTimeoutException", "SocketTimeoutException" ->
                 return NetworkException.Timeout(failure)
 
-            simpleName == "UnresolvedAddressException" ||
-                simpleName == "UnknownHostException" ||
-                simpleName == "ConnectException" ->
+            "UnresolvedAddressException", "UnknownHostException", "ConnectException" ->
                 return NetworkException.Unavailable(failure)
         }
         current = current.cause

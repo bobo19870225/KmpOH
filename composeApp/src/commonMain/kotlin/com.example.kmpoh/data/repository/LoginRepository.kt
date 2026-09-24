@@ -61,6 +61,7 @@ class NetworkLoginRepository(
             refreshToken = response.effectiveRefreshToken()
         )
         val model = response.toUserEntity().toUiModel()
+        session.saveUserName(model.displayName)
         Logger.debug(BUSINESS_LOG_TAG, "Login success userId=${response.userId}")
         Result.success(model)
     } catch (e: Exception) {
@@ -92,6 +93,7 @@ internal fun Throwable.toLoginFailureMessage(): String = when (this) {
 object AppGraph {
     val store by lazy { createKeyValueStore() }
     val session by lazy { AuthSessionManager(store) }
+    val gateway by lazy { ApiGateway(createApiClient(), session, deviceId = getOrCreateDeviceId(store)) }
     val loginRepository by lazy {
         // 启动期输出生效配置（不含密钥），便于联调时一眼确认环境/地址是否符合预期
         Logger.debug(
@@ -99,11 +101,14 @@ object AppGraph {
             "ApiConfig env=${GeneratedApiConfig.ENVIRONMENT} baseUrl=${GeneratedApiConfig.BASE_URL} " +
                 "signature=${GeneratedApiConfig.SIGNATURE_MODE} log=${Logger.isTestEnvironment}"
         )
-        val gateway = ApiGateway(createApiClient(), session, deviceId = getOrCreateDeviceId(store))
         NetworkLoginRepository(gateway, session, store)
     }
+    val profileRepository by lazy { ProfileRepository(gateway, session, store) }
 }
 
 /** 组装登录数据栈（手写依赖装配，design 决策 9）：
  * KV 存储 → 会话管理 → API 网关 → 登录仓库，收敛到 [AppGraph] 单例。 */
 fun createLoginRepository(): LoginRepository = AppGraph.loginRepository
+
+/** 组装账号资料与安全数据栈（design 决策 1 方案 B 聚合），收敛到 [AppGraph] 单例。 */
+fun createProfileRepository(): ProfileRepository = AppGraph.profileRepository

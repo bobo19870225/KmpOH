@@ -27,10 +27,6 @@ internal fun App() {
                 }
             }
         }
-        AppNavGraph(
-            navController = navController,
-            authSession = AppGraph.session,
-            startDestination = startDestination
-        )
+        AppNavGraph(navController = navController, startDestination = startDestination)
     }
 }

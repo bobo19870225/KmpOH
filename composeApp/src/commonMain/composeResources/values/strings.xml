@@ -39,4 +39,43 @@
     <string name="str_main_tab_profile">我的</string>
     <string name="str_main_placeholder_message">模块迁移中，敬请期待</string>
     <string name="str_main_placeholder_logout">退出登录</string>
+
+    <!-- 我的页 -->
+    <string name="profile_title_engineer">高级技术工程师</string>
+    <string name="profile_id_format">编号 %s</string>
+    <string name="profile_verified">已认证</string>
+    <string name="profile_system_settings">系统设置</string>
+    <string name="profile_preferences">偏好设置</string>
+    <string name="profile_preferences_desc">通知、语言与显示</string>
+    <string name="profile_help">帮助与反馈</string>
+    <string name="profile_help_desc">常见问题与在线支持</string>
+    <string name="profile_about">关于</string>
+    <string name="profile_about_desc">版本 %s</string>
+    <string name="profile_logout">退出登录</string>
+    <string name="profile_change_password">修改密码</string>
+    <string name="profile_change_password_desc">更新当前账号登录密码</string>
+
+    <!-- 修改密码页 -->
+    <string name="change_password_title">修改密码</string>
+    <string name="change_password_back_desc">返回</string>
+    <string name="change_password_form_title">账号安全</string>
+    <string name="change_password_form_desc">输入新密码并确认新的登录密码。</string>
+    <string name="change_password_new_password">新密码</string>
+    <string name="change_password_confirm_password">确认新密码</string>
+    <string name="change_password_show_password">显示密码</string>
+    <string name="change_password_hide_password">隐藏密码</string>
+    <string name="change_password_rule_length_format">长度 %1$d-%2$d 位</string>
+    <string name="change_password_submit">确认修改</string>
+    <string name="change_password_success">密码修改成功</string>
+    <string name="change_password_failed">密码修改失败</string>
+    <string name="change_password_confirm_mismatch">两次输入不一致</string>
+    <string name="change_password_required">请填写新密码与确认密码</string>
+    <string name="change_password_rules_load_failed">密码规则加载失败</string>
+    <string name="change_password_min_length">长度至少 %1$d 位</string>
+    <string name="change_password_max_length">长度最多 %1$d 位</string>
+
+    <!-- 强制修改密码提示 -->
+    <string name="force_change_password_title">请修改密码</string>
+    <string name="force_change_password_message">您的密码需要更新后才能继续使用，请先修改密码。</string>
+    <string name="str_confirm">确定</string>
 </resources>
