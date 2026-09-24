@@ -29,10 +29,17 @@ internal fun NavHostController.navigateToLoginClearingStack() {
     }
 }
 
-/** 应用导航图：本期 Login / Main 两目标，业务路由后续逐条挂接（design 决策 2）。 */
+/**
+ * 应用导航图：本期 Login / Main 两目标，业务路由后续逐条挂接（design 决策 2）。
+ * 起始路由由调用方按本地会话二分（决策 8：有会话 Main、无会话 Login）。
+ */
 @Composable
-fun AppNavGraph(navController: NavHostController, authSession: AuthSessionManager) {
-    NavHost(navController = navController, startDestination = AppDestination.Login) {
+fun AppNavGraph(
+    navController: NavHostController,
+    authSession: AuthSessionManager,
+    startDestination: AppDestination
+) {
+    NavHost(navController = navController, startDestination = startDestination) {
         composable<AppDestination.Login> {
             LoginPage(
                 onLoginSuccess = { navController.navigateToMainAfterLogin() },

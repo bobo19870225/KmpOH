@@ -1076,7 +1076,7 @@ typedef struct {
               } AppDestination;
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter)();
-              void (*AppNavGraph)(libkn_kref_androidx_navigation_NavHostController navController, libkn_kref_com_example_kmpoh_network_AuthSessionManager authSession);
+              void (*AppNavGraph)(libkn_kref_androidx_navigation_NavHostController navController, libkn_kref_com_example_kmpoh_network_AuthSessionManager authSession, libkn_kref_com_example_kmpoh_router_AppDestination startDestination);
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter_)();
               libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter_)();
             } router;

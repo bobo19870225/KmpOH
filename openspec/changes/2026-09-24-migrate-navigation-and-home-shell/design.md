@@ -38,7 +38,7 @@
 
 ### 决策 2：路由目标类型安全化，本期只建两条
 
-`AppDestination` 用 `@Serializable` 路由目标（`Login` / `Main` 两条无参目标），对齐原工程命名与 `toRoute<T>()` 使用习惯。后续业务路由逐条新增，本期不预埋空路由。`startDestination = Login`（Splash 未迁；自动登录落地时再评估改起点）。
+`AppDestination` 用 `@Serializable` 路由目标（`Login` / `Main` 两条无参目标），对齐原工程命名与 `toRoute<T>()` 使用习惯。后续业务路由逐条新增，本期不预埋空路由。~~`startDestination = Login`（Splash 未迁；自动登录落地时再评估改起点）~~ → 自动登录已落地，见决策 8（2026-09-24 增补）。
 
 ### 决策 3：tab 切换不进路由
 
@@ -61,3 +61,7 @@
 ### 决策 7：tab 内容抽离为独立页面单元（MVVM 结构先行），消息项注释停用
 
 三个 tab 的内容抽离为 `page/workorder|message|profile/` 页面单元（Page + ViewModel 成对，命名对齐登录页样板）。ViewModel 本期建空壳（自写纯 Kotlin 状态容器形态、不引 androidx.lifecycle，页面默认参数 `remember` 持有），业务状态随各自迁移填充。消息项与其分发分支以注释方式停用（对齐原工程停用 DataCenter 的写法），可见 tab 为工单/我的两项，恢复=取消注释。
+
+### 决策 8：启动自动登录——按会话二分起始路由，失效判定复用 401 接线（2026-09-24 增补）
+
+应用户反馈「只有 token 失效才需重新登录，不然直进首页」（此前两轮均列为非目标）：`App()` 装配时以 `AppGraph.session.accessToken()` 非空判定有会话 → `startDestination = Main`（Login 不入栈），空 → `Login`，对齐原工程 Splash 的 `onOpenMain/onOpenLogin` 二分语义（Splash 页本身仍不迁）。启动**不做**主动令牌校验、不阻塞：access 过期由 `ApiGateway` 自动刷新重试透明续期，刷新失败经 `LoginExpired` 事件清栈回登录——即「失效才重新登录」。已知取舍：完全失效的令牌会先进主框架一瞬、随首个请求 401 弹回登录（不阻塞启动的代价）。

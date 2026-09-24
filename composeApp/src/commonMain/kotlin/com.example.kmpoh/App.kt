@@ -6,6 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.rememberNavController
 import com.example.kmpoh.data.repository.AppGraph
 import com.example.kmpoh.network.AuthSessionEvent
+import com.example.kmpoh.router.AppDestination
 import com.example.kmpoh.router.AppNavGraph
 import com.example.kmpoh.router.navigateToLoginClearingStack
 
@@ -13,6 +14,10 @@ import com.example.kmpoh.router.navigateToLoginClearingStack
 internal fun App() {
     MaterialTheme {
         val navController = rememberNavController()
+        // 启动自动登录（spec ui/navigation「类型安全路由骨架」，design 决策 8）：
+        // 有会话令牌直进主框架（Login 不入栈），无令牌进登录页；启动不做令牌校验、不阻塞。
+        val startDestination =
+            if (AppGraph.session.accessToken() != null) AppDestination.Main else AppDestination.Login
         // 登录失效自动回登录页（spec ui/navigation）：事件在 UI 装配层消费，
         // 网络层保持无导航依赖（design 决策 4）。
         LaunchedEffect(navController) {
@@ -22,6 +27,10 @@ internal fun App() {
                 }
             }
         }
-        AppNavGraph(navController = navController, authSession = AppGraph.session)
+        AppNavGraph(
+            navController = navController,
+            authSession = AppGraph.session,
+            startDestination = startDestination
+        )
     }
 }

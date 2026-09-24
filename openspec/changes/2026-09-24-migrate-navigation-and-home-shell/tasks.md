@@ -80,6 +80,20 @@
 
   > **待用户验证**。
 
+## 7. 启动自动登录（2026-09-24 增补）
+
+- [x] 7.1 起始路由按会话判定：`AppNavGraph` 的 `startDestination` 参数化，`App()` 以 `AppGraph.session.accessToken()` 非空 → `Main`、空 → `Login`（对齐原工程 Splash 二分语义，决策 8）；验证方式：编译通过，代码审阅判定与返回栈语义（Main 起步时返回键不进入登录页）。
+
+- [x] 7.2 工件同步：`ui/navigation`「类型安全路由骨架」按会话二分改写、`design.md` 决策 8、`proposal.md` 范围同步（本组已随实施完成）；验证方式：工件与实现一致。
+
+- [x] 7.3 全量单测回归 + 双端编译 + `publishDebugBinariesToHarmonyApp` + `devecocli build`；验证方式：各命令 BUILD SUCCESSFUL。
+
+  > **结果**（2026-09-24）：`testDebugUnitTest` + `assembleDebug` + `linkDebugSharedOhosArm64` + `publishDebugBinariesToHarmonyApp` ✅（3m2s）；`devecocli build` ✅（HAP 已签名）。
+
+- [ ] 7.4 实机验证自动登录；验证方式：登录后杀进程重开直进主框架；登出后重开进登录页；（可选）token 失效自动回登录页。
+
+  > **待用户验证**。
+
 ## 用户验证清单（汇总，均待用户验证）
 
 1. 登录成功进入主框架，默认工单 tab。
@@ -89,3 +103,4 @@
 5. 「我的」退出登录：回登录页、返回键不回主框架、后续请求不带会话令牌。
 6. （可选）触发 401 登录失效：自动回登录页无残留栈。
 7. 三端 tab 图标渲染正常（Android / 鸿蒙实机；iOS 需 macOS 环境补验）。
+8. 自动登录：登录后杀进程重开直进主框架；登出后重开进登录页；（可选）token 失效自动回登录页。
