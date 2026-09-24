@@ -85,18 +85,25 @@ internal fun Throwable.toLoginFailureMessage(): String = when (this) {
 }
 
 /**
- * 组装登录数据栈（手写依赖装配，design 决策 9）：
- * KV 存储 → 会话管理 → API 网关 → 登录仓库。后续引入正式 DI 容器时替换此处。
+ * 全局装配单例（手写服务定位器，Hilt 的跨端替代路线）：登录数据栈与 `App()` 的
+ * 登录失效订阅必须共享同一 [AuthSessionManager] 实例，否则事件流接不上
+ * （openspec/changes/2026-09-24-migrate-navigation-and-home-shell）。后续引入正式 DI 容器时替换此处。
  */
-fun createLoginRepository(): LoginRepository {
-    // 启动期输出生效配置（不含密钥），便于联调时一眼确认环境/地址是否符合预期
-    Logger.debug(
-        DEBUG_LOG_TAG,
-        "ApiConfig env=${GeneratedApiConfig.ENVIRONMENT} baseUrl=${GeneratedApiConfig.BASE_URL} " +
-            "signature=${GeneratedApiConfig.SIGNATURE_MODE} log=${Logger.isTestEnvironment}"
-    )
-    val store = createKeyValueStore()
-    val session = AuthSessionManager(store)
-    val gateway = ApiGateway(createApiClient(), session, deviceId = getOrCreateDeviceId(store))
-    return NetworkLoginRepository(gateway, session, store)
+object AppGraph {
+    val store by lazy { createKeyValueStore() }
+    val session by lazy { AuthSessionManager(store) }
+    val loginRepository by lazy {
+        // 启动期输出生效配置（不含密钥），便于联调时一眼确认环境/地址是否符合预期
+        Logger.debug(
+            DEBUG_LOG_TAG,
+            "ApiConfig env=${GeneratedApiConfig.ENVIRONMENT} baseUrl=${GeneratedApiConfig.BASE_URL} " +
+                "signature=${GeneratedApiConfig.SIGNATURE_MODE} log=${Logger.isTestEnvironment}"
+        )
+        val gateway = ApiGateway(createApiClient(), session, deviceId = getOrCreateDeviceId(store))
+        NetworkLoginRepository(gateway, session, store)
+    }
 }
+
+/** 组装登录数据栈（手写依赖装配，design 决策 9）：
+ * KV 存储 → 会话管理 → API 网关 → 登录仓库，收敛到 [AppGraph] 单例。 */
+fun createLoginRepository(): LoginRepository = AppGraph.loginRepository

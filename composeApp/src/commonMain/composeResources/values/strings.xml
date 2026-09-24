@@ -32,4 +32,11 @@
 
     <!-- 底部安全提示 -->
     <string name="str_login_security_note">专业服务 · 用心守护</string>
+
+    <!-- 主框架壳（底部导航 + 迁移占位） -->
+    <string name="str_main_tab_workorder">工单</string>
+    <string name="str_main_tab_message">消息</string>
+    <string name="str_main_tab_profile">我的</string>
+    <string name="str_main_placeholder_message">模块迁移中，敬请期待</string>
+    <string name="str_main_placeholder_logout">退出登录</string>
 </resources>

@@ -8,6 +8,11 @@ string|str_login_slogan|RXZlcnkgc2VydmljZQpkZXNlcnZlcyBjYXJlLg==
 string|str_login_start_service|U2lnbiBpbiB0byBzdGFydCBzZXJ2aWNl
 string|str_login_subtitle|U2lnbiBpbiB0byB5b3VyIHdvcmtzcGFjZQ==
 string|str_login_title|V2VsY29tZSBiYWNr
+string|str_main_placeholder_logout|U2lnbiBPdXQ=
+string|str_main_placeholder_message|TW9kdWxlIG1pZ3JhdGlvbiBpbiBwcm9ncmVzcw==
+string|str_main_tab_message|TWVzc2FnZXM=
+string|str_main_tab_profile|TWU=
+string|str_main_tab_workorder|V29yayBPcmRlcnM=
 string|str_password_hide|SGlkZSBwYXNzd29yZA==
 string|str_password_hint|UGFzc3dvcmQ=
 string|str_password_login_hint|RW50ZXIgcGFzc3dvcmQ=

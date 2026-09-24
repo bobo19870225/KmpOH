@@ -26,4 +26,11 @@
 
     <!-- 底部安全提示 -->
     <string name="str_login_security_note">Professional service · thoughtful care</string>
+
+    <!-- 主框架壳（底部导航 + 迁移占位） -->
+    <string name="str_main_tab_workorder">Work Orders</string>
+    <string name="str_main_tab_message">Messages</string>
+    <string name="str_main_tab_profile">Me</string>
+    <string name="str_main_placeholder_message">Module migration in progress</string>
+    <string name="str_main_placeholder_logout">Sign Out</string>
 </resources>

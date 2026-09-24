@@ -137,6 +137,9 @@ typedef struct {
 } libkn_kref_com_example_kmpoh_storage_KeyValueStore;
 typedef struct {
   libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_data_repository_AppGraph;
+typedef struct {
+  libkn_KNativePtr pinned;
 } libkn_kref_com_example_kmpoh_logger_LogLevel;
 typedef struct {
   libkn_KNativePtr pinned;
@@ -263,10 +266,25 @@ typedef struct {
 } libkn_kref_kotlinx_coroutines_CoroutineScope;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_com_example_kmpoh_storage_StorageKeys;
+} libkn_kref_androidx_compose_ui_Modifier;
 typedef struct {
   libkn_KNativePtr pinned;
-} libkn_kref_androidx_compose_ui_Modifier;
+} libkn_kref_androidx_navigation_NavHostController;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_router_AppDestination;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_router_AppDestination_Login;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_router_AppDestination_Main;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_router_AppDestination_Companion;
+typedef struct {
+  libkn_KNativePtr pinned;
+} libkn_kref_com_example_kmpoh_storage_StorageKeys;
 typedef struct {
   libkn_KNativePtr pinned;
 } libkn_kref_androidx_compose_ui_text_input_VisualTransformation;
@@ -546,6 +564,14 @@ typedef struct {
                   libkn_KType* (*_type)(void);
                   libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository (*NetworkLoginRepository)(libkn_kref_com_example_kmpoh_network_ApiGateway gateway, libkn_kref_com_example_kmpoh_network_AuthSessionManager session, libkn_kref_com_example_kmpoh_storage_KeyValueStore store);
                 } NetworkLoginRepository;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_data_repository_AppGraph (*_instance)();
+                  libkn_kref_com_example_kmpoh_data_repository_NetworkLoginRepository (*get_loginRepository)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
+                  libkn_kref_com_example_kmpoh_network_AuthSessionManager (*get_session)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
+                  libkn_kref_com_example_kmpoh_storage_KeyValueStore (*get_store)(libkn_kref_com_example_kmpoh_data_repository_AppGraph thiz);
+                } AppGraph;
+                libkn_KInt (*com_example_kmpoh_data_repository_AppGraph$stableprop_getter)();
                 libkn_KInt (*com_example_kmpoh_data_repository_NetworkLoginRepository$stableprop_getter)();
                 libkn_kref_com_example_kmpoh_data_repository_LoginRepository (*createLoginRepository)();
               } repository;
@@ -979,7 +1005,45 @@ typedef struct {
                 libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter)();
                 libkn_KInt (*com_example_kmpoh_page_login_LoginViewModel$stableprop_getter_)();
               } login;
+              struct {
+                void (*MainPage)(libkn_kref_kotlin_Function0 onLogout);
+                void (*MainTabPlaceholder)(const char* moduleName, libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_kotlin_Function0 action);
+              } main;
             } page;
+            struct {
+              struct {
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_router_AppDestination_Login (*_instance)();
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_router_AppDestination_Login thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_router_AppDestination_Login thiz);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_router_AppDestination_Login thiz, libkn_kref_kotlin_Array typeParamsSerializers);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer_)(libkn_kref_com_example_kmpoh_router_AppDestination_Login thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_router_AppDestination_Login thiz);
+                } Login;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_router_AppDestination_Main (*_instance)();
+                  libkn_KBoolean (*equals)(libkn_kref_com_example_kmpoh_router_AppDestination_Main thiz, libkn_kref_kotlin_Any other);
+                  libkn_KInt (*hashCode)(libkn_kref_com_example_kmpoh_router_AppDestination_Main thiz);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_router_AppDestination_Main thiz, libkn_kref_kotlin_Array typeParamsSerializers);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer_)(libkn_kref_com_example_kmpoh_router_AppDestination_Main thiz);
+                  const char* (*toString)(libkn_kref_com_example_kmpoh_router_AppDestination_Main thiz);
+                } Main;
+                struct {
+                  libkn_KType* (*_type)(void);
+                  libkn_kref_com_example_kmpoh_router_AppDestination_Companion (*_instance)();
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer)(libkn_kref_com_example_kmpoh_router_AppDestination_Companion thiz, libkn_kref_kotlin_Array typeParamsSerializers);
+                  libkn_kref_kotlinx_serialization_KSerializer (*serializer_)(libkn_kref_com_example_kmpoh_router_AppDestination_Companion thiz);
+                } Companion;
+                libkn_KType* (*_type)(void);
+              } AppDestination;
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter)();
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter)();
+              void (*AppNavGraph)(libkn_kref_androidx_navigation_NavHostController navController, libkn_kref_com_example_kmpoh_network_AuthSessionManager authSession);
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_Login$stableprop_getter_)();
+              libkn_KInt (*com_example_kmpoh_router_AppDestination_Main$stableprop_getter_)();
+            } router;
             struct {
               struct {
                 libkn_KType* (*_type)(void);

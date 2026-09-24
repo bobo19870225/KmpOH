@@ -21,6 +21,12 @@ compose = "1.9.4"
 compose-material3 = "1.4.0"
 composeMultiplatform = "1.9.2-0.3.0"
 
+# Navigation（CMP navigation fork 线。2.10.0-0.1.0-xx 线经实测不可用：传递绑定
+# androidx.navigation 2.10.0-alpha05 上游，AAR metadata 要求 compileSdk 37（本工程 android-36）。
+# 改用 2.9.4 fork 快照线（含 ohosArm64 变体，上游 2.9.x 编译要求 ≤36）。取号结论见
+# openspec/changes/2026-09-24-migrate-navigation-and-home-shell/tasks.md 1.2。）
+navigationCompose = "2.9.4-20260525000011"
+
 # Network（Ktor fork 线 -1.0.0，按 CPF-KMP-CMP 三方库文档「KMP 2.2.21 & CMP 1.9.2 推荐」列。
 # 注意：ktor-network-tls 的 nonJvm 端是 error() 桩，任何 fork 线都不能在鸿蒙做 TLS——
 # 鸿蒙 HTTPS 走 ArkTS RCP 桥（见 ohosMain network/bridge/），Ktor 仅 Android/iOS 用引擎。
@@ -57,6 +63,9 @@ androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle
 
 # ----- Compose multiplatform -----
 compose-multiplatform-export = { module = "org.jetbrains.compose.export:export", version.ref = "composeMultiplatform" }
+
+# ----- Navigation（类型安全路由） -----
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 # ----- Network（Ktor + kotlinx.serialization） -----
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

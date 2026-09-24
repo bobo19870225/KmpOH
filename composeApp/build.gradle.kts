@@ -101,11 +101,14 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.json)
-            implementation(compose.runtime)                     
-            implementation(compose.foundation)                   
-            implementation(compose.material3)                    
-            implementation(compose.ui)                          
-            implementation(compose.components.resources)         
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            // 导航（openspec/changes/2026-09-24-migrate-navigation-and-home-shell）：
+            // CMP navigation fork 线，类型安全路由，对齐原工程 AppDestination.* 模式。
+            implementation(libs.navigation.compose)
         }
           // iOS平台共享代码
                 val iosMain = sourceSets.create("iosMain").apply {
