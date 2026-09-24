@@ -2,6 +2,7 @@ package com.example.kmpoh.logger
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class LoggerSanitizeTest {
@@ -37,5 +38,27 @@ class JsonSplitTest {
         assertTrue(chunks.all { it.length <= 300 })
         // 按顺序拼接可还原原文（原工程「可复制还原」约定）
         assertEquals(json, chunks.joinToString(""))
+    }
+}
+
+class LogLevelGateTest {
+
+    @Test
+    fun testEnvironmentOutputsAllLevels() {
+        for (level in LogLevel.entries) {
+            assertTrue(Logger.shouldOutput(level, isTestEnvironment = true), "$level 应在测试环境输出")
+        }
+    }
+
+    @Test
+    fun prodSuppressesDebugAndInfo() {
+        assertFalse(Logger.shouldOutput(LogLevel.DEBUG, isTestEnvironment = false), "prod 不应输出 DEBUG")
+        assertFalse(Logger.shouldOutput(LogLevel.INFO, isTestEnvironment = false), "prod 不应输出 INFO")
+    }
+
+    @Test
+    fun prodStillOutputsWarnAndError() {
+        assertTrue(Logger.shouldOutput(LogLevel.WARN, isTestEnvironment = false), "prod 应输出 WARN")
+        assertTrue(Logger.shouldOutput(LogLevel.ERROR, isTestEnvironment = false), "prod 应输出 ERROR")
     }
 }

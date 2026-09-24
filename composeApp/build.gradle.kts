@@ -41,13 +41,14 @@ kotlin {
             linkerOpts("-lz")
             // 存储（platform.ArkData.Preferences）、协程调度（platform.FunctionFlowRuntimeKit，
             // kotlinx-coroutines 的 FfrtDefaultDispatcher）与日志（platform.PerformanceAnalysisKit.HiLog，
-            // PlatformLog.ohos）：cinterop 的 OH_Preferences* / ffrt_* 均为弱导入（WEAK UND），
-            // 弱引用不触发 as-needed 保留 → libohpreferences.so / libffrt.z.so
-            // 缺失 DT_NEEDED → 运行时不加载 → 弱符号解析为空 → undefined-api-protection 抛：
+            // PlatformLog.ohos）：cinterop 的 OH_Preferences* / ffrt_* / OH_LOG_* 均为弱导入
+            // （WEAK UND，readelf 可见），弱引用不触发 as-needed 保留 → libohpreferences.so /
+            // libffrt.z.so / libhilog_ndk.z.so 缺失 DT_NEEDED → 运行时不加载 → 弱符号解析为空 →
+            // undefined-api-protection 抛：
             //   - Preferences：FileFailedToInitializeException（nova 13 实测启动即崩）
             //   - FFRT：IllegalStateException: Missing API symbol:
             //     ffrt_alloc_auto_managed_function_storage_base（点击登录派发协程即崩，nova 13 实测）
-            // OH_LOG_* 同为弱导入（readelf 可见 WEAK UND），-lhilog_ndk.z 一并强制保留（否则 HiLog 出口同理失效）。
+            //   - HiLog：OH_LOG_* 调用即抛（Logger 出口挂在 ApiCall/ApiGateway 请求路径上，不只是丢日志）
             // 强制保留这三个依赖。注意 sysroot 中 FFRT 只有 libffrt.z.so（OHOS .z 系统库命名），
             // 须写 -lffrt.z 而非 -lffrt。
             // 注意本工具链直接调用 ld.lld，须写裸标志（-Wl, 前缀会报 unknown argument）。

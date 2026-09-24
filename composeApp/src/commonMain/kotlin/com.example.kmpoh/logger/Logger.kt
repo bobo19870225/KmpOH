@@ -9,13 +9,18 @@ const val DEBUG_LOG_TAG = "########DEBUG#######"
 /** 脱敏后的替换文本。 */
 const val LOG_MASK = "***"
 
+/** 日志级别（跨平台统一四级；到平台原生级别的映射见各 [platformLogLine] actual）。 */
+enum class LogLevel { DEBUG, INFO, WARN, ERROR }
+
 /**
  * Logger 工具类 —— 迁移自原工程 logger/Logger.kt。
  *
  * 与原工程差异（KMP 化）：
- * - Timber 换为平台输出 [platformLogLine]（Android=logcat、iOS=stdout、鸿蒙=hilog）；
- * - 原「ReleaseTree 只记 WARN+」的构建期策略，收敛为「仅测试环境（uat）输出、其余静默」
- *   （对齐 spec「请求日志与脱敏」的非测试环境 MUST NOT 输出）；
+ * - Timber 换为平台输出 [platformLogLine]（Android=logcat、iOS=stdout、鸿蒙=hilog），
+ *   并提供 [LogLevel] 四级入口（debug/info/warn/error）；
+ * - 输出门控：DEBUG/INFO 仅测试环境输出（对齐 spec「请求日志与脱敏」的
+ *   非测试环境 MUST NOT 输出网络日志）；WARN/ERROR 全环境输出（对齐原工程
+ *   ReleaseTree「release 记 WARN+」的业务预期）；
  * - 敏感脱敏保留并并入网络层更严的字段集合（原工程列表曾被注释停用，属已知疏漏）。
  *
  * 保留的原工程核心能力：
@@ -28,17 +33,26 @@ const val LOG_MASK = "***"
 object Logger {
 
     /**
-     * 测试环境判断：非 prod 即测试环境（dev / uat 都输出，prod 静默——
-     * spec「请求日志与脱敏」只要求生产环境静默；原工程「仅 uat」的收窄
-     * 会造成 dev/uat 联调时看不到日志，此处按 spec 语义放宽）。
+     * 测试环境判断：非 prod 即测试环境（dev / uat 都输出——原工程「仅 uat」的收窄
+     * 会造成 dev/uat 联调时看不到日志，此处按 spec 语义放宽）。门控规则见 [shouldOutput]。
      */
     val isTestEnvironment: Boolean get() = GeneratedApiConfig.ENVIRONMENT != "prod"
 
-    /** 测试环境网络/业务日志入口，统一脱敏后输出。 */
-    fun debug(tag: String, message: String) {
-        if (!isTestEnvironment) return
-        platformLogLine(tag, sanitize(message))
-    }
+    /** 级别门控：测试环境全级别输出；prod 仅 WARN/ERROR（纯函数便于单测）。 */
+    internal fun shouldOutput(level: LogLevel, isTestEnvironment: Boolean): Boolean =
+        isTestEnvironment || level == LogLevel.WARN || level == LogLevel.ERROR
+
+    /** DEBUG 级日志入口（仅测试环境输出），统一脱敏后输出。 */
+    fun debug(tag: String, message: String) = log(LogLevel.DEBUG, tag, message)
+
+    /** INFO 级日志入口（仅测试环境输出），统一脱敏后输出。 */
+    fun info(tag: String, message: String) = log(LogLevel.INFO, tag, message)
+
+    /** WARN 级日志入口（全环境输出），统一脱敏后输出。 */
+    fun warn(tag: String, message: String) = log(LogLevel.WARN, tag, message)
+
+    /** ERROR 级日志入口（全环境输出），统一脱敏后输出。 */
+    fun error(tag: String, message: String) = log(LogLevel.ERROR, tag, message)
 
     /**
      * 网络响应统一压缩为单行，并主动分片以规避 Logcat 单条日志长度上限。
@@ -49,11 +63,11 @@ object Logger {
         val normalized = sanitize(message).replace("\r", "").replace("\n", "")
         val chunks = normalized.chunked(MAX_SINGLE_LINE_LOG_LENGTH)
         if (chunks.size <= 1) {
-            platformLogLine(tag, normalized)
+            platformLogLine(LogLevel.DEBUG, tag, normalized)
             return
         }
         chunks.forEachIndexed { index, chunk ->
-            platformLogLine(tag, "[${index + 1}/${chunks.size}] $chunk")
+            platformLogLine(LogLevel.DEBUG, tag, "[${index + 1}/${chunks.size}] $chunk")
         }
     }
 
@@ -65,13 +79,23 @@ object Logger {
         if (!isTestEnvironment) return
         val normalized = sanitize(json).replace("\r", "").replace("\n", "")
         val chunks = normalized.splitAtJsonBoundaries(MAX_SINGLE_LINE_LOG_LENGTH)
-        platformLogLine(tag, "$header body_parts=${chunks.size}")
-        chunks.forEach { chunk -> platformLogLine(tag, chunk) }
+        platformLogLine(LogLevel.DEBUG, tag, "$header body_parts=${chunks.size}")
+        chunks.forEach { chunk -> platformLogLine(LogLevel.DEBUG, tag, chunk) }
     }
 
     /** 无 tag 便捷入口，默认业务 TAG。 */
-    fun debug(message: String) {
-        debug(BUSINESS_LOG_TAG, message)
+    fun debug(message: String) = debug(BUSINESS_LOG_TAG, message)
+
+    fun info(message: String) = info(BUSINESS_LOG_TAG, message)
+
+    fun warn(message: String) = warn(BUSINESS_LOG_TAG, message)
+
+    fun error(message: String) = error(BUSINESS_LOG_TAG, message)
+
+    /** 级别出口：门控 + 脱敏后交给平台 [platformLogLine]。 */
+    private fun log(level: LogLevel, tag: String, message: String) {
+        if (!shouldOutput(level, isTestEnvironment)) return
+        platformLogLine(level, tag, sanitize(message))
     }
 
     /**
@@ -150,5 +174,5 @@ object Logger {
     private const val MAX_SINGLE_LINE_LOG_LENGTH = 3_000
 }
 
-/** 平台日志输出（单行）。 */
-expect fun platformLogLine(tag: String, message: String)
+/** 平台日志输出（单行、已脱敏）：级别 + tag + 消息。 */
+expect fun platformLogLine(level: LogLevel, tag: String, message: String)

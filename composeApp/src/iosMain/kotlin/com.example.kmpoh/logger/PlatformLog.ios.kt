@@ -1,6 +1,12 @@
 package com.example.kmpoh.logger
 
-actual fun platformLogLine(tag: String, message: String) {
-    // stdout 进 Xcode 控制台；如需 os_log 统一日志可后续接 NSLog/Logger.framework
-    println("[$tag] $message")
+actual fun platformLogLine(level: LogLevel, tag: String, message: String) {
+    // iOS 维持 stdout 出口（os_log 属后续变更）；级别用单字母前缀标记
+    val marker = when (level) {
+        LogLevel.DEBUG -> "D"
+        LogLevel.INFO -> "I"
+        LogLevel.WARN -> "W"
+        LogLevel.ERROR -> "E"
+    }
+    println("[$marker/$tag] $message")
 }

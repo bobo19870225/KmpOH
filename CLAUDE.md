@@ -111,7 +111,7 @@ Kotlin 源码目录**直接用完整包名做文件夹名**——`src/commonMain
 - **数据层** `data/` —— DTO → Entity → UIModel 分层 + mapper（`data/model/{dto,entity,ui,mapper}`），`data/repository/LoginRepository` 调网络层。这套分层自原工程**原样保留**，新业务照此建模。
 - **网络层** `network/` —— Ktor 封装（详见下节）。
 - **存储** `storage/` —— `KeyValueStore` 接口 + `expect fun createKeyValueStore()`：Android = SharedPreferences、iOS = NSUserDefaults、鸿蒙 = Native Preferences（cinterop `platform.ArkData.Preferences` 直调 libohpreferences）。本期为普通 KV，弱于原工程 AndroidKeyStore 加密（升级列入后续变更）。`getOrCreateDeviceId` 首次生成 UUID 并持久化。
-- **日志** `logger/` —— `Logger`（迁移自原工程）：`debugSingleLine` 分片、`debugJson` 按 JSON 边界分片、`sanitize` 敏感脱敏；**仅非 prod 环境输出**（`GeneratedApiConfig.ENVIRONMENT != "prod"`），平台出口 `platformLogLine`（Android=logcat、iOS/鸿蒙=stdout）。
+- **日志** `logger/` —— `Logger`（迁移自原工程）：`debugSingleLine` 分片、`debugJson` 按 JSON 边界分片、`sanitize` 敏感脱敏；级别 `LogLevel`（DEBUG/INFO/WARN/ERROR）四级入口 `debug`/`info`/`warn`/`error`，门控 DEBUG/INFO 仅测试环境、WARN/ERROR 全环境（一律脱敏；spec「请求日志与脱敏」只禁 prod 输出网络日志），平台出口 `platformLogLine(level, tag, message)`（Android=logcat 分级、iOS=stdout 级别前缀、鸿蒙=HiLog `OH_LOG_PrintMsg`）。
 
 ### 网络层（Ktor）
 
