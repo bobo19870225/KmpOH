@@ -46,12 +46,13 @@ fun PrimaryInput(
         enabled = enabled,
         singleLine = singleLine,
         shape = RoundedCornerShape(12.dp),
+        // 不设 lineHeight：lineHeight = fontSize（1em）的行框小于 CJK 字形自然行高（≈1.2em），
+        // 溢出部分在鸿蒙 CMP 文本栈会被裁掉字形底部（Android fontPadding 容忍，原工程未暴露）。
         textStyle = TextStyle(
             color = if (enabled) Color.Black else Color(0xFF9EA7B3),
-            fontSize = fontSize,
-            lineHeight = fontSize
+            fontSize = fontSize
         ),
-        placeholder = { Text(placeholder, color = Color(0xFFC1C6CE), fontSize = fontSize, lineHeight = fontSize) },
+        placeholder = { Text(placeholder, color = Color(0xFFC1C6CE), fontSize = fontSize) },
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         visualTransformation = visualTransformation,

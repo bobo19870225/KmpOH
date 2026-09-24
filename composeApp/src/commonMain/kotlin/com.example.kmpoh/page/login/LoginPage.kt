@@ -101,7 +101,7 @@ private val LoginOrange = Color(0xFFFFBC61)
 // 由 LoginContent / LoginHero / LoginServiceBanner / 登录卡片里的固定尺寸求和得出。
 // 注意：无 lineHeight 的文本按 CJK 行高 ≈ 字号×1.45em 折算，系数取的是偏保守上界
 // （宁可轻微缩小也不溢出）。若调整布局尺寸或字号，请同步更新这两个系数。
-private const val LoginDesignHeightDp = 400f
+private const val LoginDesignHeightDp = 418f
 private const val LoginDesignHeightSp = 300f
 
 @Composable
@@ -183,8 +183,9 @@ private fun LoginContent(
                         .padding(top = 14.dp, bottom = 12.dp)
                 ) {
                     LoginHero()
-                    // 弹性间距：富余高度在此吸收；紧张时收到 0，仍放不下由上方 scale 缩放兜底
-                    Spacer(Modifier.weight(1f))
+                    // 固定间距对齐原工程（18dp）：此前与下方 spacer 各 weight(1f) 平分富余高度，
+                    // 高屏下卡片被推离上方组件。富余高度全部由下方弹性 spacer 吸收（footer 钉底）。
+                    Spacer(Modifier.height(18.dp))
                     Card(
                         Modifier
                             .fillMaxWidth()
@@ -219,7 +220,6 @@ private fun LoginContent(
                                     keyboardType = KeyboardType.Text,
                                     imeAction = ImeAction.Next
                                 ),
-                                height = 44.dp,
                                 fontSize = 15.sp,
                                 focusedBorderColor = LoginInk,
                                 unfocusedBorderColor = LoginInputBorder,
@@ -257,7 +257,6 @@ private fun LoginContent(
                                 ),
                                 visualTransformation = if (passwordVisible) VisualTransformation.None
                                 else PasswordVisualTransformation(),
-                                height = 44.dp,
                                 fontSize = 15.sp,
                                 focusedBorderColor = LoginInk,
                                 unfocusedBorderColor = LoginInputBorder,
