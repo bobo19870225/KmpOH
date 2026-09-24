@@ -104,24 +104,4 @@
     <string name="work_order_progress_sign_off">验收签字</string>
     <string name="work_order_progress_report">报告完成</string>
     <string name="work_order_progress_complete">全部完成</string>
-    <string name="work_order_intro_title">📋 首页 / 工单列表&#10;更新于 2026-06-17</string>
-    <string name="work_order_intro_nav_title">月份导航栏</string>
-    <string name="work_order_intro_nav_1">顶部展示当前月份，提供快速跳转入口。</string>
-    <string name="work_order_intro_nav_2">点击月份标题弹出年月选择器。</string>
-    <string name="work_order_intro_nav_3">确认选择后跳转到对应月份，选中日期设为该月 1 日。</string>
-    <string name="work_order_intro_nav_4">点击今天跳转到今天，并滚动到今天所在周。</string>
-    <string name="work_order_intro_view_title">周 / 月视图切换</string>
-    <string name="work_order_intro_view_1">默认周视图，可手动切换月视图。</string>
-    <string name="work_order_intro_view_2">周视图左右滑动一次切换一周。</string>
-    <string name="work_order_intro_view_3">月视图左右滑动一次切换一个月。</string>
-    <string name="work_order_intro_view_4">本次会话期间记忆切换状态。</string>
-    <string name="work_order_intro_week_title">周视图</string>
-    <string name="work_order_intro_week_1">横向展示一周 7 天。</string>
-    <string name="work_order_intro_week_2">日期格等宽分布，选中态为主色填充。</string>
-    <string name="work_order_intro_week_3">日期下方用小圆点显示工单状态。</string>
-    <string name="work_order_intro_week_4">点击日期后刷新列表。</string>
-    <string name="work_order_intro_list_title">工单列表</string>
-    <string name="work_order_intro_list_1">按待开始、进行中、已完成三类筛选。</string>
-    <string name="work_order_intro_list_2">卡片展示项目标签、风险、时间和地址。</string>
-    <string name="work_order_intro_list_3">点击预览进入现场示意图页面。</string>
 </resources>

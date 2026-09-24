@@ -98,24 +98,4 @@
     <string name="work_order_progress_sign_off">Acceptance</string>
     <string name="work_order_progress_report">Report ready</string>
     <string name="work_order_progress_complete">Completed</string>
-    <string name="work_order_intro_title">📋 Home / Work Orders&#10;Updated 2026-06-17</string>
-    <string name="work_order_intro_nav_title">Month navigation</string>
-    <string name="work_order_intro_nav_1">Shows the current month with quick jump entries.</string>
-    <string name="work_order_intro_nav_2">Tap the month title to open the year/month picker.</string>
-    <string name="work_order_intro_nav_3">Confirming jumps to that month with the 1st selected.</string>
-    <string name="work_order_intro_nav_4">Today jumps to today and scrolls to its week.</string>
-    <string name="work_order_intro_view_title">Week / month view toggle</string>
-    <string name="work_order_intro_view_1">Week view by default; switch to month view manually.</string>
-    <string name="work_order_intro_view_2">Swipe left/right in week view to change weeks.</string>
-    <string name="work_order_intro_view_3">Swipe left/right in month view to change months.</string>
-    <string name="work_order_intro_view_4">The toggle state is remembered for this session.</string>
-    <string name="work_order_intro_week_title">Week view</string>
-    <string name="work_order_intro_week_1">Shows 7 days of the week horizontally.</string>
-    <string name="work_order_intro_week_2">Day cells are equal width; the selected day uses the primary color.</string>
-    <string name="work_order_intro_week_3">Small dots under each day show work order states.</string>
-    <string name="work_order_intro_week_4">Tapping a day refreshes the list.</string>
-    <string name="work_order_intro_list_title">Work order list</string>
-    <string name="work_order_intro_list_1">Filter by waiting, in-progress and completed.</string>
-    <string name="work_order_intro_list_2">Cards show project tags, risk, time and address.</string>
-    <string name="work_order_intro_list_3">Tap Preview to open the site sketch page.</string>
 </resources>

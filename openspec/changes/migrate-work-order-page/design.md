@@ -52,9 +52,9 @@
 
 `WorkOrderComposeScreen` 回调收敛为 `onOpenPreview: (WorkOrder) -> Unit` + `onToastMessage: (String) -> Unit`；原签名中的 `onLogout/onNavigateToUpdateCustomerLocation/onSignInSuccessPreview` 属未迁域，随详情/签到变更回接。本期接缝指向日志空实现（对齐登录页 toast 接缝模式）。
 
-### 决策 6：首次引导以 KV 标志去重
+### 决策 6：不引入首次进入引导（用户裁定，2026-09-24 修订）
 
-`WorkOrderPageIntroDialog` 的「已读」状态存 `KeyValueStore`（`StorageKeys` 新键），跨启动生效；不引入额外状态库。
+~~首次引导以 KV 标志去重~~ → **用户裁定整体移除且今后不再引入**：任何「首次进入引导/onboarding 弹窗 + 已读标志」类机制不做（曾短暂实现的 `WorkOrderPageIntroDialog` 已删），后续变更亦不得引入。
 
 ### 决策 7：回前台自动刷新挂生命周期
 

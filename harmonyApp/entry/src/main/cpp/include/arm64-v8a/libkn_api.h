@@ -2391,7 +2391,6 @@ typedef struct {
                 libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderTag$stableprop_getter_)();
                 libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderViewModel$stableprop_getter_)();
                 void (*WorkOrderPage)(libkn_kref_androidx_compose_ui_Modifier modifier, libkn_kref_kotlin_Function1 onOpenPreview, libkn_kref_kotlin_Function1 onToastMessage);
-                void (*WorkOrderPageIntroDialog)(libkn_kref_kotlin_Function0 onDismiss);
                 libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrder$stableprop_getter__)();
                 libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderCalendarMarkerState$stableprop_getter__)();
                 libkn_KInt (*com_example_kmpoh_page_workorder_WorkOrderListState$stableprop_getter__)();
@@ -2469,7 +2468,6 @@ typedef struct {
                 const char* (*get_AUTH_REFRESH_TOKEN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
                 const char* (*get_DEVICE_ID)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
                 const char* (*get_USER_NAME)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
-                const char* (*get_WORK_ORDER_GUIDE_SHOWN)(libkn_kref_com_example_kmpoh_storage_StorageKeys thiz);
               } StorageKeys;
               libkn_KInt (*com_example_kmpoh_storage_StorageKeys$stableprop_getter)();
               const char* (*getOrCreateDeviceId)(libkn_kref_com_example_kmpoh_storage_KeyValueStore store);

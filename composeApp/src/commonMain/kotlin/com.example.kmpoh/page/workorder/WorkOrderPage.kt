@@ -54,10 +54,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import com.example.kmpoh.data.repository.AppGraph
 import com.example.kmpoh.data.repository.createWorkOrderListRepository
-import com.example.kmpoh.storage.StorageKeys
 import com.example.kmpoh.ui.components.LoadingView
 import com.example.kmpoh.ui.theme.AppColors
 import com.example.kmpoh.utils.UiState
@@ -80,26 +77,6 @@ import kmpoh.composeapp.generated.resources.work_order_collapse
 import kmpoh.composeapp.generated.resources.work_order_empty
 import kmpoh.composeapp.generated.resources.work_order_expand_month
 import kotlinx.datetime.number
-import kmpoh.composeapp.generated.resources.work_order_intro_list_1
-import kmpoh.composeapp.generated.resources.work_order_intro_list_2
-import kmpoh.composeapp.generated.resources.work_order_intro_list_3
-import kmpoh.composeapp.generated.resources.work_order_intro_list_title
-import kmpoh.composeapp.generated.resources.work_order_intro_nav_1
-import kmpoh.composeapp.generated.resources.work_order_intro_nav_2
-import kmpoh.composeapp.generated.resources.work_order_intro_nav_3
-import kmpoh.composeapp.generated.resources.work_order_intro_nav_4
-import kmpoh.composeapp.generated.resources.work_order_intro_nav_title
-import kmpoh.composeapp.generated.resources.work_order_intro_title
-import kmpoh.composeapp.generated.resources.work_order_intro_view_1
-import kmpoh.composeapp.generated.resources.work_order_intro_view_2
-import kmpoh.composeapp.generated.resources.work_order_intro_view_3
-import kmpoh.composeapp.generated.resources.work_order_intro_view_4
-import kmpoh.composeapp.generated.resources.work_order_intro_view_title
-import kmpoh.composeapp.generated.resources.work_order_intro_week_1
-import kmpoh.composeapp.generated.resources.work_order_intro_week_2
-import kmpoh.composeapp.generated.resources.work_order_intro_week_3
-import kmpoh.composeapp.generated.resources.work_order_intro_week_4
-import kmpoh.composeapp.generated.resources.work_order_intro_week_title
 import kmpoh.composeapp.generated.resources.work_order_load_failed
 import kmpoh.composeapp.generated.resources.work_order_load_more
 import kmpoh.composeapp.generated.resources.work_order_loading_more
@@ -161,8 +138,6 @@ fun WorkOrderPage(
     val state by viewModel.state.collectAsState()
     val today = remember { todayDate() }
     var showMonthPicker by remember { mutableStateOf(false) }
-    val store = remember { AppGraph.store }
-    var showIntro by remember { mutableStateOf(store.getString(StorageKeys.WORK_ORDER_GUIDE_SHOWN) == null) }
 
     // 一次性提示：类型化 toast → 文案后转发（对齐修改密码页接缝）
     val toastText = state.toast?.let { toast ->
@@ -304,15 +279,6 @@ fun WorkOrderPage(
             }
         )
     }
-
-    if (showIntro) {
-        WorkOrderPageIntroDialog(
-            onDismiss = {
-                showIntro = false
-                store.putString(StorageKeys.WORK_ORDER_GUIDE_SHOWN, "1")
-            }
-        )
-    }
 }
 
 /** 回前台生命周期观察（决策 7；跳过首帧由调用方状态控制）。 */
@@ -327,44 +293,6 @@ private fun LifecycleResumeEffect(onResume: () -> Unit) {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 }
-
-/** 首次进入引导（spec「首次进入引导」；KV 已读标志去重，决策 6）。 */
-@Composable
-fun WorkOrderPageIntroDialog(onDismiss: () -> Unit) {
-    InfoDialog(
-        title = stringResource(Res.string.work_order_intro_title),
-        sections = introSections(),
-        bottom = true,
-        onDismiss = onDismiss
-    )
-}
-
-@Composable
-private fun introSections(): List<Pair<String, List<String>>> = listOf(
-    stringResource(Res.string.work_order_intro_nav_title) to listOf(
-        stringResource(Res.string.work_order_intro_nav_1),
-        stringResource(Res.string.work_order_intro_nav_2),
-        stringResource(Res.string.work_order_intro_nav_3),
-        stringResource(Res.string.work_order_intro_nav_4)
-    ),
-    stringResource(Res.string.work_order_intro_view_title) to listOf(
-        stringResource(Res.string.work_order_intro_view_1),
-        stringResource(Res.string.work_order_intro_view_2),
-        stringResource(Res.string.work_order_intro_view_3),
-        stringResource(Res.string.work_order_intro_view_4)
-    ),
-    stringResource(Res.string.work_order_intro_week_title) to listOf(
-        stringResource(Res.string.work_order_intro_week_1),
-        stringResource(Res.string.work_order_intro_week_2),
-        stringResource(Res.string.work_order_intro_week_3),
-        stringResource(Res.string.work_order_intro_week_4)
-    ),
-    stringResource(Res.string.work_order_intro_list_title) to listOf(
-        stringResource(Res.string.work_order_intro_list_1),
-        stringResource(Res.string.work_order_intro_list_2),
-        stringResource(Res.string.work_order_intro_list_3)
-    )
-)
 
 @Composable
 private fun WorkOrderTopBar(
@@ -1081,83 +1009,3 @@ private fun CircleArrow(text: String, onClick: () -> Unit) {
     }
 }
 
-@Composable
-private fun InfoDialog(
-    title: String,
-    sections: List<Pair<String, List<String>>>,
-    bottom: Boolean,
-    onDismiss: () -> Unit
-) {
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(usePlatformDefaultWidth = !bottom)
-    ) {
-        Box(
-            Modifier.then(if (bottom) Modifier.fillMaxSize() else Modifier.fillMaxWidth()),
-            contentAlignment = if (bottom) Alignment.BottomCenter else Alignment.Center
-        ) {
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .then(if (bottom) Modifier.fillMaxHeight(0.88f) else Modifier)
-                    .clip(
-                        RoundedCornerShape(
-                            topStart = 24.dp,
-                            topEnd = 24.dp,
-                            bottomStart = if (bottom) 0.dp else 24.dp,
-                            bottomEnd = if (bottom) 0.dp else 24.dp
-                        )
-                    )
-                    .background(Color.White)
-                    .padding(18.dp)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        title,
-                        modifier = Modifier.weight(1f),
-                        color = WoTextPrimary,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Box(
-                        Modifier
-                            .size(28.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFFAAB4C3))
-                            .clickable(onClick = onDismiss),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            painter = painterResource(Res.drawable.ic_wo_close),
-                            contentDescription = null,
-                            tint = Color.White
-                        )
-                    }
-                }
-                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp).height(0.5.dp))
-                LazyColumn(Modifier.fillMaxWidth().padding(top = 14.dp)) {
-                    items(sections) { (sectionTitle, rows) ->
-                        Text(
-                            sectionTitle,
-                            color = WoTextPrimary,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(top = 12.dp, bottom = 6.dp)
-                        )
-                        Column(
-                            Modifier
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Color(0xFFF6F8FB))
-                                .padding(14.dp)
-                        ) {
-                            rows.forEach { row ->
-                                Text(row, color = Color(0xFF6F798A), fontSize = 10.sp, lineHeight = 14.sp)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}

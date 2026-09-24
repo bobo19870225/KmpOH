@@ -49,10 +49,16 @@ kotlin {
             //   - FFRT：IllegalStateException: Missing API symbol:
             //     ffrt_alloc_auto_managed_function_storage_base（点击登录派发协程即崩，nova 13 实测）
             //   - HiLog：OH_LOG_* 调用即抛（Logger 出口挂在 ApiCall/ApiGateway 请求路径上，不只是丢日志）
-            // 强制保留这三个依赖。注意 sysroot 中 FFRT 只有 libffrt.z.so（OHOS .z 系统库命名），
-            // 须写 -lffrt.z 而非 -lffrt。
+            //   - TimeService：OH_TimeService_GetTimeZone 调用即抛
+            //     （kotlinx-datetime 鸿蒙实现取系统时区，todayDate() 等启动即触发）
+            // 强制保留这四个依赖。注意 sysroot 中 FFRT 只有 libffrt.z.so（OHOS .z 系统库命名），
+            // 须写 -lffrt.z 而非 -lffrt；time service 为 libtime_service_ndk.so（无 .z 后缀）。
             // 注意本工具链直接调用 ld.lld，须写裸标志（-Wl, 前缀会报 unknown argument）。
-            linkerOpts("--no-as-needed", "-lohpreferences", "-lffrt.z", "-lhilog_ndk.z", "--as-needed")
+            linkerOpts(
+                "--no-as-needed",
+                "-lohpreferences", "-lffrt.z", "-lhilog_ndk.z", "-ltime_service_ndk",
+                "--as-needed"
+            )
                 // 渲染模式
  	             // 背景：当 libkn.so 为旧编译产物时，其 DT_NEEDED 可能缺少以下库（正确构建时
  	             // NativeTasksConfiguration.kt 已通过 -l 选项将它们写入 DT_NEEDED）。
